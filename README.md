@@ -5,4 +5,13 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
 
 # dailycodingproblem-go
-problems from dailycodingproblem.com solved in Go
+problems from
+[dailycodingproblem.com](https://www.dailycodingproblem.com/) solved in Go
+
+| Daily Problem Description |
+-----------------------------
+| [Day 1](https://github.com/vaskoz/dailycodingproblem-go/issues/1) |
+| [Day 2](https://github.com/vaskoz/dailycodingproblem-go/issues/3) |
+| [Day 3](https://github.com/vaskoz/dailycodingproblem-go/issues/7) |
+| [Day 4](https://github.com/vaskoz/dailycodingproblem-go/issues/5) |
+
