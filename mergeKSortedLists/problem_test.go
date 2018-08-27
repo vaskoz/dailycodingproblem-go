@@ -49,3 +49,19 @@ func BenchmarkMergeKSortedLists(b *testing.B) {
 		}
 	}
 }
+
+func TestMergeKSortedListsUsingHeap(t *testing.T) {
+	for i, tc := range testcases {
+		if result := MergeKSortedListsUsingHeap(tc.input); !reflect.DeepEqual(result, tc.expected) {
+			t.Errorf("did not merge list correctly for testcase#%d, got %v", i, result)
+		}
+	}
+}
+
+func BenchmarkMergeKSortedListsUsingHeap(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			MergeKSortedListsUsingHeap(tc.input)
+		}
+	}
+}
