@@ -14,4 +14,5 @@ problems from
 * [Day 3](https://github.com/vaskoz/dailycodingproblem-go/issues/7)
 * [Day 4](https://github.com/vaskoz/dailycodingproblem-go/issues/5)
 * [Day 5](https://github.com/vaskoz/dailycodingproblem-go/issues/9)
+* [Day 5 merge k sorted lists](https://github.com/vaskoz/dailycodingproblem-go/issues/11)
 
