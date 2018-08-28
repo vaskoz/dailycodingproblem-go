@@ -23,6 +23,9 @@ func TestXorList(t *testing.T) {
 		if result := forwardToSlice(xl); !reflect.DeepEqual(result, []interface{}(tc.data)) {
 			t.Errorf("Expected %v but got %v", tc.data, result)
 		}
+		if reversed, result := reverse(tc.data), backwardToSlice(xl); !reflect.DeepEqual(result, reversed) {
+			t.Errorf("Expected %v but got %v", reversed, result)
+		}
 	}
 }
 
@@ -35,6 +38,38 @@ func BenchmarkXorList(b *testing.B) {
 			}
 		}
 	}
+}
+
+// reverses a slice of elements
+func reverse(data []interface{}) []interface{} {
+	reversed := make([]interface{}, len(data))
+	for i, v := range data {
+		reversed[len(data)-i-1] = v
+	}
+	return reversed
+}
+
+// backwardToSlice is a testing utility to iterate through this list and construct a slice.
+// it's easier to assert on.
+func backwardToSlice(xl *XorList) []interface{} {
+	// go forward from the head to the tail
+	prev := uintptr(0)
+	this := unsafe.Pointer(xl)
+	for prev^xl.both != 0 {
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		xl = (*XorList)(this)
+	}
+	// now collect items from tail to the head
+	var result []interface{}
+	prev = uintptr(0)
+	this = unsafe.Pointer(xl)
+	result = append(result, xl.val)
+	for prev^xl.both != 0 {
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		xl = (*XorList)(this)
+		result = append(result, xl.val)
+	}
+	return result
 }
 
 // forwardToSlice is a testing utility to iterate through this list and construct a slice.
