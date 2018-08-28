@@ -35,6 +35,7 @@ var testcases = []struct {
 }
 
 func TestMergeKSortedLists(t *testing.T) {
+	t.Parallel()
 	for i, tc := range testcases {
 		if result := MergeKSortedLists(tc.input); !reflect.DeepEqual(result, tc.expected) {
 			t.Errorf("did not merge list correctly for testcase#%d, got %v", i, result)
@@ -51,6 +52,7 @@ func BenchmarkMergeKSortedLists(b *testing.B) {
 }
 
 func TestMergeKSortedListsUsingHeap(t *testing.T) {
+	t.Parallel()
 	for i, tc := range testcases {
 		if result := MergeKSortedListsUsingHeap(tc.input); !reflect.DeepEqual(result, tc.expected) {
 			t.Errorf("did not merge list correctly for testcase#%d, got %v", i, result)
