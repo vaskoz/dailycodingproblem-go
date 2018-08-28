@@ -15,6 +15,7 @@ var testcases = []struct {
 }
 
 func TestXorList(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		xl := New(tc.data[0])
 		for i := 1; i < len(tc.data); i++ {
