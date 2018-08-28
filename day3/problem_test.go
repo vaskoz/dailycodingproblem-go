@@ -6,6 +6,7 @@ import (
 )
 
 func TestSerializeAndDeserialize(t *testing.T) {
+	t.Parallel()
 	root := &Node{val: 20,
 		left: nil,
 		right: &Node{val: 8, left: nil,
@@ -23,6 +24,7 @@ func TestSerializeAndDeserialize(t *testing.T) {
 }
 
 func TestDeserializeBadString(t *testing.T) {
+	t.Parallel()
 	defer func() {
 		if r := recover(); r == nil {
 			t.Error("I expected a panic on bad serialization data")
