@@ -13,6 +13,7 @@ var testcases = []struct {
 }
 
 func TestNumberOfDecodings(t *testing.T) {
+	tc.Parallel()
 	for _, tc := range testcases {
 		if result := NumberOfDecodings(tc.input); result != tc.expected {
 			t.Errorf("For input %v, expected %v but got %v", tc.input, tc.expected, result)
