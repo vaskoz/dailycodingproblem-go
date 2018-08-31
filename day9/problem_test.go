@@ -12,6 +12,7 @@ var testcases = []struct {
 }
 
 func TestMaximumNonAdjacentSum(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := MaximumNonAdjacentSum(tc.input); result != tc.expected {
 			t.Errorf("Expected %v, but got %v", tc.expected, result)

@@ -3,6 +3,7 @@ package day8
 import "testing"
 
 func TestCountUnivalSubtrees(t *testing.T) {
+	t.Parallel()
 	root := &BinaryTree{value: 0,
 		left: &BinaryTree{value: 1},
 		right: &BinaryTree{value: 0,
