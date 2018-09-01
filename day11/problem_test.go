@@ -18,6 +18,7 @@ var testcases = []struct {
 }
 
 func TestTrie(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		trie := NewTrie(tc.input)
 		result := trie.Match(tc.query)
