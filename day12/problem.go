@@ -5,7 +5,6 @@ import "sort"
 // UniqueClimbs calculates the number of possible ways to climb the steps.
 // Assumes that we have the given number of possible strides.
 // A stride is the number of steps possible.
-// Assumes strides are in sorted order.
 // Runs in exponential time.
 func UniqueClimbs(steps int, strides []int) int {
 	if steps < 0 {
@@ -23,10 +22,12 @@ func UniqueClimbs(steps int, strides []int) int {
 // UniqueClimbsDS doesn't use recursion and instead iterates using memoization of subproblem results.
 // Time complexity is O(K*N) where K is the number of possible strides and N is the number of steps.
 func UniqueClimbsDS(steps int, strides []int) int {
-	sort.Ints(strides)
+	copyStrides := make([]int, len(strides))
+	copy(copyStrides, strides)
+	sort.Ints(copyStrides)
 	stepData := make([]int, steps+1)
 	stepData[0] = 1
-	return uniqueClimbsDS(steps, strides, stepData)[len(stepData)-1]
+	return uniqueClimbsDS(steps, copyStrides, stepData)[steps]
 }
 
 func uniqueClimbsDS(steps int, strides, stepData []int) []int {
