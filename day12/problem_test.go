@@ -17,6 +17,7 @@ var testcases = []struct {
 }
 
 func TestUniqueClimbs(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := UniqueClimbs(tc.steps, tc.strides); result != tc.expected {
 			t.Errorf("Expected %v but got %v", tc.expected, result)
@@ -33,6 +34,7 @@ func BenchmarkUniqueClimbs(b *testing.B) {
 }
 
 func TestUniqueClimbsDS(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := UniqueClimbsDS(tc.steps, tc.strides); result != tc.expected {
 			t.Errorf("Expected %v but got %v", tc.expected, result)
