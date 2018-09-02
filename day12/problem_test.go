@@ -31,3 +31,19 @@ func BenchmarkUniqueClimbs(b *testing.B) {
 		}
 	}
 }
+
+func TestUniqueClimbsDS(t *testing.T) {
+	for _, tc := range testcases {
+		if result := UniqueClimbsDS(tc.steps, tc.strides); result != tc.expected {
+			t.Errorf("Expected %v but got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkUniqueClimbsDS(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			UniqueClimbsDS(tc.steps, tc.strides)
+		}
+	}
+}
