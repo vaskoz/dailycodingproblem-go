@@ -14,6 +14,10 @@ var testcases = []struct {
 	{3, []int{1, 2, 3}, 4},
 	{100, []int{1, 100}, 2},
 	{100, []int{1, 50, 100}, 54},
+	{100, []int{50, 1, 100}, 54},
+	{4, []int{2, 1}, 5},
+	{4, []int{2}, 1},
+	{1, []int{3, 2}, 0},
 }
 
 func TestUniqueClimbs(t *testing.T) {
