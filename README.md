@@ -22,3 +22,4 @@ problems from
 * [Day 10](https://github.com/vaskoz/dailycodingproblem-go/issues/21)
 * [Day 11](https://github.com/vaskoz/dailycodingproblem-go/issues/23)
 * [Day 12](https://github.com/vaskoz/dailycodingproblem-go/issues/25)
+* [Day 12 Count and Deepest](https://github.com/vaskoz/dailycodingproblem-go/issues/27)
