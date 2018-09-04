@@ -2,6 +2,7 @@ package day13
 
 // LongestSubKDistinct returns  find the length of the longest substring
 // that contains at most k distinct characters.
+// Runs in O(N) time. Uses O(K) space for the map.
 func LongestSubKDistinct(s string, k int) string {
 	r := []rune(s)
 	if len(r) <= k {
