@@ -16,6 +16,7 @@ var testcases = []struct {
 }
 
 func TestEstimatePi(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if pi := EstimatePi(tc.iterations); math.Abs(pi-tc.expected) > tc.delta {
 			t.Errorf("Expected %v but got %v with delta %v", tc.expected, pi, tc.delta)
