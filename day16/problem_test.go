@@ -11,6 +11,9 @@ var testcases = []struct {
 	{5, []interface{}{5, 4, "abc", 10, "def", "ged"},
 		[]int{1, 2, 3, 4, 5},
 		[]interface{}{"ged", "def", 10, "abc", 4}},
+	{5, []interface{}{"abc"},
+		[]int{1, 2, 3, 4, 5},
+		[]interface{}{"abc", nil, nil, nil, nil}},
 }
 
 func TestOrderLogSlice(t *testing.T) {
