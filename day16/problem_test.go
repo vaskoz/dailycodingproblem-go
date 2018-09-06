@@ -47,7 +47,29 @@ func TestOrderLogRing(t *testing.T) {
 }
 
 func BenchmarkOrderLogSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			r := NewOrderLogSlice(tc.size)
+			for _, v := range tc.orders {
+				r.Record(v)
+			}
+			for _, v := range tc.getLast {
+				r.GetLast(v)
+			}
+		}
+	}
 }
 
 func BenchmarkOrderLogRing(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			r := NewOrderLogRing(tc.size)
+			for _, v := range tc.orders {
+				r.Record(v)
+			}
+			for _, v := range tc.getLast {
+				r.GetLast(v)
+			}
+		}
+	}
 }
