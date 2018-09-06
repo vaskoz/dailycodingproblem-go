@@ -29,6 +29,18 @@ func TestOrderLogSlice(t *testing.T) {
 }
 
 func TestOrderLogRing(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		r := NewOrderLogRing(tc.size)
+		for _, v := range tc.orders {
+			r.Record(v)
+		}
+		for i, v := range tc.getLast {
+			if result := r.GetLast(v); result != tc.expected[i] {
+				t.Errorf("Expected %v but got %v", tc.expected[i], result)
+			}
+		}
+	}
 }
 
 func BenchmarkOrderLogSlice(b *testing.B) {

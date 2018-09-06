@@ -1,5 +1,7 @@
 package day16
 
+import "container/ring"
+
 // OrderLog represents the behavior of an order log regardless of impl.
 type OrderLog interface {
 	Record(orderID interface{})
@@ -31,4 +33,22 @@ func (ol *orderLogSlice) GetLast(index int) interface{} {
 		i += ol.size
 	}
 	return ol.log[i]
+}
+
+type orderLogRing struct {
+	log *ring.Ring
+}
+
+// NewOrderLogRing returns a new OrderLog based on a circular ring.
+func NewOrderLogRing(size int) OrderLog {
+	return &orderLogRing{ring.New(size)}
+}
+
+func (ol *orderLogRing) Record(orderID interface{}) {
+	ol.log = ol.log.Next()
+	ol.log.Value = orderID
+}
+
+func (ol *orderLogRing) GetLast(index int) interface{} {
+	return ol.log.Move(-(index - 1)).Value
 }
