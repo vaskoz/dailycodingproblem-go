@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// FindLongestAbsolutePathLength returns the length of the longest file path.
 func FindLongestAbsolutePathLength(fs string) int {
 	var parts []string
 	var isFile bool
