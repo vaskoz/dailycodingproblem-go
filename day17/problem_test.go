@@ -11,6 +11,7 @@ var testcases = []struct {
 }
 
 func TestFindLongestAbsolutePathLength(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := FindLongestAbsolutePathLength(tc.fs); result != tc.expected {
 			t.Errorf("Expected %v but got %v", tc.expected, result)
