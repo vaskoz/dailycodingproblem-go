@@ -10,7 +10,7 @@ func FindLongestAbsolutePathLength(fs string) int {
 	var isFile bool
 	var partStart, tabCount, maxLength int
 	for i, r := range fs {
-		if i-1 > 0 && fs[i-1] == '\t' && r != '\t' && r != '\n' {
+		if isNewStart(i, r, fs) {
 			partStart = i
 		} else if r == '.' {
 			isFile = true
@@ -21,11 +21,8 @@ func FindLongestAbsolutePathLength(fs string) int {
 				parts = parts[:pos]
 			}
 			parts = append(parts, fs[partStart:i])
-			if isFile {
-				len := len(strings.Join(parts, "/"))
-				if len > maxLength {
-					maxLength = len
-				}
+			if len := len(strings.Join(parts, "/")); isFile && len > maxLength {
+				maxLength = len
 			}
 			isFile = false
 			tabCount = 0
@@ -35,4 +32,8 @@ func FindLongestAbsolutePathLength(fs string) int {
 		parts = append(parts, fs[partStart:])
 	}
 	return len(strings.Join(parts, "/"))
+}
+
+func isNewStart(i int, r rune, fs string) bool {
+	return i-1 > 0 && fs[i-1] == '\t' && r != '\t' && r != '\n'
 }
