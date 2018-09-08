@@ -8,7 +8,7 @@ import (
 var randomizer *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 // UniformlyRandom reads from a stream of anything and
-// returns an element with uniform probabilty.
+// returns an element with uniform probability.
 // O(N) time and O(1) space
 func UniformlyRandom(stream <-chan interface{}) interface{} {
 	var result interface{}
