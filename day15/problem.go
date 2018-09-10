@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var randomizer *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
+var randomizer = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 // UniformlyRandom reads from a stream of anything and
 // returns an element with uniform probability.
