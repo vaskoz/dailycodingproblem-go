@@ -32,6 +32,7 @@ var testcases = []struct {
 }
 
 func TestSolver(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result, _ := Solver(tc.board, tc.n); !reflect.DeepEqual(result, tc.expected) {
 			t.Errorf("Expected %v but got %v", tc.expected, result)
