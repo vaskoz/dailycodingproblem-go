@@ -12,9 +12,9 @@ func Solver(board Board, n int) (Board, bool) {
 	for choice := 1; choice <= n*n; choice++ {
 		isValid := true
 		gridrow, gridcol := row/n, col/n
-		for row := n * gridrow; row < n*gridrow+n; row++ {
-			for col := n * gridcol; col < n*gridcol+n; col++ {
-				if board[row*n*n+col] == choice {
+		for r := n * gridrow; r < n*gridrow+n; r++ {
+			for c := n * gridcol; c < n*gridcol+n; c++ {
+				if board[r*n*n+c] == choice {
 					isValid = false
 				}
 			}
