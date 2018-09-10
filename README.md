@@ -32,3 +32,4 @@ problems from
 * [Day 19](https://github.com/vaskoz/dailycodingproblem-go/issues/41)
 * [Day 19 N-Queens](https://github.com/vaskoz/dailycodingproblem-go/issues/43)
 * [Day 19 Flight Itinerary](https://github.com/vaskoz/dailycodingproblem-go/issues/45)
+* [Day 19 Sudoku Solver](https://github.com/vaskoz/dailycodingproblem-go/issues/47)
