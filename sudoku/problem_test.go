@@ -38,3 +38,11 @@ func TestSolver(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkSolver(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			Solver(tc.board, tc.n)
+		}
+	}
+}
