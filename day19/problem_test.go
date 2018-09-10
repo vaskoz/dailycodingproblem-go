@@ -10,6 +10,7 @@ var testcases = []struct {
 }
 
 func TestMinPaintingCost(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := MinPaintingCost(tc.houses); result != tc.expected {
 			t.Errorf("Expected %v but got %v", tc.expected, result)
