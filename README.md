@@ -31,3 +31,4 @@ problems from
 * [Day 18](https://github.com/vaskoz/dailycodingproblem-go/issues/39)
 * [Day 19](https://github.com/vaskoz/dailycodingproblem-go/issues/41)
 * [Day 19 N-Queens](https://github.com/vaskoz/dailycodingproblem-go/issues/43)
+* [Day 19 Flight Itinerary](https://github.com/vaskoz/dailycodingproblem-go/issues/45)
