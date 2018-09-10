@@ -18,6 +18,7 @@ func createTwoIndependentLists() (*Node, *Node, *Node) {
 }
 
 func TestFindCommonNode(t *testing.T) {
+	t.Parallel()
 	one, two, common := createTwoSharedLists()
 	if result := FindCommonNode(one, two); result != common {
 		t.Error("Expected these two be the same pointer")
