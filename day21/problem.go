@@ -25,15 +25,15 @@ func MinimumRooms(lectures []Lecture) int {
 	sort.Slice(events, func(i, j int) bool {
 		return events[i].time < events[j].time
 	})
-	var max, current int
+	var max, active int
 	for i := range events {
 		if events[i].starting {
-			current++
+			active++
 		} else {
-			current--
+			active--
 		}
-		if max < current {
-			max = current
+		if max < active {
+			max = active
 		}
 	}
 	return max
