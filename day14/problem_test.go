@@ -11,8 +11,8 @@ var testcases = []struct {
 	delta      float64
 }{
 	{100000, 3.1415, 0.1},
-	{10000, 3.1415, 0.1},
-	{1000, 3.1415, 0.1},
+	{10000, 3.1415, 0.2},
+	{1000, 3.1415, 0.5},
 }
 
 func TestEstimatePi(t *testing.T) {
