@@ -35,3 +35,4 @@ problems from
 * [Day 19 Sudoku Solver](https://github.com/vaskoz/dailycodingproblem-go/issues/47)
 * [Day 20](https://github.com/vaskoz/dailycodingproblem-go/issues/49)
 * [Day 21](https://github.com/vaskoz/dailycodingproblem-go/issues/51)
+* [Day 22](https://github.com/vaskoz/dailycodingproblem-go/issues/53)
