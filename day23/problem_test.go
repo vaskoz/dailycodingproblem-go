@@ -23,6 +23,7 @@ var testcases = []struct {
 }
 
 func TestMinimumSteps(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result, err := MinimumSteps(tc.board, tc.start, tc.end,
 			make(map[Cell]struct{})); result != tc.expected || err != tc.err {
