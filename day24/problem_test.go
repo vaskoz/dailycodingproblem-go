@@ -56,5 +56,8 @@ func BenchmarkLockableBinaryTree(b *testing.B) {
 		nodes[0].Lock()
 		nodes[1].Lock()
 		nodes[2].Lock()
+		nodes[0].Unlock()
+		nodes[1].Unlock()
+		nodes[2].Unlock()
 	}
 }
