@@ -13,7 +13,7 @@ type lectureEvent struct {
 	starting bool
 }
 
-// MinimumRooms calculates the minimum number of rooms to accomodate
+// MinimumRooms calculates the minimum number of rooms to accommodate
 // overlapping schedules.
 // Runtime is O(N log N) with O(2N) space
 func MinimumRooms(lectures []Lecture) int {
