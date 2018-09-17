@@ -1,17 +1,13 @@
 package day27
 
-import "strings"
-
 // WellBalanced returns true if the brackets in the string are balanced and well-formed.
 // Runs in O(N) time where N is the number of runes. Using O(N/2) extra space.
 func WellBalanced(brackets string) bool {
 	openBrackets := make([]rune, 0, (len(brackets)/2)+1)
-	opens := "([{"
-	closes := ")]}"
 	for _, r := range brackets {
-		if strings.ContainsRune(opens, r) {
+		if r == '(' || r == '[' || r == '{' {
 			openBrackets = append(openBrackets, r)
-		} else if strings.ContainsRune(closes, r) {
+		} else if r == ')' || r == ']' || r == '}' {
 			if len(openBrackets) == 0 {
 				return false
 			}
