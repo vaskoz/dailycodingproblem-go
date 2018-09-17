@@ -6,10 +6,12 @@ import "strings"
 // Runs in O(N) time where N is the number of runes. Using O(N/2) extra space.
 func WellBalanced(brackets string) bool {
 	openBrackets := make([]rune, 0, (len(brackets)/2)+1)
+	opens := "([{"
+	closes := ")]}"
 	for _, r := range brackets {
-		if strings.ContainsRune("([{", r) {
+		if strings.ContainsRune(opens, r) {
 			openBrackets = append(openBrackets, r)
-		} else if strings.ContainsRune(")]}", r) {
+		} else if strings.ContainsRune(closes, r) {
 			if len(openBrackets) == 0 {
 				return false
 			}
