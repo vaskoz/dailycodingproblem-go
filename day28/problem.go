@@ -18,7 +18,7 @@ func Justify(words []string, k int) []string {
 			result = append(result, buildLine(line, k, lineLength))
 			line = line[:0] // truncate
 			lineLength = 0
-			i--
+			i-- // retry this word
 		}
 	}
 	last := buildLine(line, k, lineLength)
