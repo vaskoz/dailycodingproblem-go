@@ -1,7 +1,6 @@
 package day29
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -19,12 +18,14 @@ func RunLengthEncoding(str string) string {
 		} else if r == last {
 			count++
 		} else {
-			sb.WriteString(fmt.Sprintf("%d%s", count, string(last)))
+			sb.WriteString(strconv.Itoa(count))
+			sb.WriteString(string(last))
 			count = 1
 			last = r
 		}
 	}
-	sb.WriteString(fmt.Sprintf("%d%s", count, string(last)))
+	sb.WriteString(strconv.Itoa(count))
+	sb.WriteString(string(last))
 	return sb.String()
 }
 
