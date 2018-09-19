@@ -13,6 +13,7 @@ var testcases = []struct {
 }
 
 func TestWellBalanced(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := WellBalanced(tc.input); result != tc.expected {
 			t.Errorf("Expected %v got %v for %v", tc.expected, result, tc.input)

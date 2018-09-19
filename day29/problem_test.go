@@ -10,6 +10,7 @@ var testcases = []struct {
 }
 
 func TestRunLength(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		var enc string
 		if enc = RunLengthEncoding(tc.orig); enc != tc.encoded {

@@ -19,6 +19,7 @@ var testcases = []struct {
 }
 
 func TestJustify(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := Justify(tc.words, tc.k); !reflect.DeepEqual(tc.expected, result) {
 			t.Errorf("Expected %v but got %v", tc.expected, result)

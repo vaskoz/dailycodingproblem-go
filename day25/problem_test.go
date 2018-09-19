@@ -20,6 +20,7 @@ var testcases = []struct {
 }
 
 func TestMatch(t *testing.T) {
+	t.Parallel()
 	for _, tc := range testcases {
 		if result := Match(tc.input, tc.pattern); result != tc.expected {
 			t.Errorf("Given (%v, %v), expected %v got %v", tc.input, tc.pattern, tc.expected, result)
