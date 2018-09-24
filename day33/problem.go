@@ -2,9 +2,13 @@ package day33
 
 import "container/heap"
 
+// MinPQ is a MinHeap
 type MinPQ []int
+
+// MaxPQ is a MaxHeap
 type MaxPQ []int
 
+// RunningMedian keeps a running median of integers.
 type RunningMedian struct {
 	low  *MaxPQ
 	high *MinPQ
@@ -20,11 +24,13 @@ func (pq MinPQ) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 }
 
+// Push adds a new value to the MinHeap.
 func (pq *MinPQ) Push(x interface{}) {
 	item := x.(int)
 	*pq = append(*pq, item)
 }
 
+// Pop removes the smallest element from the MinHeap.
 func (pq *MinPQ) Pop() interface{} {
 	old := *pq
 	n := len(old)
@@ -43,6 +49,7 @@ func (pq MaxPQ) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 }
 
+// Push adds to the MaxHeap.
 func (pq *MaxPQ) Push(x interface{}) {
 	item := x.(int)
 	*pq = append(*pq, item)
