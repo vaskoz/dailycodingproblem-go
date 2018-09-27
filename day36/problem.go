@@ -8,6 +8,7 @@ type BST struct {
 
 // SecondLargest takes the root of a binary search tree and returns the
 // pointer to the 2nd largest value.
+// Runs in O(height) and O(1) space.
 func SecondLargest(root *BST) int {
 	var prev, cur *BST
 	if root.right != nil {
