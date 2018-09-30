@@ -14,3 +14,20 @@ func FindOnce(nums []int) int {
 	}
 	return ones
 }
+
+// FindOnceMap uses a map to find the non-duplicated value.
+// Runs in O(N) and O(N) space
+func FindOnceMap(nums []int) int {
+	counts := make(map[int]int)
+	for _, v := range nums {
+		counts[v]++
+	}
+	var result int
+	for k, v := range counts {
+		if v == 1 {
+			result = k
+			break
+		}
+	}
+	return result
+}

@@ -26,3 +26,20 @@ func BenchmarkFindOnce(b *testing.B) {
 		}
 	}
 }
+
+func TestFindOnceMap(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := FindOnceMap(tc.input); tc.expected != result {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkFindOnceMap(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			FindOnceMap(tc.input)
+		}
+	}
+}
