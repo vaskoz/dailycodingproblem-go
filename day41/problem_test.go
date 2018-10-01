@@ -16,6 +16,15 @@ var testcases = []struct {
 	{[]Flight{{"HNL", "AKL"}, {"YUL", "ORD"}, {"ORD", "SFO"}, {"SFO", "HNL"}, {"ORD", "LAX"}},
 		[]Airport{"YUL"},
 		nil},
+	{[]Flight{{"SFO", "HKO"}, {"YYZ", "SFO"}, {"YUL", "YYZ"}, {"HKO", "ORD"}},
+		[]Airport{"YUL"},
+		[]Airport{"YUL", "YYZ", "SFO", "HKO", "ORD"}},
+	{[]Flight{{"SFO", "COM"}, {"COM", "YYZ"}},
+		[]Airport{"COM"},
+		nil},
+	{[]Flight{{"A", "B"}, {"A", "C"}, {"B", "C"}, {"C", "A"}},
+		[]Airport{"A"},
+		[]Airport{"A", "B", "C", "A", "C"}},
 }
 
 func TestItinerary(t *testing.T) {
