@@ -28,3 +28,11 @@ func TestArbitrage(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkArbitrage(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			Arbitrage(tc.rates)
+		}
+	}
+}
