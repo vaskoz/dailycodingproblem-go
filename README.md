@@ -30,7 +30,6 @@ problems from
 * [Day 17](https://github.com/vaskoz/dailycodingproblem-go/issues/37)
 * [Day 18](https://github.com/vaskoz/dailycodingproblem-go/issues/39)
 * [Day 19](https://github.com/vaskoz/dailycodingproblem-go/issues/41)
-* [Day 19 Flight Itinerary](https://github.com/vaskoz/dailycodingproblem-go/issues/45)
 * [Day 19 Sudoku Solver](https://github.com/vaskoz/dailycodingproblem-go/issues/47)
 * [Day 20](https://github.com/vaskoz/dailycodingproblem-go/issues/49)
 * [Day 21](https://github.com/vaskoz/dailycodingproblem-go/issues/51)
@@ -52,3 +51,4 @@ problems from
 * [Day 38](https://github.com/vaskoz/dailycodingproblem-go/issues/83)
 * [Day 39](https://github.com/vaskoz/dailycodingproblem-go/issues/84)
 * [Day 40](https://github.com/vaskoz/dailycodingproblem-go/issues/87)
+* [Day 41](https://github.com/vaskoz/dailycodingproblem-go/issues/90)
