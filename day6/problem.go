@@ -18,11 +18,11 @@ func New(val interface{}) *XorList {
 // Add adds a new value
 func (xl *XorList) Add(val interface{}) {
 	prev := uintptr(0)
-	this := unsafe.Pointer(xl)
+	this := unsafe.Pointer(xl) // nolint: gosec
 	for prev^xl.both != 0 {
-		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both) // nolint: vet, gosec
 		xl = (*XorList)(this)
 	}
 	nxl := &XorList{val: val, both: uintptr(this)}
-	xl.both = prev ^ uintptr(unsafe.Pointer(nxl))
+	xl.both = prev ^ uintptr(unsafe.Pointer(nxl)) // nolint: gosec
 }
