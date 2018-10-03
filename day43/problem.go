@@ -2,7 +2,7 @@ package day43
 
 import "fmt"
 
-var stackEmptyError = fmt.Errorf("Stack is empty")
+var errStackEmpty = fmt.Errorf("Stack is empty")
 
 // maxIntStack is implemented using O(N) extra memory.
 type maxIntStack struct {
@@ -52,5 +52,5 @@ func (mis *maxIntStack) Max() (int, error) {
 
 // StackEmptyError returns the instance of the error representing an empty stack.
 func StackEmptyError() error {
-	return stackEmptyError
+	return errStackEmpty
 }
