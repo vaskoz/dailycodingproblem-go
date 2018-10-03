@@ -6,7 +6,7 @@
 
 # dailycodingproblem-go
 problems from
-[dailycodingproblem.com](https://www.dailycodingproblem.com/) solved in Go
+[dailycodingproblem.com](https://www.dailycodingproblem.com/) solved in Go.
 
 ### Daily Problem Description
 * [Day 1](https://github.com/vaskoz/dailycodingproblem-go/issues/1)
