@@ -3,6 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/vaskoz/dailycodingproblem-go)](https://goreportcard.com/report/github.com/vaskoz/dailycodingproblem-go)
 [![GoDoc](https://godoc.org/github.com/vaskoz/dailycodingproblem-go?status.svg)](https://godoc.org/github.com/vaskoz/dailycodingproblem-go)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
+[ ![Codeship Status for vaskoz/dailycodingproblem-go](https://app.codeship.com/projects/92479b60-a8ec-0136-ee8b-72ac76333595/status?branch=master)](https://app.codeship.com/projects/308646)
 
 # dailycodingproblem-go
 problems from
