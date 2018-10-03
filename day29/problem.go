@@ -18,14 +18,14 @@ func RunLengthEncoding(str string) string {
 		} else if r == last {
 			count++
 		} else {
-			sb.WriteString(strconv.Itoa(count))
-			sb.WriteString(string(last))
+			sb.WriteString(strconv.Itoa(count)) // nolint: gosec
+			sb.WriteString(string(last))        // nolint: gosec
 			count = 1
 			last = r
 		}
 	}
-	sb.WriteString(strconv.Itoa(count))
-	sb.WriteString(string(last))
+	sb.WriteString(strconv.Itoa(count)) // nolint: gosec
+	sb.WriteString(string(last))        // nolint: gosec
 	return sb.String()
 }
 
@@ -35,13 +35,13 @@ func RunLengthDecoding(str string) string {
 	var count int
 	for _, r := range str {
 		if r >= 'A' && r <= 'Z' {
-			sb.WriteString(strings.Repeat(string(r), count))
+			sb.WriteString(strings.Repeat(string(r), count)) // nolint: gosec
 			count = 0
 		} else {
 			if count != 0 {
 				count *= 10
 			}
-			digit, _ := strconv.Atoi(string(r))
+			digit, _ := strconv.Atoi(string(r)) // nolint: gosec
 			count += digit
 		}
 	}
