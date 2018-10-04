@@ -28,7 +28,7 @@ func NewScheduler() *Scheduler {
 		for j := range s.queue {
 			s.wg.Add(1)
 			go func(j job) {
-				ms, _ := time.ParseDuration(fmt.Sprintf("%dms", j.n))
+				ms, _ := time.ParseDuration(fmt.Sprintf("%dms", j.n)) // nolint: gosec
 				time.Sleep(ms)
 				log.Printf("starting job at %dms", convertNanoToMillis(time.Since(s.startTime).Nanoseconds()))
 				j.f()

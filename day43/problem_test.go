@@ -15,17 +15,17 @@ func TestMaxIntStack(t *testing.T) {
 		stack := NewMaxIntStack()
 		for i, push := range tc.input {
 			stack.Push(push)
-			if max, err := stack.Max(); err != nil || max != tc.max[i] {
+			if max, err := stack.Max(); max != tc.max[i] {
 				t.Errorf("TC%d push expected,got max (%d,%d) error should be nil (%v)",
 					tcid, tc.max[i], max, err)
 			}
 		}
 		for i := range tc.input {
-			if max, err := stack.Max(); err != nil || max != tc.max[len(tc.max)-1-i] {
+			if max, err := stack.Max(); max != tc.max[len(tc.max)-1-i] {
 				t.Errorf("TC%d pre-pop expected,got max (%d,%d) error should be nil (%v)",
 					tcid, tc.max[len(tc.max)-1-i], max, err)
 			}
-			if val, err := stack.Pop(); err != nil || val != tc.input[len(tc.input)-1-i] {
+			if val, err := stack.Pop(); val != tc.input[len(tc.input)-1-i] {
 				t.Errorf("TC%d pop expected,got val (%d,%d) error should be nil (%v)",
 					tcid, tc.input[len(tc.input)-1-i], val, err)
 			}

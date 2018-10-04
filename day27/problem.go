@@ -5,9 +5,9 @@ package day27
 func WellBalanced(brackets string) bool {
 	openBrackets := make([]rune, 0, (len(brackets)/2)+1)
 	for _, r := range brackets {
-		if r == '(' || r == '[' || r == '{' {
+		if matchAnyRune(r, '(', '[', '{') {
 			openBrackets = append(openBrackets, r)
-		} else if r == ')' || r == ']' || r == '}' {
+		} else if matchAnyRune(r, ')', ']', '}') {
 			if len(openBrackets) == 0 {
 				return false
 			}
@@ -22,6 +22,15 @@ func WellBalanced(brackets string) bool {
 		}
 	}
 	return len(openBrackets) == 0
+}
+
+// matchAnyRune will return true if the source matches any of the supplied targets.
+func matchAnyRune(source rune, targets ...rune) bool {
+	var result bool
+	for _, r := range targets {
+		result = result || (source == r)
+	}
+	return result
 }
 
 // IsMatch returns true if the left and right runes form a matching pair.

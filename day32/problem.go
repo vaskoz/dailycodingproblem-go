@@ -7,13 +7,7 @@ import "math"
 // Uses Bellman-Ford Shortest Path which runs in O(N^3) time and O(N^2) space
 // due to the transformed rates table.
 func Arbitrage(rates [][]float64) bool {
-	graph := make([][]float64, len(rates))
-	for i := range graph {
-		graph[i] = make([]float64, len(rates[i]))
-		for j := range graph[i] {
-			graph[i][j] = -math.Log(rates[i][j])
-		}
-	}
+	graph := createGraph(rates)
 	source := 0
 	minDist := make([]float64, len(rates))
 	for i := range minDist {
@@ -38,4 +32,15 @@ func Arbitrage(rates [][]float64) bool {
 		}
 	}
 	return false
+}
+
+func createGraph(rates [][]float64) [][]float64 {
+	graph := make([][]float64, len(rates))
+	for i := range graph {
+		graph[i] = make([]float64, len(rates[i]))
+		for j := range graph[i] {
+			graph[i][j] = -math.Log(rates[i][j])
+		}
+	}
+	return graph
 }

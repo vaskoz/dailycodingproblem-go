@@ -57,7 +57,7 @@ func backwardToSlice(xl *XorList) []interface{} {
 	prev := uintptr(0)
 	this := unsafe.Pointer(xl)
 	for prev^xl.both != 0 {
-		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both) // nolint: vet
 		xl = (*XorList)(this)
 	}
 	// now collect items from tail to the head
@@ -66,7 +66,7 @@ func backwardToSlice(xl *XorList) []interface{} {
 	this = unsafe.Pointer(xl)
 	result = append(result, xl.val)
 	for prev^xl.both != 0 {
-		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both) // nolint: vet
 		xl = (*XorList)(this)
 		result = append(result, xl.val)
 	}
@@ -81,7 +81,7 @@ func forwardToSlice(xl *XorList) []interface{} {
 	this := unsafe.Pointer(xl)
 	result = append(result, xl.val)
 	for prev^xl.both != 0 {
-		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both)
+		prev, this = uintptr(this), unsafe.Pointer(prev^xl.both) // nolint: vet
 		xl = (*XorList)(this)
 		result = append(result, xl.val)
 	}

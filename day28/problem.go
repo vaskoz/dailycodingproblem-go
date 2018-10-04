@@ -37,7 +37,7 @@ func buildLine(line []string, k, lineLength int) string {
 	minimumSpaces := (k - lineLength) / len(line)
 	extraSpaces := k - lineLength - ((len(line) - 1) * minimumSpaces)
 	for i, word := range line {
-		sb.WriteString(word)
+		sb.WriteString(word) // nolint: gosec
 		if i == len(line)-1 {
 			break
 		}
@@ -45,7 +45,7 @@ func buildLine(line []string, k, lineLength int) string {
 		if i < extraSpaces {
 			spaces++
 		}
-		sb.WriteString(strings.Repeat(" ", spaces))
+		sb.WriteString(strings.Repeat(" ", spaces)) // nolint: gosec
 	}
 	return sb.String()
 }

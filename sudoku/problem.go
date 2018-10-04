@@ -20,7 +20,7 @@ func Solver(board Board, n int) (Board, bool) {
 			}
 		}
 		for j := 0; j < n*n; j++ {
-			if board[n*n*j+col] == choice || board[row*n*n+j] == choice {
+			if matchAnyInt(choice, board[n*n*j+col], board[row*n*n+j]) {
 				isValid = false
 				break
 			}
@@ -36,6 +36,14 @@ func Solver(board Board, n int) (Board, bool) {
 		}
 	}
 	return board, false
+}
+
+func matchAnyInt(source int, targets ...int) bool {
+	var result bool
+	for _, target := range targets {
+		result = result || (source == target)
+	}
+	return result
 }
 
 func findEmpty(board Board, n int) (int, int, bool) {

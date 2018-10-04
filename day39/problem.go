@@ -43,12 +43,12 @@ func (gol *GameOfLife) String() string {
 	for y := gol.maxY - 1; y > gol.minY; y-- {
 		for x := gol.minX + 1; x < gol.maxX; x++ {
 			if _, alive := gol.living[Coord{x, y}]; alive {
-				sb.WriteRune('*')
+				sb.WriteRune('*') // nolint: gosec
 			} else {
-				sb.WriteRune('.')
+				sb.WriteRune('.') // nolint: gosec
 			}
 		}
-		sb.WriteRune('\n')
+		sb.WriteRune('\n') // nolint: gosec
 	}
 	return sb.String()
 }
