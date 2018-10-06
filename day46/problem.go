@@ -10,7 +10,7 @@ func IsPalindrome(letters []rune) bool {
 	return true
 }
 
-// LongestPalindromicSubstringBrute runs in O(N^2) time and O(1) space.
+// LongestPalindromicSubstringBrute runs in O(N^3) time and O(1) space.
 func LongestPalindromicSubstringBrute(str string) string {
 	letters := []rune(str)
 	for l := len(letters); l > 0; l-- {
