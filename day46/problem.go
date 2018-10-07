@@ -22,3 +22,71 @@ func LongestPalindromicSubstringBrute(str string) string {
 	}
 	return ""
 }
+
+// LongestPalindromicSubstring runs in O(N) time and O(N) space.
+func LongestPalindromicSubstring(str string) string {
+	letters := []rune(str)
+	s2 := addBoundaries(letters)
+	p := make([]int, len(s2))
+
+	var c, r, m, n int
+	for i := 1; i < len(s2); i++ {
+		if i > r {
+			p[i] = 0
+			m = i - 1
+			n = i + 1
+		} else {
+			i2 := c*2 - i
+			if p[i2] < r-i-1 {
+				p[i] = p[i2]
+				m = -1
+			} else {
+				p[i] = r - i
+				n = r + 1
+				m = i*2 - n
+			}
+		}
+		for m >= 0 && n < len(s2) && s2[m] == s2[n] {
+			p[i]++
+			m--
+			n++
+		}
+		if i+p[i] > r {
+			c = i
+			r = i + p[i]
+		}
+	}
+	c = 0
+	l := 0
+	for i := 1; i < len(s2); i++ {
+		if l < p[i] {
+			l = p[i]
+			c = i
+		}
+	}
+	return string(removeBoundaries(s2[c-l : c+l+1]))
+}
+
+func addBoundaries(letters []rune) []rune {
+	if len(letters) == 0 {
+		return []rune{'|', '|'}
+	}
+	cs := make([]rune, len(letters)*2+1)
+	for i := 0; i < len(cs)-1; i += 2 {
+		cs[i] = '|'
+		cs[i+1] = letters[i/2]
+	}
+	cs[len(cs)-1] = '|'
+	return cs
+}
+
+func removeBoundaries(letters []rune) []rune {
+	if len(letters) < 3 {
+		return []rune{}
+	}
+	cs := make([]rune, (len(letters)-1)/2)
+	for i := range cs {
+		cs[i] = letters[i*2+1]
+	}
+	return cs
+}
