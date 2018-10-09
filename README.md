@@ -60,3 +60,4 @@ problems from
 * [Day 45](https://github.com/vaskoz/dailycodingproblem-go/issues/101)
 * [Day 46](https://github.com/vaskoz/dailycodingproblem-go/issues/103)
 * [Day 47](https://github.com/vaskoz/dailycodingproblem-go/issues/105)
+* [Day 49](https://github.com/vaskoz/dailycodingproblem-go/issues/107)
