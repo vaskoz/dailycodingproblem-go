@@ -24,6 +24,7 @@ type ArithmeticTree struct {
 }
 
 // Calculate takes an ArithmeticTree and returns its calculated value.
+// Runs in O(N) in that it only views the tree nodes once.
 func Calculate(tree *ArithmeticTree) int {
 	if tree.op == NON {
 		return tree.val
