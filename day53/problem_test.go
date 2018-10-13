@@ -29,4 +29,15 @@ func TestQueue(t *testing.T) {
 }
 
 func BenchmarkQueue(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			q := NewQueue()
+			for _, v := range tc.inserts {
+				q.Enqueue(v)
+			}
+			for range tc.inserts {
+				q.Dequeue()
+			}
+		}
+	}
 }
