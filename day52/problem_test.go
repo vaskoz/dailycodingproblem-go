@@ -3,6 +3,7 @@ package day52
 import "testing"
 
 func TestLRUCache(t *testing.T) {
+	t.Parallel()
 	lru := NewLRU(3)
 	for i := 0; i < 6; i++ {
 		lru.Set(i, i+1)
