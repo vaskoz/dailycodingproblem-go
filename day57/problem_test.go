@@ -28,3 +28,11 @@ func TestBreakByLength(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkBreakByLength(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			BreakByLength(tc.long, tc.k)
+		}
+	}
+}
