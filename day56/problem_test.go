@@ -8,43 +8,43 @@ var testcases = []struct {
 	canColor bool
 }{
 	{map[int]map[int]struct{}{
-		0: map[int]struct{}{
-			1: struct{}{},
-			2: struct{}{},
-			3: struct{}{},
+		0: {
+			1: {},
+			2: {},
+			3: {},
 		},
-		1: map[int]struct{}{
-			0: struct{}{},
-			2: struct{}{},
+		1: {
+			0: {},
+			2: {},
 		},
-		2: map[int]struct{}{
-			0: struct{}{},
-			1: struct{}{},
-			3: struct{}{},
+		2: {
+			0: {},
+			1: {},
+			3: {},
 		},
-		3: map[int]struct{}{
-			1: struct{}{},
-			2: struct{}{},
+		3: {
+			1: {},
+			2: {},
 		},
 	}, 3, true},
 	{map[int]map[int]struct{}{
-		0: map[int]struct{}{
-			1: struct{}{},
-			2: struct{}{},
-			3: struct{}{},
+		0: {
+			1: {},
+			2: {},
+			3: {},
 		},
-		1: map[int]struct{}{
-			0: struct{}{},
-			2: struct{}{},
+		1: {
+			0: {},
+			2: {},
 		},
-		2: map[int]struct{}{
-			0: struct{}{},
-			1: struct{}{},
-			3: struct{}{},
+		2: {
+			0: {},
+			1: {},
+			3: {},
 		},
-		3: map[int]struct{}{
-			1: struct{}{},
-			2: struct{}{},
+		3: {
+			1: {},
+			2: {},
 		},
 	}, 2, false},
 }
