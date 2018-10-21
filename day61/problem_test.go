@@ -6,6 +6,8 @@ var testcases = []struct {
 	x, y, expected int
 }{
 	{2, 10, 1024},
+	{2, 1, 2},
+	{2, 0, 1},
 }
 
 func TestNaiveIntegerExponentiation(t *testing.T) {
@@ -31,6 +33,33 @@ func BenchmarkNaiveIntegerExponentiation(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			NaiveIntegerExponentiation(tc.x, tc.y)
+		}
+	}
+}
+
+func TestIntegerExponentiationBySquaring(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := IntegerExponentiationBySquaring(tc.x, tc.y); result != tc.expected {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func TestIntegerExponentiationBySquaringPanic(t *testing.T) {
+	t.Parallel()
+	defer func() {
+		if x := recover(); x == nil {
+			t.Errorf("Expected a panic for negative exponent")
+		}
+	}()
+	IntegerExponentiationBySquaring(1, -1)
+}
+
+func BenchmarkIntegerExponentiationBySquaring(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			IntegerExponentiationBySquaring(tc.x, tc.y)
 		}
 	}
 }
