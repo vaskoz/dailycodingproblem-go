@@ -8,6 +8,7 @@ var testcases = []struct {
 	{2, 10, 1024},
 	{2, 1, 2},
 	{2, 0, 1},
+	{2, 62, 4611686018427387904},
 }
 
 func TestNaiveIntegerExponentiation(t *testing.T) {
