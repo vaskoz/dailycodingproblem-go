@@ -3,7 +3,7 @@ package day61
 import "testing"
 
 var testcases = []struct {
-	x, y, expected int
+	x, y, expected uint
 }{
 	{2, 10, 1024},
 	{2, 1, 2},
@@ -17,16 +17,6 @@ func TestNaiveIntegerExponentiation(t *testing.T) {
 			t.Errorf("Expected %v got %v", tc.expected, result)
 		}
 	}
-}
-
-func TestNaiveIntegerExponentiationPanic(t *testing.T) {
-	t.Parallel()
-	defer func() {
-		if x := recover(); x == nil {
-			t.Errorf("Expected a panic for negative exponent")
-		}
-	}()
-	NaiveIntegerExponentiation(1, -1)
 }
 
 func BenchmarkNaiveIntegerExponentiation(b *testing.B) {
@@ -44,16 +34,6 @@ func TestIntegerExponentiationBySquaring(t *testing.T) {
 			t.Errorf("Expected %v got %v", tc.expected, result)
 		}
 	}
-}
-
-func TestIntegerExponentiationBySquaringPanic(t *testing.T) {
-	t.Parallel()
-	defer func() {
-		if x := recover(); x == nil {
-			t.Errorf("Expected a panic for negative exponent")
-		}
-	}()
-	IntegerExponentiationBySquaring(1, -1)
 }
 
 func BenchmarkIntegerExponentiationBySquaring(b *testing.B) {
