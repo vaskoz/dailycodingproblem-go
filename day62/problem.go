@@ -33,3 +33,20 @@ func CountPathsDP(n, m int) int {
 	}
 	return counts[m-1][n-1]
 }
+
+// CountPathsCalculate is the same solution using an equation to calculate the result.
+// Runs in O(1) time and O(1) space.
+func CountPathsCalculate(n, m int) int {
+	if n < 1 || m < 1 {
+		panic("invalid size. both arguments must be 1 or greater")
+	}
+	return factorial((n-1)+(m-1)) / (factorial(m-1) * factorial(n-1))
+}
+
+func factorial(n int) int {
+	result := 1
+	for i := 2; i <= n; i++ {
+		result *= i
+	}
+	return result
+}

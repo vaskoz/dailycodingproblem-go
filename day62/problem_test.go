@@ -62,3 +62,30 @@ func BenchmarkCountPathsDP(b *testing.B) {
 		}
 	}
 }
+
+func TestCountPathsCalculate(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := CountPathsCalculate(tc.m, tc.n); result != tc.expected {
+			t.Errorf("Expected %d got %d", tc.expected, result)
+		}
+	}
+}
+
+func TestCountPathsCalculateBadArgs(t *testing.T) {
+	t.Parallel()
+	defer func() {
+		if err := recover(); err == nil {
+			t.Errorf("Expected a panic")
+		}
+	}()
+	CountPathsCalculate(0, 0)
+}
+
+func BenchmarkCountPathsCalculate(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			CountPathsCalculate(tc.m, tc.n)
+		}
+	}
+}
