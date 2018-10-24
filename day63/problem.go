@@ -4,7 +4,8 @@ import "reflect"
 
 // FindWordLD answers if the target word is found in the puzzle.
 // Only searches left-to-right and top-to-bottom directions.
-// Brute force runtime.
+// Brute force runtime where N=rows, M=cols, and K=len(target)
+// Runtime is O((N-K)*(M-K)*K)
 func FindWordLD(puzzle [][]rune, target []rune) bool {
 	coll := len(puzzle)
 	for row := range puzzle {
