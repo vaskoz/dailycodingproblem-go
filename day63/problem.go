@@ -1,7 +1,5 @@
 package day63
 
-import "reflect"
-
 // FindWordLD answers if the target word is found in the puzzle.
 // Only searches left-to-right and top-to-bottom directions.
 // Brute force runtime where N=rows, M=cols, and K=len(target)
@@ -14,21 +12,37 @@ func FindWordLD(puzzle [][]rune, target []rune) bool {
 			if rowl-len(target)-col < 0 {
 				break
 			}
-			if reflect.DeepEqual(target, puzzle[row][col:col+len(target)]) {
+			if checkLeftToRight(puzzle, row, col, target) {
 				return true
 			}
 			if coll-len(target)-row >= 0 {
-				vertical := true
-				for i := range target {
-					if puzzle[i+row][col] != target[i] {
-						vertical = false
-					}
-				}
-				if vertical {
+				if checkTopToDown(puzzle, row, col, target) {
 					return true
 				}
 			}
 		}
 	}
 	return false
+}
+
+func checkLeftToRight(puzzle [][]rune, row, col int, target []rune) bool {
+	horizontal := true
+	for i, r := range target {
+		if r != puzzle[row][i+col] {
+			horizontal = false
+			break
+		}
+	}
+	return horizontal
+}
+
+func checkTopToDown(puzzle [][]rune, row, col int, target []rune) bool {
+	vertical := true
+	for i, r := range target {
+		if puzzle[i+row][col] != r {
+			vertical = false
+			break
+		}
+	}
+	return vertical
 }
