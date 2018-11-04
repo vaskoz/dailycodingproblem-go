@@ -21,7 +21,9 @@ func MultiplicationTableBrute(N, X int) int {
 func MultiplicationTableLinear(N, X int) int {
 	count := 0
 	for i := 1; i <= N; i++ {
-		if X%i == 0 && X/i <= N {
+		if i > X {
+			break
+		} else if X%i == 0 && X/i <= N {
 			count++
 		}
 	}

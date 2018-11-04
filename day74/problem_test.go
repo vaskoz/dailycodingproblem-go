@@ -7,6 +7,10 @@ var testcases = []struct {
 	expected int
 }{
 	{6, 12, 4},
+	{6, 36, 1},
+	{6, 37, 0},
+	{6, 29, 0},
+	{1000, 29, 2},
 }
 
 func TestMultiplicationTableBrute(t *testing.T) {
