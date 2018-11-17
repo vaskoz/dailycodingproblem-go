@@ -31,14 +31,14 @@ type Position struct {
 
 // directions defines the relative coordinates of each Direction.
 var directions = map[Direction]Position{
-	N:  Position{0, -1},
-	NE: Position{1, -1},
-	E:  Position{1, 0},
-	SE: Position{1, 1},
-	S:  Position{0, 1},
-	SW: Position{-1, 1},
-	W:  Position{-1, 0},
-	NW: Position{-1, -1},
+	N:  {0, -1},
+	NE: {1, -1},
+	E:  {1, 0},
+	SE: {1, 1},
+	S:  {0, 1},
+	SW: {-1, 1},
+	W:  {-1, 0},
+	NW: {-1, -1},
 }
 
 // IsValidRules answers if the rules are consistent.
