@@ -14,12 +14,13 @@ var testcases = []struct {
 }
 
 func TestRandMissingNumbers(t *testing.T) {
-	//t.Parallel()//don't run in parallel
+	t.Parallel()
+	r := NewRandom()
 	for _, tc := range testcases {
 		results := make(map[int]int)
 		const iterations = 1000
 		for i := 0; i < iterations; i++ {
-			results[RandMissingNumbers(tc.n, tc.l)]++
+			results[r.RandMissingNumbers(tc.n, tc.l)]++
 		}
 		for _, v := range results {
 			delta := (float64(v) / float64(iterations)) - tc.distribution
@@ -34,16 +35,18 @@ func TestRandMissingNumbers(t *testing.T) {
 }
 
 func TestRandMissingNoNumbers(t *testing.T) {
-	//t.Parallel()//don't run in parallel
-	if result := RandMissingNumbers(5, []int{0, 1, 2, 3, 4}); result != -1 {
+	t.Parallel()
+	r := NewRandom()
+	if result := r.RandMissingNumbers(5, []int{0, 1, 2, 3, 4}); result != -1 {
 		t.Errorf("Expected -1 for a list that includes all possible numbers")
 	}
 }
 
 func BenchmarkRandMissingNumbers(b *testing.B) {
+	r := NewRandom()
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			RandMissingNumbers(tc.n, tc.l)
+			r.RandMissingNumbers(tc.n, tc.l)
 		}
 	}
 }
