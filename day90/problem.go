@@ -5,19 +5,19 @@ import (
 	"time"
 )
 
-var random *rand.Rand
+// Random encapsulates math/rand.Rand
+type Random struct {
+	random *rand.Rand
+}
 
-// getRandom returns a *math.Rand.
-func getRandom() *rand.Rand {
-	if random == nil {
-		random = rand.New(rand.NewSource(time.Now().UnixNano()))
-	}
-	return random
+// NewRandom returns a Random object.
+func NewRandom() *Random {
+	return &Random{rand.New(rand.NewSource(time.Now().UnixNano()))}
 }
 
 // RandMissingNumbers randomly generates a number from 0 to n-1 that isn't in l.
 // Runs in O(N) time and O(l) space.
-func RandMissingNumbers(n int, l []int) int {
+func (r *Random) RandMissingNumbers(n int, l []int) int {
 	m := make(map[int]struct{})
 	for _, v := range l {
 		m[v] = struct{}{}
@@ -26,7 +26,7 @@ func RandMissingNumbers(n int, l []int) int {
 	if size == 0 {
 		return -1
 	}
-	pos := getRandom().Intn(size)
+	pos := r.random.Intn(size)
 	val := -1
 	var i int
 	for i = 0; i < n; i++ {
