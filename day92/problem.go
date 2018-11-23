@@ -14,6 +14,9 @@ func CourseOrder(prereq map[string][]string) []string {
 			}
 		}
 	}
+	if len(marked) != len(prereq) {
+		return nil
+	}
 	reverse(result)
 	return result
 }
