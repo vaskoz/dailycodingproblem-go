@@ -20,10 +20,10 @@ var testcases = []struct {
 	},
 }
 
-func TestHeapsAlgorithm(t *testing.T) {
+func TestHeapsAlgorithmRecursive(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
-		results := HeapsAlgorithm(tc.input)
+		results := HeapsAlgorithmRecursive(tc.input)
 		pos := 0
 		for result := range results {
 			if !reflect.DeepEqual(result, tc.expected[pos]) {
@@ -34,10 +34,32 @@ func TestHeapsAlgorithm(t *testing.T) {
 	}
 }
 
-func BenchmarkHeapsAlgorithm(b *testing.B) {
+func BenchmarkHeapsAlgorithmRecursive(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			HeapsAlgorithm(tc.input)
+			HeapsAlgorithmRecursive(tc.input)
+		}
+	}
+}
+
+func TestHeapsAlgorithmIterative(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		results := HeapsAlgorithmIterative(tc.input)
+		pos := 0
+		for result := range results {
+			if !reflect.DeepEqual(result, tc.expected[pos]) {
+				t.Errorf("Expected %v got %v", tc.expected[pos], result)
+			}
+			pos++
+		}
+	}
+}
+
+func BenchmarkHeapsAlgorithmIterative(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			HeapsAlgorithmIterative(tc.input)
 		}
 	}
 }
