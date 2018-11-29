@@ -28,3 +28,20 @@ func BenchmarkLongestConsecutiveSequenceBrute(b *testing.B) {
 		}
 	}
 }
+
+func TestLongestConsecutiveSequenceLinear(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := LongestConsecutiveSequenceLinear(tc.input); result != tc.length {
+			t.Errorf("Expected %v got %v", tc.length, result)
+		}
+	}
+}
+
+func BenchmarkLongestConsecutiveSequenceLinear(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			LongestConsecutiveSequenceLinear(tc.input)
+		}
+	}
+}
