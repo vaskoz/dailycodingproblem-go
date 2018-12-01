@@ -24,6 +24,7 @@ const MinInt = -MaxInt - 1
 
 // FindLargestBST will return a pointer to the root of the
 // largest BST in the binary tree.
+// Runs in O(N) time with no extra space.
 func FindLargestBST(tree *BinaryTree) *BinaryTree {
 	res := sizeOfLargestBST(tree)
 	return res.AnsPtr
@@ -31,6 +32,7 @@ func FindLargestBST(tree *BinaryTree) *BinaryTree {
 
 // SizeOfLargestBST will return the number of nodes in the
 // largest BST in the binary tree.
+// Runs in O(N) time with no extra space.
 func SizeOfLargestBST(tree *BinaryTree) int {
 	res := sizeOfLargestBST(tree)
 	return res.Ans
