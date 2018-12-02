@@ -35,19 +35,29 @@ func BenchmarkContiguousSumBrute(b *testing.B) {
 	}
 }
 
-func TestContiguousSumFaster(t *testing.T) {
+func TestContiguousSumNonNegative(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
-		if result := ContiguousSumFaster(tc.input, tc.k); !reflect.DeepEqual(tc.expected, result) {
+		if result := ContiguousSumNonNegative(tc.input, tc.k); !reflect.DeepEqual(tc.expected, result) {
 			t.Errorf("Expected %v got %v", tc.expected, result)
 		}
 	}
 }
 
-func BenchmarkContiguousSumFaster(b *testing.B) {
+func TestContiguousSumNonNegativePanic(t *testing.T) {
+	t.Parallel()
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("Expected a panic from the negative input value")
+		}
+	}()
+	ContiguousSumNonNegative([]int{1, -2, 3}, 10)
+}
+
+func BenchmarkContiguousSumNonNegative(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			ContiguousSumFaster(tc.input, tc.k)
+			ContiguousSumNonNegative(tc.input, tc.k)
 		}
 	}
 }

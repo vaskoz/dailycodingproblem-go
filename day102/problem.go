@@ -17,13 +17,17 @@ func ContiguousSumBrute(nums []int, k int) []int {
 	return result
 }
 
-// ContiguousSumFaster uses a window to return the
+// ContiguousSumNonNegative uses a window to return the
 // contiguous subset that sums to K.
+// Can only tolerate non-negative values, panics otherwise.
 // Runtime is O(N) and O(1) space.
-func ContiguousSumFaster(nums []int, k int) []int {
+func ContiguousSumNonNegative(nums []int, k int) []int {
 	var result []int
 	var sum, begin int
 	for end := 0; end < len(nums); end++ {
+		if nums[end] < 0 {
+			panic("negative values aren't permitted")
+		}
 		sum += nums[end]
 		if sum == k {
 			result = nums[begin : end+1]
