@@ -85,3 +85,28 @@ func BenchmarkContiguousSumNonNegative(b *testing.B) {
 		}
 	}
 }
+
+func TestContiguousSumNegatives(t *testing.T) {
+	t.Parallel()
+	for _, tc := range nonNegativeTestcases {
+		if result := ContiguousSumNegatives(tc.input, tc.k); !reflect.DeepEqual(tc.expected, result) {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+	for _, tc := range negativeTestcases {
+		if result := ContiguousSumNegatives(tc.input, tc.k); !reflect.DeepEqual(tc.expected, result) {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkContiguousSumNegatives(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range nonNegativeTestcases {
+			ContiguousSumNegatives(tc.input, tc.k)
+		}
+		for _, tc := range negativeTestcases {
+			ContiguousSumNegatives(tc.input, tc.k)
+		}
+	}
+}

@@ -41,3 +41,26 @@ func ContiguousSumNonNegative(nums []int, k int) []int {
 	}
 	return result
 }
+
+// ContiguousSumNegatives returns the
+// contiguous subset that sums to K.
+// This implementation tolerates negative values.
+// Runtime is O(N) and O(N) space.
+func ContiguousSumNegatives(nums []int, k int) []int {
+	var result []int
+	var sum int
+	m := make(map[int]int)
+	for i := range nums {
+		sum += nums[i]
+		if sum-k == 0 {
+			result = nums[0 : i+1]
+			break
+		}
+		if start, found := m[sum-k]; found {
+			result = nums[start+1 : i+1]
+			break
+		}
+		m[sum] = i
+	}
+	return result
+}
