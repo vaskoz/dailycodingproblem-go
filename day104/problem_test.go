@@ -28,3 +28,22 @@ func BenchmarkIsPalindromeDoublyLL(b *testing.B) {
 		}
 	}
 }
+
+func TestIsPalindromeSinglyLLStack(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		head := createSinglyLL(tc.data)
+		if result := IsPalindromeSinglyLLStack(head); result != tc.isPalindrome {
+			t.Errorf("For input %v expected %v got %v", tc.data, tc.isPalindrome, result)
+		}
+	}
+}
+
+func BenchmarkIsPalindromeSinglyLLStack(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			head := createSinglyLL(tc.data)
+			IsPalindromeSinglyLLStack(head)
+		}
+	}
+}
