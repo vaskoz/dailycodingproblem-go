@@ -18,7 +18,7 @@ func TestDebounced(t *testing.T) {
 	if x != 0 {
 		t.Errorf("Expected x not to change since it's debounced for 500ms")
 	}
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(800 * time.Millisecond)
 	for i := 0; i < 10; i++ {
 		dbf()
 	}
