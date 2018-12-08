@@ -7,6 +7,7 @@ type BinaryTree struct {
 }
 
 // BinaryTreeByLevel prints the binary tree level-wise.
+// Runs in O(N^2) time.
 func BinaryTreeByLevel(tree *BinaryTree) []int {
 	var result []int
 	for i := 0; i < Height(tree); i++ {
