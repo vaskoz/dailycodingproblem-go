@@ -44,3 +44,24 @@ func max(a, b int) int {
 	}
 	return b
 }
+
+// BinaryTreeByLevelFaster prints the binary tree level-wise faster than O(N^2).
+// This version runs in O(N) with O(N) extra space.
+func BinaryTreeByLevelFaster(tree *BinaryTree) []int {
+	var result []int
+	level := []*BinaryTree{tree}
+	for len(level) != 0 {
+		nextLevel := make([]*BinaryTree, 0, 2*len(level))
+		for _, node := range level {
+			result = append(result, node.Value)
+			if node.Left != nil {
+				nextLevel = append(nextLevel, node.Left)
+			}
+			if node.Right != nil {
+				nextLevel = append(nextLevel, node.Right)
+			}
+		}
+		level = nextLevel
+	}
+	return result
+}

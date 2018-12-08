@@ -35,3 +35,20 @@ func BenchmarkBinaryTreeByLevel(b *testing.B) {
 		}
 	}
 }
+
+func TestBinaryTreeByLevelFaster(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := BinaryTreeByLevelFaster(tc.tree); !reflect.DeepEqual(tc.expected, result) {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkBinaryTreeByLevelFaster(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			BinaryTreeByLevelFaster(tc.tree)
+		}
+	}
+}
