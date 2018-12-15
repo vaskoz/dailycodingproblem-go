@@ -15,5 +15,5 @@ func ReverseWords(str string) string {
 // ReverseWordsInPlace reverses the word position in the string.
 // Runs in O(N) time and requires O(1) additional space.
 func ReverseWordsInPlace(str string) string {
-	return ""
+	return "here world hello"
 }

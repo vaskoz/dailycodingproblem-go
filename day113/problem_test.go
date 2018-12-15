@@ -24,3 +24,20 @@ func BenchmarkReverseWords(b *testing.B) {
 		}
 	}
 }
+
+func TestReverseWordsInPlace(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := ReverseWordsInPlace(tc.input); result != tc.expected {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkReverseWordsInPlace(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			ReverseWordsInPlace(tc.input)
+		}
+	}
+}
