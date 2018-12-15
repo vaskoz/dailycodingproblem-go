@@ -5,6 +5,7 @@ import "strings"
 // ReverseWordsMaintainDelimters reverses the words in the string
 // while maintaining the relative order of the delimiters
 // Works only with two delimiters "/" or ":"
+// Runs in O(N) time and requires O(N) extra space to construct the result.
 func ReverseWordsMaintainDelimters(str string) string {
 	var start, end int
 	var words []string
