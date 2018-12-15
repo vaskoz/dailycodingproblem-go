@@ -6,6 +6,7 @@ var testcases = []struct {
 	input, expected string
 }{
 	{"hello world here", "here world hello"},
+	{"greetings from colorado", "colorado from greetings"},
 }
 
 func TestReverseWords(t *testing.T) {
