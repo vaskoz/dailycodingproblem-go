@@ -3,6 +3,7 @@ package day120
 import "testing"
 
 func TestGetInstance(t *testing.T) {
+	t.Parallel()
 	g := New()
 	first := g.GetInstance()
 	second := g.GetInstance()
