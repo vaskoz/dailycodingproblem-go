@@ -6,6 +6,10 @@ var testcases = []struct {
 	coins, rounds int
 }{
 	{100, 7},
+	{120, 7},
+	{130, 8},
+	{4, 2},
+	{8, 3},
 }
 
 func TestFairCoinFlipDownToOne(t *testing.T) {
