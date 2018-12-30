@@ -21,5 +21,27 @@ func RotateKSwaps(nums []int, k int) {
 
 // RotateJuggleSwaps rotates using swaps but faster.
 func RotateJuggleSwaps(nums []int, k int) {
+	for i := 0; i < gcd(len(nums), k); i++ {
+		tmp := nums[i]
+		j := i
+		for {
+			jj := j + k
+			if jj >= len(nums) {
+				jj = jj % len(nums)
+			}
+			if jj == i {
+				break
+			}
+			nums[j] = nums[jj]
+			j = jj
+		}
+		nums[j] = tmp
+	}
+}
 
+func gcd(a, b int) int {
+	if b == 0 {
+		return a
+	}
+	return gcd(b, a%b)
 }
