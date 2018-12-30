@@ -8,6 +8,7 @@ var testcases = []struct {
 	maxProfit int
 }{
 	{[]int{5, 2, 4, 0, 1}, 2, 3},
+	{[]int{12, 14, 17, 10, 14, 13, 12, 15}, 3, 12},
 }
 
 func TestMaxProfit(t *testing.T) {
