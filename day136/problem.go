@@ -40,19 +40,7 @@ func areaOfOnes(m [][]int, r, c int) int {
 		for j := r; j < len(m) && m[j][i] == 1; j++ {
 			width++
 		}
-		minWidth = min(minWidth, width)
-	}
-	rowWise := colWidth * minWidth
-	minWidth = len(m)
-	var rowWidth int
-	for i := r; i < len(m) && m[i][c] == 1; i++ {
-		rowWidth++
-		var width int
-		for j := c; j < len(m[i]) && m[i][j] == 1; j++ {
-			width++
-		}
 		minWidth = min(width, minWidth)
 	}
-	colWise := rowWidth * minWidth
-	return max(colWise, rowWise)
+	return colWidth * minWidth
 }
