@@ -24,10 +24,10 @@ func (fhc *fasterHitCounter) Record(ts uint64) {
 	llrb.Insert(fhc.timestamps, ts, ts)
 }
 
-func (fhc *fasterHitCounter) Total() uint64 {
-	return uint64(fhc.timestamps.Size())
+func (fhc *fasterHitCounter) Total() int {
+	return fhc.timestamps.Size()
 }
 
-func (fhc *fasterHitCounter) Range(lower, upper uint64) uint64 {
-	return uint64(llrb.RangeCount(fhc.timestamps, lower, upper))
+func (fhc *fasterHitCounter) Range(lower, upper uint64) int {
+	return llrb.RangeCount(fhc.timestamps, lower, upper)
 }
