@@ -2,9 +2,9 @@ package day132
 
 import "testing"
 
-func TestHitCounter(t *testing.T) {
+func TestFasterHitCounter(t *testing.T) {
 	t.Parallel()
-	hc := NewHitCounter()
+	hc := NewFasterHitCounter()
 	for i := uint64(0); i < uint64(1000); i++ {
 		hc.Record(i)
 	}
@@ -16,8 +16,8 @@ func TestHitCounter(t *testing.T) {
 	}
 }
 
-func BenchmarkHitCounter(b *testing.B) {
-	hc := NewHitCounter()
+func BenchmarkFasterHitCounter(b *testing.B) {
+	hc := NewFasterHitCounter()
 	for i := uint64(0); i < uint64(100000); i++ {
 		hc.Record(i)
 	}

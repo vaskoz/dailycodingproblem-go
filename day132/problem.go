@@ -5,9 +5,9 @@ type HitCounter interface {
 	// Record stores a timestamp.
 	Record(uint64)
 	// Total returns number of recorded events.
-	Total() uint64
+	Total() int
 	// Range returns the total counts inclusive.
-	Range(lower, upper uint64) uint64
+	Range(lower, upper uint64) int
 }
 
 // NewHitCounter returns a new instance of a HitCounter.
@@ -16,7 +16,7 @@ func NewHitCounter() HitCounter {
 }
 
 type hitCounter struct {
-	total      uint64
+	total      int
 	timestamps []uint64
 }
 
@@ -25,12 +25,12 @@ func (hc *hitCounter) Record(ts uint64) {
 	hc.timestamps = append(hc.timestamps, ts)
 }
 
-func (hc *hitCounter) Total() uint64 {
+func (hc *hitCounter) Total() int {
 	return hc.total
 }
 
-func (hc *hitCounter) Range(lower, upper uint64) uint64 {
-	var count uint64
+func (hc *hitCounter) Range(lower, upper uint64) int {
+	var count int
 	for _, ts := range hc.timestamps {
 		if ts >= lower && ts <= upper {
 			count++
