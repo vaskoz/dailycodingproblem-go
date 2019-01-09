@@ -31,3 +31,20 @@ func BenchmarkSingleOccurrenceBrute(b *testing.B) {
 		}
 	}
 }
+
+func TestSingleOccurrenceLinear(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := SingleOccurrenceLinear(tc.nums); !reflect.DeepEqual(result, tc.singleOccurrence) {
+			t.Errorf("Expected %v got %v", tc.singleOccurrence, result)
+		}
+	}
+}
+
+func BenchmarkSingleOccurrenceLinear(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			SingleOccurrenceBrute(tc.nums)
+		}
+	}
+}
