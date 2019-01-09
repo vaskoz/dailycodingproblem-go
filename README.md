@@ -146,4 +146,5 @@ problems from
 * [Day 135](https://github.com/vaskoz/dailycodingproblem-go/issues/280)
 * [Day 136](https://github.com/vaskoz/dailycodingproblem-go/issues/282)
 * [Day 137](https://github.com/vaskoz/dailycodingproblem-go/issues/285)
+* [Day 138](https://github.com/vaskoz/dailycodingproblem-go/issues/286)
 * [Day 139](https://github.com/vaskoz/dailycodingproblem-go/issues/288)
