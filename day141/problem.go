@@ -1,6 +1,8 @@
 package day141
 
-import "errors"
+import (
+	"errors"
+)
 
 type node struct {
 	value interface{}
@@ -14,6 +16,10 @@ type ThreeStacks struct {
 	heads        [3]*node
 	pushes, pops int
 }
+
+// minDefrag represents the minimum number of Pops before
+// a defrag will happen.
+const minDefrag = 20
 
 var errInvalidStackID = errors.New("invalid stack id")
 var errEmptyStack = errors.New("stack is empty")
@@ -40,6 +46,21 @@ func (ts *ThreeStacks) Pop(stackID int) (interface{}, error) {
 	ts.pops++
 	top := ts.heads[stackID]
 	ts.heads[stackID] = top.prev
+	if ts.pops > minDefrag {
+		defrag := make([]*node, 0, ts.pushes-ts.pops)
+		var pushes int
+		for i := 0; i < 3; i++ {
+			ptr := ts.heads[i]
+			for ptr != nil {
+				defrag = append(defrag, ptr)
+				pushes++
+				ptr = ptr.prev
+			}
+		}
+		ts.data = defrag
+		ts.pops = 0
+		ts.pushes = pushes
+	}
 	return top.value, nil
 }
 
