@@ -34,11 +34,31 @@ func TestPartitionBrute(t *testing.T) {
 	}
 }
 
-func BenchmarkPartition(b *testing.B) {
+func BenchmarkPartitionBrute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			copied := append([]int{}, tc.lst...)
 			PartitionBrute(copied, tc.pivot)
+		}
+	}
+}
+
+func TestPartition(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		copied := append([]int{}, tc.lst...)
+		Partition(copied, tc.pivot)
+		if !checkInvariant(copied, tc.pivot) {
+			t.Errorf("Didn't partition correctly. pivot=%d. Given %v got %v", tc.pivot, tc.lst, copied)
+		}
+	}
+}
+
+func BenchmarkPartition(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			copied := append([]int{}, tc.lst...)
+			Partition(copied, tc.pivot)
 		}
 	}
 }
