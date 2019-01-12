@@ -23,42 +23,42 @@ func checkInvariant(lst []int, pivot int) bool {
 	return i == len(lst)
 }
 
-func TestPartitionBrute(t *testing.T) {
+func TestDNFPartitionBrute(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
 		copied := append([]int{}, tc.lst...)
-		PartitionBrute(copied, tc.pivot)
+		DNFPartitionBrute(copied, tc.pivot)
 		if !checkInvariant(copied, tc.pivot) {
 			t.Errorf("Didn't partition correctly. pivot=%d. Given %v got %v", tc.pivot, tc.lst, copied)
 		}
 	}
 }
 
-func BenchmarkPartitionBrute(b *testing.B) {
+func BenchmarkDNFPartitionBrute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			copied := append([]int{}, tc.lst...)
-			PartitionBrute(copied, tc.pivot)
+			DNFPartitionBrute(copied, tc.pivot)
 		}
 	}
 }
 
-func TestPartition(t *testing.T) {
+func TestDNFPartition(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
 		copied := append([]int{}, tc.lst...)
-		Partition(copied, tc.pivot)
+		DNFPartition(copied, tc.pivot)
 		if !checkInvariant(copied, tc.pivot) {
 			t.Errorf("Didn't partition correctly. pivot=%d. Given %v got %v", tc.pivot, tc.lst, copied)
 		}
 	}
 }
 
-func BenchmarkPartition(b *testing.B) {
+func BenchmarkDNFPartition(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			copied := append([]int{}, tc.lst...)
-			Partition(copied, tc.pivot)
+			DNFPartition(copied, tc.pivot)
 		}
 	}
 }
