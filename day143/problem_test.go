@@ -7,6 +7,8 @@ var testcases = []struct {
 	pivot int
 }{
 	{[]int{9, 12, 3, 5, 14, 10, 10}, 10},
+	{[]int{9, 12, 3, 5, 14, 10, 10}, 20},
+	{[]int{9, 12, 3, 5, 14, 10, 10}, 1},
 }
 
 func checkInvariant(lst []int, pivot int) bool {
