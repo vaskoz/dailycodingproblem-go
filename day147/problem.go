@@ -5,6 +5,11 @@ import (
 	_ "unsafe" // nolint
 )
 
+// Reverse conforms to the interface asked in the problem.
+func Reverse(data sort.Interface, i, j int) {
+	SortRange(sort.Reverse(data), i, j)
+}
+
 // SortRange extends the abilities of sort.Sort by allowing
 // a subset of the full range to be sorted.
 // For this example, I'm gonna reach into the stdlib "sort" package,
