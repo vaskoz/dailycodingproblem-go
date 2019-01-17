@@ -8,9 +8,7 @@ type LL struct {
 
 // SwapEveryTwo swaps every two nodes in a linked list.
 func SwapEveryTwo(head *LL) *LL {
-	if head == nil {
-		return nil
-	} else if head.Next == nil {
+	if head == nil || head.Next == nil {
 		return head
 	}
 	result := head.Next
