@@ -5,6 +5,9 @@ package day144
 // If no number if found, then -1 is returned.
 // Runs in O(N) time.
 func ClosestLargerNumberIndexBrute(nums []int, targetIndex int) int {
+	if targetIndex < 0 || targetIndex >= len(nums) {
+		panic("index out of bounds")
+	}
 	val := nums[targetIndex]
 	left, right := targetIndex-1, targetIndex+1
 	for left >= 0 || right < len(nums) {

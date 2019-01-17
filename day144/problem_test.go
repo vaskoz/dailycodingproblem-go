@@ -21,6 +21,16 @@ func TestClosestLargerNumberIndexBrute(t *testing.T) {
 	}
 }
 
+func TestClosestLargerNumberIndexBruteBoundsCheck(t *testing.T) {
+	t.Parallel()
+	defer func() {
+		if err := recover(); err == nil {
+			t.Errorf("It should panic with an index out of bounds")
+		}
+	}()
+	ClosestLargerNumberIndexBrute([]int{1, 2}, 3)
+}
+
 func BenchmarkClosestLargerNumberIndexBrute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
