@@ -162,3 +162,4 @@ problems from
 * [Day 149](https://github.com/vaskoz/dailycodingproblem-go/issues/311)
 * [Day 150](https://github.com/vaskoz/dailycodingproblem-go/issues/312)
 * [Day 151](https://github.com/vaskoz/dailycodingproblem-go/issues/313)
+* [Day 153](https://github.com/vaskoz/dailycodingproblem-go/issues/316)
