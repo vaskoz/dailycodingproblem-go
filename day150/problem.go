@@ -48,11 +48,9 @@ func KNearestPoints(pts []Point, center Point, k int) []Point {
 		dist := math.Sqrt(
 			math.Pow(float64(pt.X-center.X), 2.0) +
 				math.Pow(float64(pt.Y-center.Y), 2.0))
-		if pq.Len() == k {
-			if dist < pq[0].dist {
-				heap.Pop(&pq)
-				heap.Push(&pq, &item{dist, pt})
-			}
+		if pq.Len() == k && dist < pq[0].dist {
+			heap.Pop(&pq)
+			heap.Push(&pq, &item{dist, pt})
 		} else if pq.Len() < k {
 			heap.Push(&pq, &item{dist, pt})
 		}
