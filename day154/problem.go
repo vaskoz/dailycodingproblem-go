@@ -3,6 +3,8 @@ package day154
 import "container/heap"
 
 // StackHeap is a stack implemented using only a heap.
+// Runs in O(N log N) time.
+// Also contains a flaw with the counter due to overflow.
 type StackHeap struct {
 	heap    maxHeap
 	counter uint64
