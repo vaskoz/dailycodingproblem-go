@@ -25,3 +25,20 @@ func BenchmarkMinSquared(b *testing.B) {
 		}
 	}
 }
+
+func TestMinSquaredDP(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := MinSquaredDP(tc.n); result != tc.expected {
+			t.Errorf("For N=%d Expected %v got %v", tc.n, tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkMinSquaredDP(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			MinSquaredDP(tc.n)
+		}
+	}
+}

@@ -25,3 +25,20 @@ func minSquared(n, level, minSoFar int) int {
 	}
 	return minSoFar
 }
+
+// MinSquaredDP returns the smallest number
+// of squared integers which sum to n.
+// Runs in O(N^2) time and O(N) space.
+func MinSquaredDP(n int) int {
+	table := make([]int, 0, n+1)
+	table = append(table, 0, 1, 2, 3)
+	for i := 4; i <= n+1; i++ {
+		table = append(table, i)
+		for x := 1; x < i+1; x++ {
+			if v := x * x; v <= i && table[i-v]+1 < table[i] {
+				table[i] = table[i-v] + 1
+			}
+		}
+	}
+	return table[n]
+}
