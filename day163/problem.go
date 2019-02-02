@@ -30,5 +30,8 @@ func ReversePolishCalculator(input []string) int {
 			stack = append(stack, i)
 		}
 	}
+	if len(stack) != 1 {
+		panic("invalid input")
+	}
 	return stack[0]
 }
