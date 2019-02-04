@@ -21,8 +21,14 @@ func TestRsyncUpdates(t *testing.T) {
 		t.Errorf("f1 doesn't match inside the target. %v, %v", f, f1a)
 	}
 	f2a := File("bbbbb")
+	src.UpdateFile(1, f2a)
 	if f := target.GetFile(1); !reflect.DeepEqual(f, f2a) {
 		t.Errorf("f2 doesn't match inside the target. %v, %v", f, f2a)
+	}
+	f2b := File("cccccccccccc")
+	src.UpdateFile(1, f2b)
+	if f := target.GetFile(1); !reflect.DeepEqual(f, f2b) {
+		t.Errorf("f2 doesn't match inside the target. %v, %v", f, f2b)
 	}
 }
 

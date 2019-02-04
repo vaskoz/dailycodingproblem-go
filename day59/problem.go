@@ -73,4 +73,17 @@ func (r *Rsync) sendDeleteFile(id int) {
 
 func (r *Rsync) sendUpdateFile(id int, file File) {
 	// TODO: implement the incremental or changes update
+	for i, b := range file {
+		if i >= len(r.files[id]) {
+			r.files[id] = append(r.files[id], b)
+		}
+		if r.files[id][i] != b {
+			r.sendByte(id, i, b)
+		}
+	}
+	r.files[id] = r.files[id][:len(file)]
+}
+
+func (r *Rsync) sendByte(id, index int, b byte) {
+	r.files[id][index] = b
 }
