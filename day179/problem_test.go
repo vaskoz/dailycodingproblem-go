@@ -32,6 +32,7 @@ var testcases = []struct {
 			&BinaryTree{50, nil, nil},
 		},
 	}},
+	{[]int{}, nil},
 }
 
 func TestBuildTreeFromPostorder(t *testing.T) {
@@ -47,6 +48,23 @@ func BenchmarkBuildTreeFromPostorder(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			BuildTreeFromPostorder(tc.postorder)
+		}
+	}
+}
+
+func TestBuildTreeFromPostorderLinear(t *testing.T) {
+	t.Parallel()
+	for tcid, tc := range testcases {
+		if result := BuildTreeFromPostorderLinear(tc.postorder); !equal(result, tc.expected) {
+			t.Errorf("Trees don't match for tcid%d", tcid)
+		}
+	}
+}
+
+func BenchmarkBuildTreeFromPostorderLinear(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			BuildTreeFromPostorderLinear(tc.postorder)
 		}
 	}
 }
