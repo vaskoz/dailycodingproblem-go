@@ -1,7 +1,5 @@
 package day186
 
-import "log"
-
 // SubsetsSmallestDifference returns the two subsets with the
 // smallest difference between them.
 // Brute-force. Runs in O(2^N) time.
@@ -14,7 +12,6 @@ func SubsetsSmallestDifference(nums []int) ([]int, []int) {
 	minSum := int(^uint(0) >> 1)
 	var s1, s2 []int
 	for subsets := range perms {
-		log.Println(subsets)
 		if s := sum(subsets[0], subsets[1]); s < minSum {
 			minSum = s
 			s1 = subsets[0]
