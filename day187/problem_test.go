@@ -10,6 +10,8 @@ var testcases = []struct {
 	{[]Rectangle{{1, 4, 1, 1}, {-1, 3, 1, 1}, {0, 5, 4, 3}}, false},
 	{[]Rectangle{{1, 1, 1, 1}, {2, 2, 1, 1}, {3, 3, 1, 1}}, false},
 	{[]Rectangle{{1, 1, 2, 1}, {2, 2, 1, 2}, {3, 3, 1, 1}}, true},
+	{[]Rectangle{{0, 9, 1, 1}, {1, 1, 1, 1}, {2, 2, 1, 1}, {0, 10, 2, 2}}, true},
+	{[]Rectangle{{1, 1, 1, 1}, {2, 2, 1, 1}, {0, 10, 2, 2}}, false},
 }
 
 func TestDoesRectanglePairOverlap(t *testing.T) {
