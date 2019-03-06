@@ -34,3 +34,20 @@ func BenchmarkCountLargerAndSmallerBrute(b *testing.B) {
 		}
 	}
 }
+
+func TestCountLargerAndSmallerEfficient(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := CountLargerAndSmallerEfficient(tc.mat, tc.i1, tc.j1, tc.i2, tc.j2); result != tc.count {
+			t.Errorf("Expected %v, got %v", tc.count, result)
+		}
+	}
+}
+
+func BenchmarkCountLargerAndSmallerEfficient(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			CountLargerAndSmallerEfficient(tc.mat, tc.i1, tc.j1, tc.i2, tc.j2)
+		}
+	}
+}
