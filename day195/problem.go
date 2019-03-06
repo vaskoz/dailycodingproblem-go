@@ -29,22 +29,32 @@ func CountLargerAndSmallerEfficient(mat Matrix, i1, j1, i2, j2 int) int {
 	count := 0
 	smallerThan := mat[i1][j1]
 	for i := range mat {
+		var found bool
 		for _, v := range mat[i] {
 			if v < smallerThan {
+				found = true
 				count++
 			} else {
 				break
 			}
 		}
+		if !found {
+			break
+		}
 	}
 	largerThan := mat[i2][j2]
 	for i := range mat {
-		for j := range mat[i] {
-			if mat[i][len(mat[i])-1-j] > largerThan {
+		var found bool
+		for j := range mat[len(mat)-1-i] {
+			if mat[len(mat)-1-i][len(mat[i])-1-j] > largerThan {
+				found = true
 				count++
 			} else {
 				break
 			}
+		}
+		if !found {
+			break
 		}
 	}
 	return count
