@@ -22,8 +22,7 @@ func LargestSubsetPairs(nums []int) []int {
 				m = max(m, dp[j])
 			}
 		}
-		dp[i] = 1 + m
-		if dp[i] > largestVal {
+		if dp[i] = 1 + m; dp[i] > largestVal {
 			largestI = i
 			largestVal = dp[i]
 		}
