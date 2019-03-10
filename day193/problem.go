@@ -5,7 +5,7 @@ package day193
 // A backtracking algorithm that tries all profitable paths
 // looking for the most profitable.
 func MaxProfitWithFee(prices []int, fee int) int {
-	if len(prices) == 0 {
+	if len(prices) < 2 {
 		return 0
 	}
 	buy := prices[0]
