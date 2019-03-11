@@ -3,6 +3,7 @@ package day201
 // MaxWeightPathTriangle returns the weight of the maximum weight path
 // as defined by the problem.
 // Runs in O(N) time.
+// Assumes a correct triangle as input.
 func MaxWeightPathTriangle(tri [][]int) int {
 	return maxWeightPathTriangleHelper(tri, 0, 0)
 }
