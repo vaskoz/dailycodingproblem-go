@@ -16,3 +16,23 @@ func IsIntegerPalindrome(i int) bool {
 	}
 	return true
 }
+
+// IsIntegerPalindromeFaster returns true if the integer is a
+// palindrome.
+// Runs in O(digits) time and O(1) space.
+func IsIntegerPalindromeFaster(i int) bool {
+	divisor := 1
+	for temp := i; temp/divisor > 10; divisor = divisor * 10 {
+	}
+	for i >= 10 {
+		highest := i / divisor
+		lowest := i % 10
+		if highest != lowest {
+			return false
+		}
+		i %= divisor
+		i /= 10
+		divisor /= 100
+	}
+	return true
+}
