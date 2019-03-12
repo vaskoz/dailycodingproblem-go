@@ -2,6 +2,7 @@ package day202
 
 // IsIntegerPalindrome returns true if the integer is a
 // palindrome.
+// Runs in O(digits) time and O(digits) space.
 func IsIntegerPalindrome(i int) bool {
 	var digits []int
 	for i != 0 {
