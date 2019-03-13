@@ -11,6 +11,7 @@ var testcases = []struct {
 	{[]int{10, 3, 4, 5, 7}, 3},
 	{[]int{7, 10, 3, 4, 5}, 3},
 	{[]int{4, 5, 7, 10, 3}, 3},
+	{[]int{4, 4, 4, 4, 3}, 3},
 }
 
 func TestFindSmallestOnRotated(t *testing.T) {

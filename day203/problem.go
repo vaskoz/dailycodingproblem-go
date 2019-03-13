@@ -5,16 +5,13 @@ package day203
 // Runs in O(log N) time and O(1) space.
 func FindSmallestOnRotated(nums []int) int {
 	left, right := 0, len(nums)-1
-	for left < right-1 {
+	for left < right {
 		mid := (left + right) / 2
-		if nums[left] < nums[right] || nums[mid] < nums[right] {
+		if nums[mid] < nums[right] {
 			right = mid
 		} else {
-			left = mid
+			left = mid + 1
 		}
-	}
-	if nums[left] < nums[right] {
-		return nums[left]
 	}
 	return nums[right]
 }
