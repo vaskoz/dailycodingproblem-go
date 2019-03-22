@@ -11,14 +11,6 @@ func LengthLongestCommonSubseqOf3Iterative(one, two, three string) int {
 		for j := range dp[i] {
 			dp[i][j] = make([]int, len(Z)+1)
 			for k := range dp[i][j] {
-				dp[i][j][k] = -1
-			}
-		}
-	}
-
-	for i := range dp {
-		for j := range dp[i] {
-			for k := range dp[i][j] {
 				if i == 0 || j == 0 || k == 0 {
 					dp[i][j][k] = 0
 				} else if X[i-1] == Y[j-1] && X[i-1] == Z[k-1] {
