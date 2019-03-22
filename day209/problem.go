@@ -40,21 +40,11 @@ func LengthLongestCommonSubseqOf3Iterative(one, two, three string) int {
 
 // LengthLongestCommonSubseqOf3Recursive is the recursive version.
 func LengthLongestCommonSubseqOf3Recursive(one, two, three string) int {
-	var max int
-	if len(one) > max {
-		max = len(one)
-	}
-	if len(two) > max {
-		max = len(two)
-	}
-	if len(three) > max {
-		max = len(three)
-	}
-	dp := make([][][]int, max+1)
+	dp := make([][][]int, len(one)+1)
 	for i := range dp {
-		dp[i] = make([][]int, max+1)
+		dp[i] = make([][]int, len(two)+1)
 		for j := range dp[i] {
-			dp[i][j] = make([]int, max+1)
+			dp[i][j] = make([]int, len(three)+1)
 			for k := range dp[i][j] {
 				dp[i][j][k] = -1
 			}
