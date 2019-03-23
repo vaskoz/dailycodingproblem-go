@@ -35,7 +35,7 @@ func validIPAddresses(digits string, octet int) []string {
 			if len(ip) != 0 {
 				result = append(result, fmt.Sprintf("%s.%s", digits[:i+1], ip))
 			} else {
-				result = append(result, fmt.Sprintf("%s", digits[:i+1]))
+				result = append(result, digits[:i+1])
 			}
 		}
 	}
