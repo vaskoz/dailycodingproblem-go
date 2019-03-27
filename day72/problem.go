@@ -55,15 +55,10 @@ func dfsBacktracking(g AdjacencyMatrix, nodes []Node, n int, visited map[int]str
 	} else {
 		for next := range g[n] {
 			if _, seen := visited[next]; seen {
-				err = ErrInfiniteLoop()
-				break
-			}
-			var v int
-			if v, err = dfsBacktracking(g, nodes, next, visited, freq); err != nil {
-				err = ErrInfiniteLoop()
-				break
-			}
-			if v > max {
+				return 0, ErrInfiniteLoop()
+			} else if v, err := dfsBacktracking(g, nodes, next, visited, freq); err != nil {
+				return 0, err
+			} else if v > max {
 				max = v
 			}
 		}
