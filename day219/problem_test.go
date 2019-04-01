@@ -89,46 +89,28 @@ func TestConnectFourDiagonalDownRightRedWins(t *testing.T) {
 		if err := cfb.Move(Black, Column(0)); err != nil {
 			t.Errorf("expected nil got %v", err)
 		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
-		if err := cfb.Move(Red, Column(0)); err != nil {
-			t.Errorf("expected nil, got %v", err)
-		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
-
 	}
-	for i := 0; i < 3; i++ {
-		if err := cfb.Move(Red, Column(1)); err != nil {
-			t.Errorf("expected nil got %v", err)
-		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
+	if err := cfb.Move(Red, Column(0)); err != nil {
+		t.Errorf("expected nil, got %v", err)
+	}
+	for i := 0; i < 2; i++ {
 		if err := cfb.Move(Black, Column(1)); err != nil {
-			t.Errorf("expected nil, got %v", err)
-		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
-	}
-	for i := 0; i < 3; i++ {
-		if err := cfb.Move(Black, Column(2)); err != nil {
 			t.Errorf("expected nil got %v", err)
 		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
-		if err := cfb.Move(Red, Column(2)); err != nil {
-			t.Errorf("expected nil, got %v", err)
-		}
-		if p := cfb.Winner(); p != None {
-			t.Errorf("expected no winner got %v", p)
-		}
 	}
-	if err := cfb.Move(Red, 3); err != nil {
+	if err := cfb.Move(Red, Column(1)); err != nil {
+		t.Errorf("expected nil got %v", err)
+	}
+	if err := cfb.Move(Black, Column(2)); err != nil {
+		t.Errorf("expected nil got %v", err)
+	}
+	if err := cfb.Move(Red, Column(2)); err != nil {
+		t.Errorf("expected nil got %v", err)
+	}
+	if p := cfb.Winner(); p != None {
+		t.Errorf("expected no winner got %v", p)
+	}
+	if err := cfb.Move(Red, Column(3)); err != nil {
 		t.Errorf("expected nil got %v", err)
 	}
 	if p := cfb.Winner(); p != Red {

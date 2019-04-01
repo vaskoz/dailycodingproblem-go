@@ -97,9 +97,9 @@ func isHorizontal(board map[Column]map[Row]Player, r Row, c Column, p Player) bo
 }
 
 func isVertical(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
-	return p == board[c+1][r] &&
-		p == board[c+2][r] &&
-		p == board[c+3][r]
+	return p == board[c][r+1] &&
+		p == board[c][r+2] &&
+		p == board[c][r+3]
 }
 
 func isDiagonalUpRight(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
