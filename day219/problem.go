@@ -63,48 +63,37 @@ func (cfb *ConnectFourBoard) Move(player Player, col Column) error {
 // Winner returns the winner of the current board.
 // If there is no winner yet, then Player=None is returned.
 func (cfb *ConnectFourBoard) Winner() Player {
-	if p := cfb.checkVerticalWinner(); p != None {
-		return p
-	}
-	if p := cfb.checkHorizontalWinner(); p != None {
-		return p
-	}
-	return None
-}
-
-func (cfb *ConnectFourBoard) checkHorizontalWinner() Player {
-	for row := Row(0); row < 6; row++ {
-		for col := Column(0); col < 4; col++ {
-			if p, found := cfb.board[col][row]; found {
-				win := true
-				for c := col + 1; c < col+4; c++ {
-					if prow, found := cfb.board[c][row]; !found || prow == p {
-						win = false
-						break
-					}
-				}
-				if win {
-					return p
-				}
+	height := Row(6)
+	width := Column(7)
+	for row := Row(0); row < height; row++ {
+		for col := Column(0); col < width; col++ {
+			player := cfb.board[col][row]
+			if player == None {
+				continue
 			}
-		}
-	}
-	return None
-}
-
-func (cfb *ConnectFourBoard) checkVerticalWinner() Player {
-	for col := Column(0); col < 7; col++ {
-		for row := Row(5); row > 2; row-- {
-			if p, found := cfb.board[col][row]; found {
-				win := true
-				for r := row - 1; r > row-4; r-- {
-					if pcol, found := cfb.board[col][r]; !found || pcol == p {
-						win = false
-						break
-					}
+			if col+3 < width &&
+				player == cfb.board[col+1][row] &&
+				player == cfb.board[col+2][row] &&
+				player == cfb.board[col+3][row] {
+				return player
+			}
+			if row+3 < height {
+				if player == cfb.board[col][row+1] &&
+					player == cfb.board[col][row+2] &&
+					player == cfb.board[col][row+3] {
+					return player
 				}
-				if win {
-					return p
+				if col+3 < width &&
+					player == cfb.board[col+1][row+1] &&
+					player == cfb.board[col+2][row+2] &&
+					player == cfb.board[col+3][row+3] {
+					return player
+				}
+				if col-3 >= 0 &&
+					player == cfb.board[col-1][row+1] &&
+					player == cfb.board[col-2][row+2] &&
+					player == cfb.board[col-3][row+3] {
+					return player
 				}
 			}
 		}
