@@ -71,32 +71,45 @@ func (cfb *ConnectFourBoard) Winner() Player {
 			if player == None {
 				continue
 			}
-			if col+3 < width &&
-				player == cfb.board[col+1][row] &&
-				player == cfb.board[col+2][row] &&
-				player == cfb.board[col+3][row] {
+			if col+3 < width && isHorizontal(cfb.board, row, col, player) {
 				return player
 			}
 			if row+3 < height {
-				if player == cfb.board[col][row+1] &&
-					player == cfb.board[col][row+2] &&
-					player == cfb.board[col][row+3] {
+				if isVertical(cfb.board, row, col, player) {
 					return player
 				}
-				if col+3 < width &&
-					player == cfb.board[col+1][row+1] &&
-					player == cfb.board[col+2][row+2] &&
-					player == cfb.board[col+3][row+3] {
+				if col+3 < width && isDiagonalUpRight(cfb.board, row, col, player) {
 					return player
 				}
-				if col-3 >= 0 &&
-					player == cfb.board[col-1][row+1] &&
-					player == cfb.board[col-2][row+2] &&
-					player == cfb.board[col-3][row+3] {
+				if col-3 >= 0 && isDiagonalUpLeft(cfb.board, row, col, player) {
 					return player
 				}
 			}
 		}
 	}
 	return None
+}
+
+func isHorizontal(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
+	return p == board[c+1][r] &&
+		p == board[c+2][r] &&
+		p == board[c+3][r]
+}
+
+func isVertical(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
+	return p == board[c+1][r] &&
+		p == board[c+2][r] &&
+		p == board[c+3][r]
+}
+
+func isDiagonalUpRight(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
+	return p == board[c+1][r+1] &&
+		p == board[c+2][r+2] &&
+		p == board[c+3][r+3]
+}
+
+func isDiagonalUpLeft(board map[Column]map[Row]Player, r Row, c Column, p Player) bool {
+	return p == board[c-1][r+1] &&
+		p == board[c-2][r+2] &&
+		p == board[c-3][r+3]
 }
