@@ -10,6 +10,7 @@ var testcases = []struct {
 	{"1111", 5},
 	{"2626", 4},
 	{"1234", 3},
+	{"1111127", 13},
 }
 
 func TestNumberOfDecodings(t *testing.T) {
