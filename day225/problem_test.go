@@ -8,6 +8,9 @@ var testcases = []struct {
 	{5, 2, 3},
 	{41, 2, 19},
 	{5, 3, 4},
+	{1, 100, 1},
+	{-20, 100, 0},
+	{0, 100, 0},
 }
 
 func TestJosephusGeneral(t *testing.T) {
