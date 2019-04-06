@@ -21,7 +21,7 @@ func TestXorList(t *testing.T) {
 		for i := 1; i < len(tc.data); i++ {
 			xl.Add(tc.data[i])
 		}
-		if result := forwardToSlice(xl); !reflect.DeepEqual(result, []interface{}(tc.data)) {
+		if result := forwardToSlice(xl); !reflect.DeepEqual(result, tc.data) {
 			t.Errorf("Expected %v but got %v", tc.data, result)
 		}
 		if reversed, result := reverse(tc.data), backwardToSlice(xl); !reflect.DeepEqual(result, reversed) {
