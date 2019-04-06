@@ -27,10 +27,6 @@ func UniqueClimbsDS(steps int, strides []int) int {
 	sort.Ints(copyStrides)
 	stepData := make([]int, steps+1)
 	stepData[0] = 1
-	return uniqueClimbsDS(steps, copyStrides, stepData)[steps]
-}
-
-func uniqueClimbsDS(steps int, strides, stepData []int) []int {
 	for step := 1; step < len(stepData); step++ {
 		sum := 0
 		for _, stride := range strides {
@@ -41,5 +37,5 @@ func uniqueClimbsDS(steps int, strides, stepData []int) []int {
 		}
 		stepData[step] = sum
 	}
-	return stepData
+	return stepData[steps]
 }
