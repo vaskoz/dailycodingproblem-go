@@ -50,15 +50,16 @@ func IsValidRules(rules []string) bool {
 		toPos, toFound := positions[to]
 		fromPos, fromFound := positions[from]
 		delta := directions[dir]
-		if toFound && fromFound {
+		switch {
+		case toFound && fromFound:
 			if !checkValid(fromPos, toPos, dir) {
 				return false
 			}
-		} else if toFound && !fromFound {
+		case toFound && !fromFound:
 			positions[from] = Position{toPos.X - delta.X, toPos.Y - delta.Y}
-		} else if !toFound && fromFound {
+		case !toFound && fromFound:
 			positions[to] = Position{fromPos.X + delta.X, fromPos.Y + delta.Y}
-		} else {
+		default:
 			positions[from] = Position{0, 0}
 			positions[to] = directions[dir]
 		}

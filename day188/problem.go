@@ -5,7 +5,7 @@ func MakeFunctionsOriginal() []func() int {
 	var funcList []func() int
 	for _, i := range []int{1, 2, 3} {
 		funcList = append(funcList, func() int {
-			return i
+			return i //nolint: scopelint
 		})
 	}
 	return funcList

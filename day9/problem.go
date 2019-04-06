@@ -5,11 +5,12 @@ package day9
 func MaximumNonAdjacentSum(nums []int) int {
 	var one, two, result int
 	for i, val := range nums {
-		if i == 0 {
+		switch {
+		case i == 0:
 			result = val
-		} else if i == 1 {
+		case i == 1:
 			result = max(result, val)
-		} else {
+		default:
 			result = max(one, val+two)
 		}
 		two = one

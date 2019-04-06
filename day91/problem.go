@@ -5,7 +5,7 @@ func BadSnippet() []int {
 	funcs := make([]func() int, 9)
 	for i := 0; i < 9; i++ {
 		funcs[i] = func() int {
-			return i
+			return i //nolint: scopelint
 		}
 	}
 	result := make([]int, 9)

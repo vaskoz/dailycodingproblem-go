@@ -11,10 +11,10 @@ func createTwoSharedLists() (*Node, *Node, *Node) {
 	return one, two, common
 }
 
-func createTwoIndependentLists() (*Node, *Node, *Node) {
+func createTwoIndependentLists() (*Node, *Node) {
 	one := &Node{"abc", &Node{"def", &Node{"ghi", nil}}}
 	two := &Node{111, nil}
-	return one, two, nil
+	return one, two
 }
 
 func TestFindCommonNode(t *testing.T) {
@@ -27,19 +27,19 @@ func TestFindCommonNode(t *testing.T) {
 	if result := FindCommonNode(one, two); result != common {
 		t.Error("Expected these two be the same pointer")
 	}
-	one, two, common = createTwoIndependentLists()
-	if result := FindCommonNode(one, two); result != common {
+	one, two = createTwoIndependentLists()
+	if result := FindCommonNode(one, two); result != nil {
 		t.Error("Expected these two be nil")
 	}
 	one, two = two, one // swap
-	if result := FindCommonNode(one, two); result != common {
+	if result := FindCommonNode(one, two); result != nil {
 		t.Error("Expected these two be nil")
 	}
 }
 
 func BenchmarkFindCommonNode(b *testing.B) {
 	one, two, _ := createTwoSharedLists()
-	onei, twoi, _ := createTwoIndependentLists()
+	onei, twoi := createTwoIndependentLists()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		FindCommonNode(one, two)

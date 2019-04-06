@@ -9,7 +9,7 @@ type SparseArray struct {
 	size int
 }
 
-var errIndexOutOfRange = fmt.Errorf("Index is out of range")
+var errIndexOutOfRange = fmt.Errorf("index is out of range")
 
 // ErrIndexOutOfRange returns the error that's associated with access beyond
 // the limits of the SparseArray.
@@ -31,7 +31,7 @@ func NewSparseArray(arr []int) *SparseArray {
 // Set mutates the value at position 'i' with value 'val'.
 func (sa *SparseArray) Set(i, val int) error {
 	if sa == nil {
-		return fmt.Errorf("Create with NewSparseArray")
+		return fmt.Errorf("create with NewSparseArray")
 	}
 	if i >= sa.size || i < 0 {
 		return errIndexOutOfRange
@@ -47,7 +47,7 @@ func (sa *SparseArray) Set(i, val int) error {
 // Get returns the value at position 'i'.
 func (sa *SparseArray) Get(i int) (int, error) {
 	if sa == nil {
-		return 0, fmt.Errorf("Create with NewSparseArray")
+		return 0, fmt.Errorf("create with NewSparseArray")
 	}
 	if i >= sa.size || i < 0 {
 		return 0, errIndexOutOfRange
