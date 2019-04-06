@@ -27,7 +27,7 @@ func RotateJuggleSwaps(nums []int, k int) {
 		for {
 			jj := j + k
 			if jj >= len(nums) {
-				jj = jj % len(nums)
+				jj %= len(nums)
 			}
 			if jj == i {
 				break

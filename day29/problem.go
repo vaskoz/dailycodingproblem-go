@@ -11,13 +11,14 @@ func RunLengthEncoding(str string) string {
 	var count int
 	var last rune
 	for i, r := range str {
-		if i == 0 {
+		switch {
+		case i == 0:
 			count++
 			last = r
 			continue
-		} else if r == last {
+		case r == last:
 			count++
-		} else {
+		default:
 			sb.WriteString(strconv.Itoa(count)) // nolint: gosec
 			sb.WriteString(string(last))        // nolint: gosec
 			count = 1

@@ -21,7 +21,7 @@ func RotateRightLL(head *LL, k int) *LL {
 	if k%size == 0 {
 		return head
 	}
-	k = k % size
+	k %= size
 	curr := head
 	for i := 0; i < k-1; i++ {
 		curr = curr.Next

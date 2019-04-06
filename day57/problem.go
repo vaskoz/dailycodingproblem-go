@@ -10,18 +10,19 @@ func BreakByLength(long string, k int) []string {
 	var line []string
 	ll := 0
 	for i := 0; i < len(words); i++ {
-		if ll == 0 && len(words[i]) <= k {
+		switch {
+		case ll == 0 && len(words[i]) <= k:
 			line = append(line, words[i])
 			ll = len(words[i])
-		} else if ll+len(words[i])+1 <= k {
+		case ll+len(words[i])+1 <= k:
 			line = append(line, words[i])
 			ll += len(words[i]) + 1
-		} else if ll > 0 {
+		case ll > 0:
 			result = append(result, strings.Join(line, " "))
 			line = line[:0]
 			ll = 0
 			i--
-		} else {
+		default:
 			return nil
 		}
 	}

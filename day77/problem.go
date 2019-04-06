@@ -14,11 +14,12 @@ func MergeOverlappingIntervals(intervals []Interval) []Interval {
 		return nil
 	}
 	sort.Slice(intervals, func(i, j int) bool {
-		if intervals[i].Start < intervals[j].Start {
+		switch {
+		case intervals[i].Start < intervals[j].Start:
 			return true
-		} else if intervals[i].Start == intervals[j].Start {
+		case intervals[i].Start == intervals[j].Start:
 			return intervals[i].End <= intervals[j].End
-		} else {
+		default:
 			return false
 		}
 	})

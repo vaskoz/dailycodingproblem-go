@@ -27,8 +27,10 @@ func SquareElementsSortedLinear(sorted []int) []int {
 		}
 	}
 	negI, posI := firstPositiveIndex-1, firstPositiveIndex
+L:
 	for {
-		if negI >= 0 && posI < len(sorted) {
+		switch {
+		case negI >= 0 && posI < len(sorted):
 			a := sorted[negI] * sorted[negI]
 			b := sorted[posI] * sorted[posI]
 			if a < b {
@@ -38,14 +40,14 @@ func SquareElementsSortedLinear(sorted []int) []int {
 				result = append(result, b)
 				posI++
 			}
-		} else if negI >= 0 {
+		case negI >= 0:
 			result = append(result, sorted[negI]*sorted[negI])
 			negI--
-		} else if posI < len(sorted) {
+		case posI < len(sorted):
 			result = append(result, sorted[posI]*sorted[posI])
 			posI++
-		} else {
-			break
+		default:
+			break L
 		}
 	}
 	return result

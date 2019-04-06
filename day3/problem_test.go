@@ -36,14 +36,16 @@ func TestDeserializeBadString(t *testing.T) {
 
 // TreeEquality tests for binary tree equality
 func TreeEquality(t1, t2 *Node) bool {
-	if t1 == nil && t2 == nil {
+	switch {
+	case t1 == nil && t2 == nil:
 		return true
-	} else if t1 == nil || t2 == nil {
+	case t1 == nil || t2 == nil:
 		return false
-	} else if t1.val != t2.val {
+	case t1.val != t2.val:
 		return false
+	default:
+		return TreeEquality(t1.left, t2.left) && TreeEquality(t1.right, t2.right)
 	}
-	return TreeEquality(t1.left, t2.left) && TreeEquality(t1.right, t2.right)
 }
 
 // inorder is a method to debug your inorder traversal of the tree

@@ -22,7 +22,7 @@ func IsIntegerPalindrome(i int) bool {
 // Runs in O(digits) time and O(1) space.
 func IsIntegerPalindromeFaster(i int) bool {
 	divisor := 1
-	for temp := i; temp/divisor > 10; divisor = divisor * 10 {
+	for temp := i; temp/divisor > 10; divisor *= 10 {
 	}
 	for i >= 10 {
 		highest := i / divisor

@@ -6,12 +6,14 @@ package day58
 func IndexSortedRotated(sorted []int, target int) int {
 	var low, mid, high int = 0, len(sorted) / 2, len(sorted)
 	for low < high {
-		if curr := sorted[mid]; curr == target {
+		curr := sorted[mid]
+		switch {
+		case curr == target:
 			return mid
-		} else if inRange(sorted[mid:high], target) {
+		case inRange(sorted[mid:high], target):
 			low = mid
 			mid = (low + high) / 2
-		} else {
+		default:
 			high = mid
 			mid = (low + high) / 2
 		}

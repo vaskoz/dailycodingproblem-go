@@ -26,14 +26,15 @@ func MergeKSortedLists(lists []*SinglyLL) *SinglyLL {
 				remaining++
 			}
 		}
-		if remaining == 0 {
+		switch {
+		case remaining == 0:
 			done = true
-		} else if combined == nil {
+		case combined == nil:
 			lists[smallestIndex] = lists[smallestIndex].Next
 			combined = smallest
 			ptr = smallest
 			ptr.Next = nil
-		} else {
+		default:
 			lists[smallestIndex] = lists[smallestIndex].Next
 			ptr.Next = smallest
 			ptr = ptr.Next

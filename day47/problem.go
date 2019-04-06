@@ -25,10 +25,8 @@ func MaxProfit(stockPrices []int) int {
 	for _, price := range stockPrices {
 		if price < lowestPrice {
 			lowestPrice = price
-		} else {
-			if profit := price - lowestPrice; profit > maxProfit {
-				maxProfit = profit
-			}
+		} else if profit := price - lowestPrice; profit > maxProfit {
+			maxProfit = profit
 		}
 	}
 	return maxProfit

@@ -36,14 +36,14 @@ func MakePalindrome(str string) string {
 }
 
 func chooseResult(left, right []rune) string {
-	if len(left) < len(right) {
+	switch {
+	case len(left) < len(right):
 		return string(left)
-	} else if len(left) == len(right) {
-		if left[0] < right[0] {
-			return string(left)
-		}
+	case len(left) == len(right) && left[0] < right[0]:
+		return string(left)
+	case len(left) == len(right):
 		return string(right)
-	} else {
+	default:
 		return string(right)
 	}
 }

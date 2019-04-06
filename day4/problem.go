@@ -9,11 +9,12 @@ package day4
 func partitionBySign(nums []int) int {
 	left, right := 0, len(nums)-1
 	for left < right {
-		if nums[right] > 0 {
+		switch {
+		case nums[right] > 0:
 			right--
-		} else if nums[left] <= 0 {
+		case nums[left] <= 0:
 			left++
-		} else {
+		default:
 			nums[left], nums[right] = nums[right], nums[left]
 		}
 	}
