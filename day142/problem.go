@@ -6,17 +6,19 @@ package day142
 func WildcardParens(input string) bool {
 	var opens, wildcards int
 	for _, c := range input {
-		if c == '(' {
+		switch c {
+		case '(':
 			opens++
-		} else if c == ')' {
-			if opens == 0 && wildcards < 1 {
+		case ')':
+			switch {
+			case opens == 0 && wildcards < 1:
 				return false
-			} else if opens == 0 {
+			case opens == 0:
 				wildcards--
-			} else {
+			default:
 				opens--
 			}
-		} else if c == '*' {
+		case '*':
 			wildcards++
 		}
 	}

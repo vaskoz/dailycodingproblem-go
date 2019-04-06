@@ -10,13 +10,14 @@ func FindLongestAbsolutePathLength(fs string) int {
 	var isFile bool
 	var partStart, tabCount, maxLength int
 	for i, r := range fs {
-		if isNewStart(i, r, fs) {
+		switch {
+		case isNewStart(i, r, fs):
 			partStart = i
-		} else if r == '.' {
+		case r == '.':
 			isFile = true
-		} else if r == '\t' {
+		case r == '\t':
 			tabCount++
-		} else if r == '\n' {
+		case r == '\n':
 			if pos := tabCount; len(parts) > pos {
 				parts = parts[:pos]
 			}

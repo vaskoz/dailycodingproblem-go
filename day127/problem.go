@@ -15,13 +15,14 @@ func SumRevLLNum(first, second *RevLLNum) *RevLLNum {
 		current.Next = &RevLLNum{}
 		current = current.Next
 		var sum int
-		if first == nil {
+		switch {
+		case first == nil:
 			sum = second.Digit
 			second = second.Next
-		} else if second == nil {
+		case second == nil:
 			sum = first.Digit
 			first = first.Next
-		} else {
+		default:
 			sum = first.Digit + second.Digit
 			first = first.Next
 			second = second.Next

@@ -8,16 +8,16 @@ type BinaryTree struct {
 
 // MinPathSum returns the sum of the minimum sum path from root to leaf.
 func MinPathSum(head *BinaryTree) int {
-	if head.Left == nil && head.Right == nil {
+	switch {
+	case head.Left == nil && head.Right == nil:
 		return head.Value
-	}
-	if head.Left != nil && head.Right != nil {
+	case head.Left != nil && head.Right != nil:
 		left := head.Value + MinPathSum(head.Left)
 		right := head.Value + MinPathSum(head.Right)
 		return min(left, right)
-	} else if head.Left != nil {
+	case head.Left != nil:
 		return head.Value + MinPathSum(head.Left)
-	} else {
+	default:
 		return head.Value + MinPathSum(head.Right)
 	}
 }

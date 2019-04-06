@@ -32,7 +32,8 @@ func mergeSorted(a, b *SinglyLL) *SinglyLL {
 	result := &SinglyLL{}
 	ptr := result
 	for a != nil || b != nil {
-		if a != nil && b != nil {
+		switch {
+		case a != nil && b != nil:
 			if a.Value < b.Value {
 				ptr.Next = a
 				a = a.Next
@@ -44,12 +45,12 @@ func mergeSorted(a, b *SinglyLL) *SinglyLL {
 				ptr = ptr.Next
 				ptr.Next = nil
 			}
-		} else if a != nil {
+		case a != nil:
 			ptr.Next = a
 			a = a.Next
 			ptr = ptr.Next
 			ptr.Next = nil
-		} else if b != nil {
+		case b != nil:
 			ptr.Next = b
 			b = b.Next
 			ptr = ptr.Next

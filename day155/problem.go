@@ -62,12 +62,13 @@ func MajorityElementSort(nums []int) (int, error) {
 func MajorityBoyerMoore(nums []int) (int, error) {
 	var m, i int
 	for _, x := range nums {
-		if i == 0 {
+		switch {
+		case i == 0:
 			m = x
 			i = 1
-		} else if m == x {
+		case m == x:
 			i++
-		} else {
+		default:
 			i--
 		}
 	}

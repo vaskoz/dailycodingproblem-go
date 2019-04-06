@@ -42,11 +42,12 @@ func BenchmarkSumRevLLNum(b *testing.B) {
 }
 
 func equal(a, b *RevLLNum) bool {
-	if a == nil && b == nil {
+	switch {
+	case a == nil && b == nil:
 		return true
-	} else if a == nil && b != nil {
+	case a == nil && b != nil:
 		return false
-	} else if a != nil && b == nil {
+	case a != nil && b == nil:
 		return false
 	}
 	for a != nil && b != nil {

@@ -13,18 +13,18 @@ func IsKPalindromeBrute(str string, k int) bool {
 }
 
 func isKPalindromeBrute(orig, rev []rune, oi, ri int) int {
-	if oi == 0 {
+	switch {
+	case oi == 0:
 		return ri
-	}
-	if ri == 0 {
+	case ri == 0:
 		return oi
-	}
-	if orig[oi-1] == rev[ri-1] {
+	case orig[oi-1] == rev[ri-1]:
 		return isKPalindromeBrute(orig, rev, oi-1, ri-1)
+	default:
+		return 1 +
+			min(isKPalindromeBrute(orig, rev, oi-1, ri),
+				isKPalindromeBrute(orig, rev, oi, ri-1))
 	}
-	return 1 +
-		min(isKPalindromeBrute(orig, rev, oi-1, ri),
-			isKPalindromeBrute(orig, rev, oi, ri-1))
 }
 
 // IsKPalindromeDP answers if the input can be made into a palindrome
@@ -44,13 +44,14 @@ func isKPalindromeDP(orig, rev []rune) int {
 	for i := range dp {
 		dp[i] = make([]int, len(orig)+1)
 		for j := range dp[i] {
-			if i == 0 {
+			switch {
+			case i == 0:
 				dp[i][j] = j
-			} else if j == 0 {
+			case j == 0:
 				dp[i][j] = i
-			} else if orig[i-1] == rev[j-1] {
+			case orig[i-1] == rev[j-1]:
 				dp[i][j] = dp[i-1][j-1]
-			} else {
+			default:
 				dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1])
 			}
 		}

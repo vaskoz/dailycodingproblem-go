@@ -9,11 +9,12 @@ func BalanceParens(parens string) string {
 	var sb strings.Builder
 	opens := 0
 	for _, r := range parens {
-		if r == '(' {
+		switch {
+		case r == '(':
 			opens++
-		} else if r == ')' && opens == 0 {
+		case r == ')' && opens == 0:
 			sb.WriteRune('(')
-		} else {
+		default:
 			opens--
 		}
 		sb.WriteRune(r)

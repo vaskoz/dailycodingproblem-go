@@ -62,11 +62,12 @@ func BenchmarkPruneZeroSubtrees(b *testing.B) {
 }
 
 func treeEqual(one, two *BinaryTree) bool {
-	if one == nil && two == nil {
+	switch {
+	case one == nil && two == nil:
 		return true
-	} else if one == nil && two != nil {
+	case one == nil && two != nil:
 		return false
-	} else if one != nil && two == nil {
+	case one != nil && two == nil:
 		return false
 	}
 	return treeEqual(one.Left, two.Left) && treeEqual(one.Right, two.Right)

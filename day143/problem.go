@@ -16,14 +16,15 @@ func DNFPartition(lst []int, pivot int) {
 	var i, j int
 	n := len(lst) - 1
 	for j <= n {
-		if lst[j] < pivot {
+		switch {
+		case lst[j] < pivot:
 			lst[i], lst[j] = lst[j], lst[i]
 			i++
 			j++
-		} else if lst[j] > pivot {
+		case lst[j] > pivot:
 			lst[j], lst[n] = lst[n], lst[j]
 			n--
-		} else {
+		default:
 			j++
 		}
 	}

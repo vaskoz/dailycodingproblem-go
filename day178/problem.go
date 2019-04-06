@@ -25,11 +25,13 @@ func FirstGame(d *Dice) int {
 	var prevFive bool
 	for {
 		rolls++
-		if value := d.Next(); value == 5 {
+		value := d.Next()
+		switch {
+		case value == 5:
 			prevFive = true
-		} else if value == 6 && prevFive {
+		case value == 6 && prevFive:
 			return rolls
-		} else {
+		default:
 			prevFive = false
 		}
 	}
@@ -42,11 +44,13 @@ func SecondGame(d *Dice) int {
 	var prevFive bool
 	for {
 		rolls++
-		if value := d.Next(); value == 5 && prevFive {
+		value := d.Next()
+		switch {
+		case value == 5 && prevFive:
 			return rolls
-		} else if value == 5 {
+		case value == 5:
 			prevFive = true
-		} else {
+		default:
 			prevFive = false
 		}
 	}

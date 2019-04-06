@@ -70,13 +70,14 @@ func BenchmarkBuildTreeFromPostorderLinear(b *testing.B) {
 }
 
 func equal(a, b *BinaryTree) bool {
-	if a == nil && b != nil {
+	switch {
+	case a == nil && b != nil:
 		return false
-	} else if a != nil && b == nil {
+	case a != nil && b == nil:
 		return false
-	} else if a == nil && b == nil {
+	case a == nil && b == nil:
 		return true
-	} else if a.Value != b.Value {
+	case a.Value != b.Value:
 		return false
 	}
 	return equal(a.Left, b.Left) && equal(a.Right, b.Right)
