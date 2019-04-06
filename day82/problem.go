@@ -16,10 +16,10 @@ func Read7(r io.Reader) string {
 }
 
 // ReadN reads N-bytes using only the Read7 function that reads 7-bytes at a time.
-func ReadN(r io.Reader, N int) string {
-	result := make([]byte, N)
+func ReadN(r io.Reader, n int) string {
+	result := make([]byte, n)
 	readBytes := 0
-	for readBytes < N {
+	for readBytes < n {
 		b := Read7(r)
 		if len(b) == 0 {
 			break

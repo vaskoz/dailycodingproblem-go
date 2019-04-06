@@ -2,11 +2,11 @@ package day75
 
 // LongestIncreasingSubsequence returns the longest increasing subsequence.
 // Runs in O(N log N) time.
-func LongestIncreasingSubsequence(X []int) []int {
-	p := make([]int, len(X))
-	m := make([]int, len(X)+1)
+func LongestIncreasingSubsequence(x []int) []int {
+	p := make([]int, len(x))
+	m := make([]int, len(x)+1)
 	l := 0
-	for i := range X {
+	for i := range x {
 		lo := 1
 		hi := l
 		for lo <= hi {
@@ -16,7 +16,7 @@ func LongestIncreasingSubsequence(X []int) []int {
 			} else {
 				mid = ((lo + hi) / 2) + 1
 			}
-			if X[m[mid]] < X[i] {
+			if x[m[mid]] < x[i] {
 				lo = mid + 1
 			} else {
 				hi = mid - 1
@@ -32,7 +32,7 @@ func LongestIncreasingSubsequence(X []int) []int {
 	s := make([]int, l)
 	k := m[l]
 	for i := range s {
-		s[len(s)-1-i] = X[k]
+		s[len(s)-1-i] = x[k]
 		k = p[k]
 	}
 	return s

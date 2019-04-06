@@ -3,11 +3,11 @@ package day74
 // MultiplicationTableBrute counts the number of X occurrences
 // in a N by N multiplication table.
 // Runs in O(N^2) time.
-func MultiplicationTableBrute(N, X int) int {
+func MultiplicationTableBrute(n, x int) int {
 	count := 0
-	for i := 1; i <= N; i++ {
-		for j := 1; j <= N; j++ {
-			if i*j == X {
+	for i := 1; i <= n; i++ {
+		for j := 1; j <= n; j++ {
+			if i*j == x {
 				count++
 			}
 		}
@@ -18,12 +18,12 @@ func MultiplicationTableBrute(N, X int) int {
 // MultiplicationTableLinear counts the number of X occurrences
 // in a N by N multiplication table.
 // Runs in O(N) time.
-func MultiplicationTableLinear(N, X int) int {
+func MultiplicationTableLinear(n, x int) int {
 	count := 0
-	for i := 1; i <= N; i++ {
-		if i > X {
+	for i := 1; i <= n; i++ {
+		if i > x {
 			break
-		} else if X%i == 0 && X/i <= N {
+		} else if x%i == 0 && x/i <= n {
 			count++
 		}
 	}

@@ -12,25 +12,25 @@ type Interval struct {
 
 // StabIntervalPoints computes the smallest set of points that stabs X.
 // Runs in O(N log N), but modifies the input slice by sorting.
-func StabIntervalPoints(X []Interval) []Point {
-	if len(X) == 0 {
+func StabIntervalPoints(x []Interval) []Point {
+	if len(x) == 0 {
 		return nil
 	}
-	sort.Slice(X, func(i, j int) bool {
-		if X[i].End < X[j].End {
+	sort.Slice(x, func(i, j int) bool {
+		if x[i].End < x[j].End {
 			return true
-		} else if X[i].End == X[j].End {
-			return X[i].Start < X[j].Start
+		} else if x[i].End == x[j].End {
+			return x[i].Start < x[j].Start
 		}
 		return false
 	})
-	P := []Point{X[0].End}
-	last := P[0]
-	for _, interval := range X {
+	p := []Point{x[0].End}
+	last := p[0]
+	for _, interval := range x {
 		if interval.Start > last {
 			last = interval.End
-			P = append(P, last)
+			p = append(p, last)
 		}
 	}
-	return P
+	return p
 }

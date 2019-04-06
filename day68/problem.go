@@ -9,7 +9,7 @@ type BoardPosition struct {
 // pairs of Bishops.
 // M is the dimension of the chessboard. M x M
 // Runtime is O(N^2) where N is the number of bishops.
-func CountAttackingBishopPairs(bishops []BoardPosition, M int) int {
+func CountAttackingBishopPairs(bishops []BoardPosition) int {
 	count := 0
 	for i := 0; i < len(bishops)-1; i++ {
 		first := bishops[i]
