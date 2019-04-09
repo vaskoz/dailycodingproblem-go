@@ -6,6 +6,7 @@ var testcases = []struct {
 	eggs, floors int
 	minimum      int
 }{
+	{1, 5, 5},
 	{2, 10, 4},
 }
 
