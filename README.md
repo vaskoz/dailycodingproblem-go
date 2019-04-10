@@ -238,3 +238,4 @@ problems from
 * [Day 225](https://github.com/vaskoz/dailycodingproblem-go/issues/465)
 * [Day 226](https://github.com/vaskoz/dailycodingproblem-go/issues/467)
 * [Day 228](https://github.com/vaskoz/dailycodingproblem-go/issues/470)
+* [Day 230](https://github.com/vaskoz/dailycodingproblem-go/issues/473)
