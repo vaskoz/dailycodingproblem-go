@@ -3,14 +3,16 @@ package day234
 import (
 	"reflect"
 	"testing"
+
+	"github.com/algds/kruskals"
 )
 
 var testcases = []struct {
-	graph, maximumMST []Edge
+	graph, maximumMST []kruskals.SimpleWeightedEdge
 }{
 	{
-		[]Edge{{0, 3, 3}, {3, 1, 30}, {0, 1, 20}, {0, 4, 10}, {1, 4, 5}, {4, 2, 20}, {1, 2, 50}},
-		[]Edge{{1, 2, 50}, {3, 1, 30}, {0, 1, 20}, {4, 2, 20}},
+		[]kruskals.SimpleWeightedEdge{{0, 3, 3}, {3, 1, 30}, {0, 1, 20}, {0, 4, 10}, {1, 4, 5}, {4, 2, 20}, {1, 2, 50}},
+		[]kruskals.SimpleWeightedEdge{{1, 2, 50}, {3, 1, 30}, {0, 1, 20}, {4, 2, 20}},
 	},
 }
 
