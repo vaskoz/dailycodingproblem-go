@@ -11,8 +11,14 @@ var testcases = []struct {
 	graph, maximumMST []kruskals.SimpleWeightedEdge
 }{
 	{
-		[]kruskals.SimpleWeightedEdge{{0, 3, 3}, {3, 1, 30}, {0, 1, 20}, {0, 4, 10}, {1, 4, 5}, {4, 2, 20}, {1, 2, 50}},
-		[]kruskals.SimpleWeightedEdge{{1, 2, 50}, {3, 1, 30}, {0, 1, 20}, {4, 2, 20}},
+		[]kruskals.SimpleWeightedEdge{
+			{F: 0, T: 3, W: 3}, {F: 3, T: 1, W: 30}, {F: 0, T: 1, W: 20},
+			{F: 0, T: 4, W: 10}, {F: 1, T: 4, W: 5}, {F: 4, T: 2, W: 20},
+			{F: 1, T: 2, W: 50}},
+		[]kruskals.SimpleWeightedEdge{
+			{F: 1, T: 2, W: 50}, {F: 3, T: 1, W: 30},
+			{F: 0, T: 1, W: 20}, {F: 4, T: 2, W: 20},
+		},
 	},
 }
 
