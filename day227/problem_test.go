@@ -38,3 +38,11 @@ func TestBoggleSolver(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkBoggleSolver(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			BoggleSolver(tc.board, tc.dict)
+		}
+	}
+}
