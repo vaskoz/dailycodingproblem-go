@@ -35,6 +35,7 @@ func minSwapsAdjacentPairs(pairs []int, indicies map[int][]int, pos int) int {
 		return minSwapsAdjacentPairs(pairs, indicies, pos+2)
 	}
 	min := int(^uint(0) >> 1)
+	// NOTE: It doesn't matter which one you swap due to symmetry.
 	swapWithSecond := indicies[first][1]
 	pairs[secondIndex], pairs[swapWithSecond] = pairs[swapWithSecond], pairs[secondIndex]
 	if minBelow := 1 + minSwapsAdjacentPairs(pairs, indicies, pos+2); min > minBelow {
