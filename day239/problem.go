@@ -12,10 +12,10 @@ func ValidUnlockKeypadNumber() int {
 		jumps[3][7], jumps[7][3], jumps[4][6], jumps[6][4] = 5, 5, 5, 5, 5, 5, 5, 5
 	var visited [10]bool
 	ways := 0
-	for i := 4; i < 10; i++ {
-		ways += 4 * validUnlockKeypadNumber(visited, jumps, 1, i-1)
-		ways += 4 * validUnlockKeypadNumber(visited, jumps, 2, i-1)
-		ways += validUnlockKeypadNumber(visited, jumps, 5, i-1)
+	for numDots := 4; numDots < 10; numDots++ {
+		ways += 4 * validUnlockKeypadNumber(visited, jumps, 1, numDots-1)
+		ways += 4 * validUnlockKeypadNumber(visited, jumps, 2, numDots-1)
+		ways += validUnlockKeypadNumber(visited, jumps, 5, numDots-1)
 	}
 	return ways
 }
