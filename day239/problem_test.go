@@ -4,8 +4,8 @@ import "testing"
 
 func TestValidUnlockKeypadNumber(t *testing.T) {
 	t.Parallel()
-	if result := ValidUnlockKeypadNumber(); result != 152316 {
-		t.Errorf("Expected 152316, got %v", result)
+	if result := ValidUnlockKeypadNumber(); result != 389112 {
+		t.Errorf("Expected 389112, got %v", result)
 	}
 }
 
