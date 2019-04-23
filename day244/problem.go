@@ -26,3 +26,26 @@ func SieveOfEratosthenes(n int) []int {
 	}
 	return primes
 }
+
+// SieveOfEratosthenesGenerator returns primes indefinitely.
+// Only runs when the channel is read for more primes.
+func SieveOfEratosthenesGenerator() <-chan int {
+	primes := make(chan int)
+	go func() {
+		n := 2
+		composites := make(map[int][]int)
+		for {
+			if _, found := composites[n]; !found {
+				primes <- n
+				composites[n*n] = []int{n}
+			} else {
+				for _, prime := range composites[n] {
+					composites[n+prime] = append(composites[n+prime], prime)
+				}
+				delete(composites, n)
+			}
+			n++
+		}
+	}()
+	return primes
+}
