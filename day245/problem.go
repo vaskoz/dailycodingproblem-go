@@ -4,7 +4,7 @@ package day245
 // Each element contains the max steps that can be taken
 // in a single jump.
 func MinimumJumps(maxSteps []int) int {
-	if len(maxSteps) == 1 {
+	if len(maxSteps) < 2 {
 		return 0
 	}
 	minJumps := int(^uint(0) >> 1)

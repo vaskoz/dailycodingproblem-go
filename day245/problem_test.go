@@ -7,6 +7,10 @@ var testcases = []struct {
 	expectedJumps int
 }{
 	{[]int{6, 2, 4, 0, 5, 1, 1, 4, 2, 9}, 2},
+	{[]int{9}, 0},
+	{[]int{}, 0},
+	{nil, 0},
+	{[]int{1, 1, 1, 1, 1, 1, 1}, 6},
 }
 
 func TestMinimumJumps(t *testing.T) {
