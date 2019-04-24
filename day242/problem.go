@@ -39,7 +39,7 @@ func (r *readOptimized) Query(start, end int) int {
 		panic("start and end must be between 0-23 inclusive")
 	}
 	if start > end {
-		panic("start must preceed or equal end")
+		panic("start must precede or equal end")
 	}
 	r.RLock()
 	var sum int
@@ -76,7 +76,7 @@ func (w *writeOptimized) Query(start, end int) int {
 		panic("start and end must be between 0-23 inclusive")
 	}
 	if start > end {
-		panic("start must preceed or equal end")
+		panic("start must precede or equal end")
 	}
 	w.RLock()
 	var sum int
