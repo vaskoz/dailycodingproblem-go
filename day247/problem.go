@@ -8,6 +8,7 @@ type BinaryTree struct {
 
 // IsHeightBalanced returns true if the tree is height balanced.
 // It returns false otherwise.
+// Runs in O(N) time.
 func IsHeightBalanced(root *BinaryTree) bool {
 	_, balanced := isHeightBalanced(root)
 	return balanced
@@ -18,8 +19,11 @@ func isHeightBalanced(n *BinaryTree) (int, bool) {
 		return 0, true
 	}
 	leftHeight, leftBalance := isHeightBalanced(n.Left)
+	if !leftBalance {
+		return 0, false
+	}
 	rightHeight, rightBalance := isHeightBalanced(n.Right)
-	if !leftBalance || !rightBalance {
+	if !rightBalance {
 		return 0, false
 	}
 	if diff := abs(leftHeight - rightHeight); diff > 1 {
