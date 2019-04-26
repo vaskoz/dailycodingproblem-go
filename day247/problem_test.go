@@ -41,6 +41,19 @@ var testcases = []struct {
 		},
 		false,
 	},
+	{
+		&BinaryTree{
+			&BinaryTree{
+				nil,
+				&BinaryTree{
+					&BinaryTree{nil, nil},
+					nil,
+				},
+			},
+			nil,
+		},
+		false,
+	},
 }
 
 func TestIsHeightBalanced(t *testing.T) {
