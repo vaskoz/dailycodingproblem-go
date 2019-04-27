@@ -7,3 +7,9 @@ func MaxIf(a, b int) int {
 	}
 	return b
 }
+
+// MaxSubtractAndShift finds the max using subtraction
+// and right shifting.
+func MaxSubtractAndShift(a, b int) int {
+	return a - ((a - b) & ((a - b) >> 63))
+}
