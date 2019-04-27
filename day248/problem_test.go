@@ -4,7 +4,7 @@ import "testing"
 
 // nolint
 var testcases = []struct {
-	a, b, max int
+	a, b, max int64
 }{
 	{10, 20, 20},
 	{20, 1, 20},
