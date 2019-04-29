@@ -13,3 +13,17 @@ func MaxXorPairBrute(nums []int) int {
 	}
 	return max
 }
+
+// MaxXorPairSort find the maximum XOR of any two elements.
+// Runs in O(N log N) time and O(N) space.
+func MaxXorPairSort(nums []int) int {
+	copied := make([]int, len(nums))
+	copy(copied, nums)
+	max := -int(^uint(0)>>1) - 1
+	for i := 1; i < len(nums); i++ {
+		if result := nums[i] ^ nums[i-1]; result > max {
+			max = result
+		}
+	}
+	return max
+}
