@@ -4,11 +4,11 @@ import "testing"
 
 // nolint
 var testcases = []struct {
-	nums   []int
-	maxXor int
+	nums   []int64
+	maxXor int64
 }{
-	{[]int{30, -20, 10, 100, 3300, 1001}, 3853},
-	{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 15},
+	{[]int64{30, -20, 10, 100, 3300, 1001}, 3853},
+	{[]int64{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 15},
 }
 
 func TestMaxXorPairSort(t *testing.T) {
