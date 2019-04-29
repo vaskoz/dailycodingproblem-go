@@ -27,3 +27,62 @@ func MaxXorPairSort(nums []int64) int64 {
 	}
 	return max
 }
+
+// BitTrie is a trie for binary data.
+type BitTrie struct {
+	Value int64
+	Next  [2]*BitTrie
+}
+
+// Insert a key in the BitTrie.
+func (bt *BitTrie) Insert(key int64) {
+	cur := bt
+	for i := 63; i >= 0; i-- {
+		var bit int
+		if key&(1<<uint(i)) != 0 {
+			bit = 1
+		}
+		if cur.Next[bit] == nil {
+			cur.Next[bit] = &BitTrie{}
+		}
+		cur = cur.Next[bit]
+	}
+	cur.Value = key
+}
+
+// HighestXorValue returns the highest xor-ed result of a
+// value that already exists in the tree.
+func (bt *BitTrie) HighestXorValue(key int64) int64 {
+	cur := bt
+	for i := 63; i >= 0; i-- {
+		var bit int
+		if key&(1<<uint(i)) == 0 {
+			if i != 63 {
+				bit = 1
+			}
+		} else {
+			if i == 63 {
+				bit = 1
+			}
+		}
+		if cur.Next[bit] == nil {
+			bit = 1 - bit
+		}
+		cur = cur.Next[bit]
+	}
+	return key ^ cur.Value
+}
+
+// MaxXorPairLinear runs in O(N) time and O(N) space for a trie.
+func MaxXorPairLinear(nums []int64) int64 {
+	max := int64(-1 << 63)
+	bt := &BitTrie{}
+	bt.Insert(nums[0])
+	for i := 1; i < len(nums); i++ {
+		if result := bt.HighestXorValue(nums[i]); result > max {
+			max = result
+		}
+		bt.Insert(nums[i])
+	}
+	return max
+}
