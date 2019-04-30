@@ -2,6 +2,7 @@ package day251
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -30,6 +31,18 @@ func BenchmarkRadixSortInt32(b *testing.B) {
 			copied := make([]int32, len(tc.input))
 			copy(copied, tc.input)
 			RadixSortInt32(copied)
+		}
+	}
+}
+
+func BenchmarkStdLibSort(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			copied := make([]int32, len(tc.input))
+			copy(copied, tc.input)
+			sort.Slice(copied, func(i, j int) bool {
+				return copied[i] < copied[j]
+			})
 		}
 	}
 }
