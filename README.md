@@ -265,3 +265,4 @@ problems from
 * [Day 252](https://github.com/vaskoz/dailycodingproblem-go/issues/519)
 * [Day 253](https://github.com/vaskoz/dailycodingproblem-go/issues/521)
 * [Day 254](https://github.com/vaskoz/dailycodingproblem-go/issues/523)
+* [Day 255](https://github.com/vaskoz/dailycodingproblem-go/issues/525)
