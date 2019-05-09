@@ -17,30 +17,23 @@ func BoustrophedonOrder(root *IntBinaryTree) []int {
 	leftToRight := true
 	for len(levels) != 0 {
 		var nextLevel []*IntBinaryTree
-		if leftToRight {
-			for _, n := range levels {
-				result = append(result, n.Value)
-				if n.Left != nil {
-					nextLevel = append(nextLevel, n.Left)
-				}
-				if n.Right != nil {
-					nextLevel = append(nextLevel, n.Right)
-				}
+		for _, n := range levels {
+			result = append(result, n.Value)
+			if n.Left != nil {
+				nextLevel = append(nextLevel, n.Left)
 			}
-		} else {
-			for i := len(levels) - 1; i >= 0; i-- {
-				result = append(result, levels[i].Value)
-				j := len(levels) - 1 - i
-				if levels[j].Left != nil {
-					nextLevel = append(nextLevel, levels[j].Left)
-				}
-				if levels[j].Right != nil {
-					nextLevel = append(nextLevel, levels[j].Right)
-				}
+			if n.Right != nil {
+				nextLevel = append(nextLevel, n.Right)
 			}
 		}
-		levels = nextLevel
+		if !leftToRight {
+			toReverse := result[len(result)-len(levels):]
+			for i := 0; i < len(toReverse)/2; i++ {
+				toReverse[i], toReverse[len(toReverse)-1-i] = toReverse[len(toReverse)-1-i], toReverse[i]
+			}
+		}
 		leftToRight = !leftToRight
+		levels = nextLevel
 	}
 	return result
 }
