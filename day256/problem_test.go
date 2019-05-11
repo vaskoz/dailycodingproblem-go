@@ -11,6 +11,10 @@ var testcases = []struct {
 		&SinglyLL{1, &SinglyLL{2, &SinglyLL{3, &SinglyLL{4, &SinglyLL{5, nil}}}}},
 		&SinglyLL{1, &SinglyLL{3, &SinglyLL{2, &SinglyLL{5, &SinglyLL{4, nil}}}}},
 	},
+	{
+		&SinglyLL{9, &SinglyLL{6, &SinglyLL{8, &SinglyLL{3, &SinglyLL{7, nil}}}}},
+		&SinglyLL{6, &SinglyLL{9, &SinglyLL{3, &SinglyLL{8, &SinglyLL{7, nil}}}}},
+	},
 }
 
 func equal(a, b *SinglyLL) bool {
