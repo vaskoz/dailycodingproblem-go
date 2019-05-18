@@ -4,7 +4,7 @@ import "testing"
 
 // nolint
 var testcases = []struct {
-	n           int
+	n           int32
 	isPowerFour bool
 }{
 	{16, true},

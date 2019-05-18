@@ -2,7 +2,7 @@ package day268
 
 // IsPowerFourBrute checks if a number is a power of 4 by repeated
 // division.
-func IsPowerFourBrute(n int) bool {
+func IsPowerFourBrute(n int32) bool {
 	if n == 0 {
 		return false
 	}
