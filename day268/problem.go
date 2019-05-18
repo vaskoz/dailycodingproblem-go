@@ -14,3 +14,9 @@ func IsPowerFourBrute(n int32) bool {
 	}
 	return true
 }
+
+// IsPowerFourFaster checks if a number is a power of 4
+// by looking for the highest set bits.
+func IsPowerFourFaster(n int32) bool {
+	return n != 0 && ((n & (n - 1)) == 0) && (n&0xAAAAAAA) == 0
+}
