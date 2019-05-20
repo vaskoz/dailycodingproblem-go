@@ -8,11 +8,12 @@ func BinarySearch(sorted []int, x int) int {
 	for left < right {
 		mid := (left + right) / 2
 		val := sorted[mid]
-		if x < val {
-			right = mid - 1
-		} else if x == val {
+		switch {
+		case x == val:
 			return mid
-		} else {
+		case x < val:
+			right = mid - 1
+		default:
 			left = mid + 1
 		}
 	}
