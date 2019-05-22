@@ -1,5 +1,25 @@
 package day272
 
+// PossibleWaysToThrowFaster returns the number of possible distinct throws
+// of N dice with a given number of faces to equal a desired total.
+// Runs in O(dice*total) with memory O(dice*total).
+func PossibleWaysToThrowFaster(ndice, faces, total int) int {
+	table := make([][]int, ndice+1)
+	for i := range table {
+		table[i] = make([]int, total+1)
+	}
+	table[0][0] = 1
+	for i := 1; i <= ndice; i++ {
+		for j := i; j <= total; j++ {
+			table[i][j] = table[i][j-1] + table[i-1][j-1]
+			if j-faces-1 >= 0 {
+				table[i][j] -= table[i-1][j-faces-1]
+			}
+		}
+	}
+	return table[ndice][total]
+}
+
 // PossibleWaysToThrow returns the number of possible distinct throws
 // of N dice with a given number of faces to equal a desired total.
 // Runs in O(dice*faces*total) with memory O(dice*total).
