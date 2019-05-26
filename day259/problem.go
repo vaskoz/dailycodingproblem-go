@@ -1,5 +1,7 @@
 package day259
 
+import "sort"
+
 // GhostWinningLetterPlayerOne determine the letters the
 // first player should start with, such that with optimal
 // play they cannot lose.
@@ -21,5 +23,8 @@ func GhostWinningLetterPlayerOne(dict []string) []rune {
 			result = append(result, r)
 		}
 	}
+	sort.Slice(result, func(i, j int) bool {
+		return result[i] < result[j]
+	})
 	return result
 }
