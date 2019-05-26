@@ -11,6 +11,7 @@ var testcases = []struct {
 	result []rune
 }{
 	{[]string{"cat", "calf", "dog", "bear"}, []rune{'b'}},
+	{[]string{"cat", "calf", "dog", "bear", "pear", "pair"}, []rune{'b', 'p'}},
 }
 
 func TestGhostWinningLetterPlayerOne(t *testing.T) {
