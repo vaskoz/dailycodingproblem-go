@@ -15,6 +15,8 @@ var testcases = []struct {
 	{"10000000", false},
 	{"11000000", false},
 	{"11100000", false},
+	{"1110000001010101", false},
+	{"1100000001010101", false},
 }
 
 func TestIsValidUTF8(t *testing.T) {
