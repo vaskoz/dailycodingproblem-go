@@ -6,6 +6,7 @@ type BST struct {
 	Left, Right *BST
 }
 
+// ConstructAllPossibleBSTs constructs all possible binary search trees with N nodes.
 func ConstructAllPossibleBSTs(n int) []*BST {
 	return constructAllPossibleBSTs(1, n)
 }
