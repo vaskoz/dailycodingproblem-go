@@ -15,14 +15,15 @@ func LookAndSay(n int) string {
 		var c rune
 		count := 0
 		for i, r := range start {
-			if i == 0 {
+			switch {
+			case i == 0:
 				c = r
 				count = 1
-			} else if c != r {
+			case c != r:
 				parts = append(parts, fmt.Sprintf("%d%s", count, string(c)))
 				c = r
 				count = 1
-			} else {
+			default:
 				count++
 			}
 		}
