@@ -8,6 +8,11 @@ import (
 
 var errTranslate = errors.New("could not be translated")
 
+// ErrTranslate is returned if there is a problem with compressing or decompressing.
+func ErrTranslate() error {
+	return errTranslate
+}
+
 // Huffman is a huffman tree that can encode/decode.
 type Huffman interface {
 	Encode(string) (string, error)
@@ -22,9 +27,7 @@ type huffman struct {
 }
 
 func dfsBuildCodeMap(h *huffman, codeMap map[rune]string, path string) map[rune]string {
-	if h == nil {
-		return codeMap
-	} else if h.Leaf {
+	if h.Leaf {
 		codeMap[h.R] = path
 		return codeMap
 	}
@@ -43,7 +46,7 @@ func (h *huffman) Encode(s string) (string, error) {
 	for _, r := range s {
 		prefix, found := codeMap[r]
 		if !found {
-			return "", errTranslate
+			return s, errTranslate
 		}
 		sb.WriteString(prefix)
 	}
@@ -74,7 +77,7 @@ func (h *huffman) Decode(s string) (string, error) {
 		sb.WriteRune(root.R)
 		return sb.String(), nil
 	}
-	return "", errTranslate
+	return s, errTranslate
 }
 
 type minHeap []*huffman
