@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+// LookAndSay begins with the term 1,
+// each subsequent term visually describes
+// the digits appearing in the previous term.
 func LookAndSay(n int) string {
 	if n < 1 {
 		panic("look and say number must be 1 or greater")
