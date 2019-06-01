@@ -25,6 +25,23 @@ var testcases = []struct {
 	},
 }
 
+func TestPythagoreanTriplet(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if a, b, c, err := PythagoreanTriplet(tc.nums); a != tc.a || b != tc.b || c != tc.c || err != tc.err {
+			t.Errorf("Expected (%v,%v,%v,%v), got (%v,%v,%v,%v)", tc.a, tc.b, tc.c, tc.err, a, b, c, err)
+		}
+	}
+}
+
+func BenchmarkPythagoreanTriplet(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			PythagoreanTriplet(tc.nums) // nolint
+		}
+	}
+}
+
 func TestPythagoreanTripletBrute(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
