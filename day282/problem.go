@@ -34,7 +34,7 @@ func PythagoreanTripletBrute(nums []int) (a, b, c int, err error) {
 	return 0, 0, 0, errNoAnswer
 }
 
-// PythagoreanTripletBrute returns the triplets that fulfill
+// PythagoreanTriplet returns the triplets that fulfill
 // a^2+b^2=c^2.
 // Runs in O(N^2) time and O(N) space.
 func PythagoreanTriplet(nums []int) (a, b, c int, err error) {
