@@ -1,5 +1,45 @@
 package day283
 
+// RegularNumbersFaster returns n regular numbers
+// using brute force.
+func RegularNumbersFaster(n int) []int {
+	if n < 0 {
+		panic("negative values are not possible")
+	} else if n == 0 {
+		return []int{}
+	}
+	result := make([]int, n)
+	result[0] = 1
+	var i2, i3, i5 int
+	next2, next3, next5 := 2, 3, 5
+	for i := 1; i < n; i++ {
+		result[i] = min(next2, next3, next5)
+		if result[i] == next2 {
+			i2++
+			next2 = result[i2] * 2
+		}
+		if result[i] == next3 {
+			i3++
+			next3 = result[i3] * 3
+		}
+		if result[i] == next5 {
+			i5++
+			next5 = result[i5] * 5
+		}
+	}
+	return result
+}
+
+func min(vals ...int) int {
+	smallest := vals[0]
+	for _, v := range vals {
+		if v < smallest {
+			smallest = v
+		}
+	}
+	return smallest
+}
+
 // RegularNumbersBrute returns n regular numbers
 // using brute force.
 func RegularNumbersBrute(n int) []int {
