@@ -38,30 +38,33 @@ func max(a, b int) int {
 
 func merge(sky1, sky2 []Skyline) []Skyline {
 	result := make([]Skyline, 0, len(sky1)+len(sky2))
-	var h1, h2, i, j int
+	var h1, h2, i, j, lastHeight int
 
 	for i < len(sky1) && j < len(sky2) {
+		if len(result) != 0 {
+			lastHeight = result[len(result)-1].Height
+		}
 		if sky1[i].X < sky2[j].X {
-			x1 := sky1[i].X
 			h1 = sky1[i].Height
 			maxh := max(h1, h2)
-			result = append(result, Skyline{x1, maxh})
+			if maxh != lastHeight {
+				result = append(result, Skyline{sky1[i].X, maxh})
+			}
 			i++
 		} else {
-			x2 := sky2[j].X
 			h2 = sky2[j].Height
 			maxh := max(h1, h2)
-			result = append(result, Skyline{x2, maxh})
+			if maxh != lastHeight {
+				result = append(result, Skyline{sky2[j].X, maxh})
+			}
 			j++
 		}
 	}
-	for i < len(sky1) {
+	for ; i < len(sky1); i++ {
 		result = append(result, sky1[i])
-		i++
 	}
-	for j < len(sky2) {
+	for ; j < len(sky2); j++ {
 		result = append(result, sky2[j])
-		j++
 	}
 	return result
 }
