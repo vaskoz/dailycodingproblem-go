@@ -11,6 +11,7 @@ type Skyline struct {
 }
 
 // CreateSkyline returns the skyline.
+// Runs in O(N log N).
 func CreateSkyline(buildings []Building) []Skyline {
 	return createSkyline(buildings, 0, len(buildings)-1)
 }
