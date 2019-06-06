@@ -11,6 +11,7 @@ var testcases = []struct {
 	{"-2 + (2 + (3 + 5 + 8))", 16},
 	{"-2 + (-2 + (-3 + 5 + 8))", 6},
 	{"2 - (2 - (3 - 5 - 8))", -10},
+	{"(((3 - 5 - 8) - 2) - (2 - 3))", -11},
 }
 
 func TestEvalSimpleMathExpression(t *testing.T) {
