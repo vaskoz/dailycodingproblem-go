@@ -10,8 +10,8 @@ func Bonuses(loc []int) []int {
 	bonuses := make([]int, 0, len(loc))
 	segs := segments(loc)
 	for _, seg := range segs {
-		asc, delta := seg.ascending, seg.delta
-		segBonuses := make([]int, delta)
+		asc, run := seg.ascending, seg.run
+		segBonuses := make([]int, run)
 		for i := range segBonuses {
 			segBonuses[i] = i
 		}
@@ -30,7 +30,7 @@ func Bonuses(loc []int) []int {
 
 type segment struct {
 	ascending bool
-	delta     int
+	run       int
 }
 
 func segments(loc []int) []segment {
