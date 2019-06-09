@@ -10,15 +10,26 @@ func MinimizeQux(input []rune) []rune {
 	var lastLen int
 	for len(copied) != lastLen {
 		lastLen = len(copied)
-		for i := 1; i < lastLen; i++ {
-			if copied[i] != copied[i-1] {
-				missing := 'R' + 'G' + 'B' - copied[i] - copied[i-1]
-				mid := []rune{missing}
-				end := append(mid, copied[i+1:]...)
-				copied = append(copied[:i-1], end...)
-				break
+		copied = minimizeQux(copied)
+	}
+	return copied
+}
+
+func minimizeQux(input []rune) []rune {
+	copied := make([]rune, len(input))
+	copy(copied, input)
+	min := copied
+	for i := 1; i < len(copied); i++ {
+		if copied[i] != copied[i-1] {
+			missing := 'R' + 'G' + 'B' - copied[i] - copied[i-1]
+			end := append([]rune{missing}, copied[i+1:]...)
+			candidate := append([]rune{}, copied[:i-1]...)
+			candidate = append(candidate, end...)
+			candidate = minimizeQux(candidate)
+			if len(candidate) < len(min) {
+				min = candidate
 			}
 		}
 	}
-	return copied
+	return min
 }

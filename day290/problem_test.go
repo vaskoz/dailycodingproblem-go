@@ -12,7 +12,7 @@ var testcases = []struct {
 }{
 	{[]rune{'R', 'G', 'B', 'G', 'B'}, []rune{'R'}},
 	{[]rune{'G', 'B', 'G', 'B'}, []rune{'B', 'B'}},
-	{[]rune{'B', 'B', 'B', 'R', 'G', 'G', 'G'}, []rune{'G', 'G', 'G', 'G'}},
+	{[]rune{'B', 'B', 'B', 'R', 'G', 'G', 'G'}, []rune{'G', 'G'}},
 }
 
 func TestMinimizeQux(t *testing.T) {
