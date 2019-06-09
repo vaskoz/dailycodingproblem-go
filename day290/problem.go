@@ -16,14 +16,12 @@ func MinimizeQux(input []rune) []rune {
 }
 
 func minimizeQux(input []rune) []rune {
-	copied := make([]rune, len(input))
-	copy(copied, input)
-	min := copied
-	for i := 1; i < len(copied); i++ {
-		if copied[i] != copied[i-1] {
-			missing := 'R' + 'G' + 'B' - copied[i] - copied[i-1]
-			end := append([]rune{missing}, copied[i+1:]...)
-			candidate := append([]rune{}, copied[:i-1]...)
+	min := input
+	for i := 1; i < len(input); i++ {
+		if input[i] != input[i-1] {
+			missing := 'R' + 'G' + 'B' - input[i] - input[i-1]
+			end := append([]rune{missing}, input[i+1:]...)
+			candidate := append([]rune{}, input[:i-1]...)
 			candidate = append(candidate, end...)
 			candidate = minimizeQux(candidate)
 			if len(candidate) < len(min) {
