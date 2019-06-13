@@ -5,6 +5,7 @@ import "testing"
 // nolint
 var testcases = []struct {
 	g      UndirectedGraph
+	start  int
 	cyclic bool
 }{
 	{
@@ -14,6 +15,7 @@ var testcases = []struct {
 			2: {0: struct{}{}},
 			3: {4: struct{}{}},
 		},
+		0,
 		true,
 	},
 	{
@@ -23,6 +25,7 @@ var testcases = []struct {
 			2: {3: struct{}{}},
 			3: {4: struct{}{}},
 		},
+		0,
 		false,
 	},
 }
@@ -30,7 +33,7 @@ var testcases = []struct {
 func TestHasCycle(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
-		if cyclic := HasCycle(tc.g); cyclic != tc.cyclic {
+		if cyclic := HasCycle(tc.g, tc.start); cyclic != tc.cyclic {
 			t.Errorf("Expected %v, got %v", tc.cyclic, cyclic)
 		}
 	}
@@ -39,7 +42,7 @@ func TestHasCycle(t *testing.T) {
 func BenchmarkHasCycle(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			HasCycle(tc.g)
+			HasCycle(tc.g, tc.start)
 		}
 	}
 }
