@@ -4,12 +4,7 @@ package day280
 type UndirectedGraph map[int]map[int]struct{}
 
 // HasCycle answers if the connected undirected graph is cyclic.
-func HasCycle(g UndirectedGraph) bool {
-	var start int
-	for node := range g {
-		start = node
-		break
-	}
+func HasCycle(g UndirectedGraph, start int) bool {
 	visits := make(map[int]bool)
 	return hasCycle(g, start, visits)
 }
