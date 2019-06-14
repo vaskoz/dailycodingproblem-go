@@ -11,6 +11,26 @@ var testcases = []struct {
 }{
 	{
 		Elevation{
+			0: 15,
+			1: 10,
+			2: 25,
+		},
+		PathDistance{
+			0: {
+				2: 5,
+			},
+			1: {
+				0: 1,
+			},
+			2: {
+				1: 7,
+			},
+		},
+		0,
+		ErrNotPossible(),
+	},
+	{
+		Elevation{
 			0: 10,
 			1: 25,
 			2: 15,

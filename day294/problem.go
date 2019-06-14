@@ -47,12 +47,12 @@ func shortestRunnerPath(
 	visited map[int]struct{},
 	up bool,
 	n int) (int, error) {
+	if n == 0 {
+		return 0, nil
+	}
 	min := MaxInt
 	currentElevation := elevations[n]
 	for next, distance := range paths[n] {
-		if next == 0 && distance < min {
-			min = distance
-		}
 		if _, visit := visited[next]; !visit {
 			nextElevation := elevations[next]
 			if up && nextElevation > currentElevation {
