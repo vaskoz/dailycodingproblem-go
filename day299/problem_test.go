@@ -9,18 +9,18 @@ import (
 
 // nolint
 var testcases = []struct {
-	pipes    []Pipe
-	expected []Pipe
+	pipes    []kruskals.WeightedEdge
+	expected []kruskals.WeightedEdge
 }{
 	{
-		[]Pipe{
+		[]kruskals.WeightedEdge{
 			kruskals.SimpleWeightedEdge{F: 0, T: 1, W: 1},
 			kruskals.SimpleWeightedEdge{F: 0, T: 2, W: 5},
 			kruskals.SimpleWeightedEdge{F: 0, T: 3, W: 20},
 			kruskals.SimpleWeightedEdge{F: 1, T: 3, W: 15},
 			kruskals.SimpleWeightedEdge{F: 2, T: 3, W: 10},
 		},
-		[]Pipe{
+		[]kruskals.WeightedEdge{
 			kruskals.SimpleWeightedEdge{F: 0, T: 1, W: 1},
 			kruskals.SimpleWeightedEdge{F: 0, T: 2, W: 5},
 			kruskals.SimpleWeightedEdge{F: 2, T: 3, W: 10},
