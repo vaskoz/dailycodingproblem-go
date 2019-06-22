@@ -51,6 +51,7 @@ func main() {
 	}
 }
 
+// Contains answers if a candidate is in the top 3 list.
 func Contains(top3 []*VotingResult, cand *VotingResult) bool {
 	for _, c := range top3 {
 		if cand == c {
