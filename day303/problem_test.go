@@ -1,6 +1,9 @@
 package day303
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 // nolint
 var testcases = []struct {
@@ -35,5 +38,22 @@ func BenchmarkAngleClockHands(b *testing.B) {
 		for _, tc := range testcases {
 			AngleClockHands(tc.hh, tc.mm)
 		}
+	}
+}
+
+func TestTimesOverlappingHands(t *testing.T) {
+	t.Parallel()
+	result := TimesOverlappingHands()
+	expected := [][]int{
+		{0, 0}, {1, 5}, {2, 10}, {3, 15}, {4, 20}, {5, 25}, {6, 30}, {7, 35}, {8, 40}, {9, 45}, {10, 50}, {11, 55},
+	}
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Expected %v, got %v", result, expected)
+	}
+}
+
+func BenchmarkTimesOverlappingHands(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		TimesOverlappingHands()
 	}
 }

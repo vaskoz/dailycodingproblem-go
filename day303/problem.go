@@ -19,3 +19,17 @@ func AngleClockHands(hh, mm int) int {
 	}
 	return int(math.Round(math.Abs(diffAngle)))
 }
+
+// TimesOverlappingHands returns all the [hh:mm] pairs with overlapping
+// clock hands by checking all possible 12*60 hour/minute possibilities.
+func TimesOverlappingHands() [][]int {
+	var result [][]int
+	for h := 0; h < 12; h++ {
+		for m := 0; m < 60; m++ {
+			if angle := AngleClockHands(h, m); angle == 0 {
+				result = append(result, []int{h, m})
+			}
+		}
+	}
+	return result
+}
