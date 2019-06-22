@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	out io.Writer = os.Stdout
-	in  io.Reader = os.Stdin
+	out io.Writer = os.Stdout // nolint
+	in  io.Reader = os.Stdin  // nolint
 )
 
 // VotingResult is the number of votes a candidate received.
@@ -22,7 +22,8 @@ func main() {
 	voters := make(map[int]struct{})
 	candidates := make(map[int]*VotingResult)
 	top3 := make([]*VotingResult, 0, 3)
-	for _, err := fmt.Fscanf(in, "%d,%d", &voterID, &candidateID); err != io.EOF; _, err = fmt.Fscanf(in, "%d,%d", &voterID, &candidateID) {
+	_, err := fmt.Fscanf(in, "%d,%d", &voterID, &candidateID)
+	for err != io.EOF {
 		if _, voted := voters[voterID]; voted {
 			fmt.Fprintf(out, "voter %d already voted. this vote for candidate %d will not count\n", voterID, candidateID)
 		} else {
@@ -46,6 +47,7 @@ func main() {
 			}
 			fmt.Fprintln(out)
 		}
+		_, err = fmt.Fscanf(in, "%d,%d", &voterID, &candidateID)
 	}
 }
 
