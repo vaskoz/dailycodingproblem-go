@@ -2,7 +2,6 @@ package day292
 
 import (
 	"errors"
-	"log"
 	"sort"
 )
 
@@ -27,7 +26,6 @@ func AssignTeams(enemies map[int]map[int]struct{}) ([]int, []int, error) {
 		break
 	}
 	for len(q) != 0 {
-		log.Println(q, team1, team2)
 		var nextQ []int
 		var countNew int
 		for _, id := range q {
