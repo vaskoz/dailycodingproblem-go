@@ -73,28 +73,46 @@ var testcases = []struct {
 	},
 }
 
-func TestFloor(t *testing.T) {
+func TestFloorRecursive(t *testing.T) {
 	t.Parallel()
 	for tcid, tc := range testcases {
-		if result, err := Floor(tc.root, tc.target); result != tc.expectedFloor ||
+		if result, err := FloorRecursive(tc.root, tc.target); result != tc.expectedFloor ||
 			err != tc.expectedFloorErr {
 			t.Errorf("TCID %d Expected (%v,%v), got (%v,%v)", tcid, tc.expectedFloor, tc.expectedFloorErr, result, err)
 		}
 	}
 }
 
-func BenchmarkFloor(b *testing.B) {
+func BenchmarkFloorRecursive(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			Floor(tc.root, tc.target) // nolint
+			FloorRecursive(tc.root, tc.target) // nolint
 		}
 	}
 }
 
-func TestCeiling(t *testing.T) {
+func TestFloorFaster(t *testing.T) {
 	t.Parallel()
 	for tcid, tc := range testcases {
-		if result, err := Ceiling(tc.root, tc.target); result != tc.expectedCeil ||
+		if result, err := FloorFaster(tc.root, tc.target); result != tc.expectedFloor ||
+			err != tc.expectedFloorErr {
+			t.Errorf("TCID %d Expected (%v,%v), got (%v,%v)", tcid, tc.expectedFloor, tc.expectedFloorErr, result, err)
+		}
+	}
+}
+
+func BenchmarkFloorFaster(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			FloorRecursive(tc.root, tc.target) // nolint
+		}
+	}
+}
+
+func TestCeilingRecursive(t *testing.T) {
+	t.Parallel()
+	for tcid, tc := range testcases {
+		if result, err := CeilingRecursive(tc.root, tc.target); result != tc.expectedCeil ||
 			err != tc.expectedCeilErr {
 			t.Errorf("TCID %d Expected (%v,%v), got (%v,%v)", tcid, tc.expectedCeil, tc.expectedCeilErr, result, err)
 		}
@@ -104,7 +122,25 @@ func TestCeiling(t *testing.T) {
 func BenchmarkCeiling(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			Ceiling(tc.root, tc.target) // nolint
+			CeilingRecursive(tc.root, tc.target) // nolint
+		}
+	}
+}
+
+func TestCeilingFaster(t *testing.T) {
+	t.Parallel()
+	for tcid, tc := range testcases {
+		if result, err := CeilingFaster(tc.root, tc.target); result != tc.expectedCeil ||
+			err != tc.expectedCeilErr {
+			t.Errorf("TCID %d Expected (%v,%v), got (%v,%v)", tcid, tc.expectedCeil, tc.expectedCeilErr, result, err)
+		}
+	}
+}
+
+func BenchmarkCeilingFaster(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			CeilingFaster(tc.root, tc.target) // nolint
 		}
 	}
 }
