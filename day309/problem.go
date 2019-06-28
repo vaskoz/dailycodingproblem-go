@@ -9,29 +9,25 @@ func MinRedistributeNoGapsBrute(seating []int) int {
 		var curr int
 		if seating[i] == 1 {
 			// left
-			var leftZero int
+			leftZero := 0
+			leftZeroFound := false
 			for j := i - 1; j >= 0; j-- {
-				if seating[j] == 0 {
+				if !leftZeroFound && seating[j] == 0 {
 					leftZero = j
-					break
-				}
-			}
-			for j := i - 1; j >= 0; j-- {
-				if seating[j] == 1 && j < leftZero {
+					leftZeroFound = true
+				} else if seating[j] == 1 && j < leftZero {
 					curr += abs(j - leftZero)
 					leftZero--
 				}
 			}
 			// right
-			var rightZero int
+			rightZero := 0
+			rightZeroFound := false
 			for j := i + 1; j < len(seating); j++ {
-				if seating[j] == 0 {
+				if !rightZeroFound && seating[j] == 0 {
 					rightZero = j
-					break
-				}
-			}
-			for j := i + 1; j < len(seating); j++ {
-				if seating[j] == 1 && j > rightZero {
+					rightZeroFound = true
+				} else if seating[j] == 1 && j > rightZero {
 					curr += abs(j - rightZero)
 					rightZero--
 				}
