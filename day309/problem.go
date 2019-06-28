@@ -14,10 +14,7 @@ func MinRedistributeNoGapsFaster(seating []int) int {
 	if totalPeople < 2 {
 		return 0
 	}
-	middle := totalPeople / 2
-	if totalPeople%2 == 1 {
-		middle++
-	}
+	middle := (totalPeople / 2) + (totalPeople % 2)
 	index := 0
 	for i := range seating {
 		if seating[i] == 1 {
