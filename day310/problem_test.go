@@ -13,6 +13,23 @@ var testcases = []struct {
 	{3, []int{1, 1, 2}},
 }
 
+func TestPopcntC(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := PopcntC(tc.num); !reflect.DeepEqual(result, tc.setBits) {
+			t.Errorf("Expected %v, got %v", tc.setBits, result)
+		}
+	}
+}
+
+func BenchmarkPopcntC(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			PopcntC(tc.num)
+		}
+	}
+}
+
 func TestPopcntB(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {

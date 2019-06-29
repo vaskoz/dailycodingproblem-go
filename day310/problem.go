@@ -39,7 +39,20 @@ func PopcntB(num uint64) []int {
 		x += x >> 8
 		x += x >> 16
 		x += x >> 32
-		result = append(result, int(x))
+		result = append(result, int(x&0x7f))
+	}
+	return result
+}
+
+// PopcntC is a second manual implementation.
+func PopcntC(num uint64) []int {
+	result := make([]int, 0, int(num))
+	for i := uint64(1); i <= num; i++ {
+		x := i
+		x -= (x >> 1) & 0x5555555555555555
+		x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333)
+		x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f
+		result = append(result, int((x*0x0101010101010101)>>56))
 	}
 	return result
 }
