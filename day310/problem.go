@@ -56,3 +56,17 @@ func PopcntC(num uint64) []int {
 	}
 	return result
 }
+
+// PopcntD is a second manual implementation.
+func PopcntD(num uint64) []int {
+	result := make([]int, 0, int(num))
+	for i := uint64(1); i <= num; i++ {
+		x := i
+		var count int
+		for count = 0; x != 0; count++ {
+			x &= x - 1
+		}
+		result = append(result, count)
+	}
+	return result
+}
