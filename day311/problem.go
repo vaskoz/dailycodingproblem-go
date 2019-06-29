@@ -1,5 +1,30 @@
 package day311
 
+// PeakIndexNR returns the index of a peak without
+// using recursion.
+// Runs in O(log N).
+func PeakIndexNR(nums []int) int {
+	if len(nums) == 0 {
+		return -1
+	} else if len(nums) == 1 {
+		return 0
+	}
+	low, high := 0, len(nums)-1
+	for low < high {
+		mid := (low + high) / 2
+		switch {
+		case (mid == 0 || nums[mid-1] <= nums[mid]) &&
+			(mid == len(nums)-1 || nums[mid+1] <= nums[mid]):
+			return mid
+		case mid > 0 && nums[mid-1] > nums[mid]:
+			high = mid - 1
+		default:
+			low = mid + 1
+		}
+	}
+	return low
+}
+
 // PeakIndex returns the index of a peak.
 // Runs in O(log N).
 func PeakIndex(nums []int) int {
