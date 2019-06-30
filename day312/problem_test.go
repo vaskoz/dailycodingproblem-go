@@ -8,8 +8,9 @@ var testcases = []struct {
 	tilingWays int
 }{
 	{1, 1},
-	{2, 4},
-	{4, 9},
+	{2, 2},
+	{3, 3},
+	{4, 5},
 }
 
 func TestTilingBoardWays(t *testing.T) {

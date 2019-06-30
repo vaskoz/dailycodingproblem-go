@@ -9,7 +9,7 @@ func TilingBoardWays(n int) int {
 	case n == 1:
 		return 1
 	case n == 2:
-		return 4
+		return 2
 	default:
 		return TilingBoardWays(n-1) + TilingBoardWays(n-2)
 	}
