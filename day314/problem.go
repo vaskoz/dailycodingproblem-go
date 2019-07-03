@@ -22,6 +22,7 @@ func MinimumTowerRange(listeners, towers []int) int {
 			if d := abs(listener - towers[i]); d > dist {
 				break
 			} else {
+				towerIndex = i
 				dist = d
 			}
 		}
