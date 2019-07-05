@@ -5,17 +5,11 @@ package day317
 // This runs by performing O(abs(N-M)) AND operations.
 // This is a brute force solution.
 func BitwiseAndInclusiveRange(m, n uint64) uint64 {
-	var small, large uint64
-	if m < n {
-		small = m
-		large = n
-	} else {
-		small = n
-		large = m
+	if m > n {
+		m, n = n, m
 	}
-	result := small
-	for i := small + 1; i <= large; i++ {
-		result &= i
+	for i := m + 1; i <= n; i++ {
+		m &= i
 	}
-	return result
+	return m
 }
