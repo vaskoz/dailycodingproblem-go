@@ -30,3 +30,20 @@ func BenchmarkBitwiseAndInclusiveRange(b *testing.B) {
 		}
 	}
 }
+
+func TestBitwiseAndInclusiveRangeFaster(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := BitwiseAndInclusiveRangeFaster(tc.m, tc.n); result != tc.expected {
+			t.Errorf("Expected %v, got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkBitwiseAndInclusiveRangeFaster(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			BitwiseAndInclusiveRangeFaster(tc.m, tc.n)
+		}
+	}
+}
