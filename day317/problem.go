@@ -12,7 +12,7 @@ func BitwiseAndInclusiveRange(m, n uint64) uint64 {
 	if m > n {
 		m, n = n, m
 	}
-	for i := m + 1; i <= n; i++ {
+	for i := m + 1; m != 0 && i <= n; i++ {
 		m &= i
 	}
 	return m
