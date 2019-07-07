@@ -2,6 +2,7 @@ package day142
 
 import "testing"
 
+// nolint
 var testcases = []struct {
 	input    string
 	balanced bool
@@ -17,6 +18,7 @@ var testcases = []struct {
 	{"***********************", true},
 	{"****)))", true},
 	{"****)))))", false},
+	{"*(", false},
 }
 
 func TestWildcardParens(t *testing.T) {
