@@ -17,17 +17,11 @@ func SmallestWindowEveryDistinctLength(str string) int {
 	for end, r := range str {
 		distinct[r]++
 		if len(distinct) == distinctCount {
-			for len(distinct) == distinctCount {
-				toRemove := rune(str[begin])
-				if distinct[toRemove] > 1 {
-					distinct[toRemove]--
-					begin++
-				} else {
-					break
-				}
+			for toRemove := rune(str[begin]); distinct[toRemove] > 1; toRemove = rune(str[begin]) {
+				distinct[toRemove]--
+				begin++
 			}
-			length := end - begin + 1
-			if length < smallest {
+			if length := end - begin + 1; length < smallest {
 				smallest = length
 			}
 		}
