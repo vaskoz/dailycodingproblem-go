@@ -8,6 +8,9 @@ var testcases = []struct {
 	windowLength int
 }{
 	{"jiujitsu", 5},
+	{"", 0},
+	{"a", 1},
+	{"aabbccabaabbccc", 3},
 }
 
 func TestSmallestWindowEveryDistinctLength(t *testing.T) {
