@@ -9,7 +9,7 @@ func NumberOfJumps(n int) int {
 		n = -n
 	}
 	var result int
-	for (arithmeticSum(result) < n) || ((arithmeticSum(result)-n)&1 == 1) {
+	for arithmeticSum(result) < n || (arithmeticSum(result)-n)%2 == 1 {
 		result++
 	}
 	return result
