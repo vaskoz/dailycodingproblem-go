@@ -16,9 +16,9 @@ var r = rand.New(rand.NewSource(time.Now().UnixNano()))
 // Runs in O(N/2) time and O(N/2) extra space.
 func ApproximateMedian(unordered []int) int {
 	size := len(unordered)
-	halfSize := (size / 2) + 1
-	picks := make(map[int]struct{}, halfSize)
-	for len(picks) < halfSize {
+	sampleSize := int(0.5 * float64(size))
+	picks := make(map[int]struct{}, sampleSize)
+	for len(picks) < sampleSize {
 		picks[r.Intn(size)] = struct{}{}
 	}
 	nums := make([]int, 0, len(picks))
