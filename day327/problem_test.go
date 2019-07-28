@@ -60,6 +60,23 @@ var testcases = []struct {
 			},
 		},
 	},
+	{
+		&BinaryTree{
+			5,
+			&BinaryTree{
+				Val: 9,
+			},
+			nil,
+		},
+		nil,
+		&BinaryTree{
+			5,
+			&BinaryTree{
+				Val: 9,
+			},
+			nil,
+		},
+	},
 }
 
 func TestMergeBinaryTree(t *testing.T) {
