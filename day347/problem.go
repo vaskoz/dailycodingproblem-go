@@ -8,11 +8,11 @@ func LexicographicallySmallest(str string, k int) string {
 	var sb strings.Builder
 	result := str
 	for len(str) > 0 {
-		smallest := str[0]
+		smallest := rune(str[0])
 		smallestIndex := 0
-		for i := 0; i < k && i < len(str); i++ {
-			if str[i] < smallest {
-				smallest = str[i]
+		for i, r := range str {
+			if i < k && r < smallest {
+				smallest = r
 				smallestIndex = i
 			}
 		}
