@@ -5,6 +5,9 @@ type Flights map[string]map[string]int
 
 // CheapestItinerary returns the cheapest itinerary that respects the
 // maxConnections limit.
+// Effectively, DFS for all possible answers that don't exceed the maximum
+// number of connections.
+// Runs in DFS performance. O(N+M)
 func CheapestItinerary(flights Flights, origin, destination string, maxConnections int) ([]string, int) {
 	visited := make(map[string]struct{})
 	return cheapestItinerary(flights, origin, destination, maxConnections, visited)
@@ -26,10 +29,11 @@ func cheapestItinerary(flights Flights, origin, destination string, connections 
 		}
 		visited[next] = struct{}{}
 		segments, price := cheapestItinerary(flights, next, destination, connections-1, visited)
-		total := flights[origin][next] + price
-		if len(segments) != 0 && total < cheapest {
-			cheapest = total
-			itinerary = append([]string{origin}, segments...)
+		if len(segments) != 0 {
+			if total := flights[origin][next] + price; total < cheapest {
+				cheapest = total
+				itinerary = append([]string{origin}, segments...)
+			}
 		}
 		delete(visited, next)
 	}
