@@ -7,6 +7,7 @@ var testcases = []struct {
 	sentence1, sentence2 string
 	thesaurus            Thesaurus
 	expected             bool
+	expectedTransitive   bool
 }{
 	{
 		"he wants to eat food",
@@ -20,6 +21,7 @@ var testcases = []struct {
 			},
 		},
 		true,
+		true,
 	},
 	{
 		"he wants to eat food",
@@ -29,6 +31,7 @@ var testcases = []struct {
 				"consume": struct{}{},
 			},
 		},
+		false,
 		false,
 	},
 	{
@@ -43,7 +46,40 @@ var testcases = []struct {
 			},
 		},
 		false,
+		false,
 	},
+	{
+		"he wants to devour food",
+		"he wants to inhale food",
+		Thesaurus{
+			"eat": {
+				"consume": struct{}{},
+				"devour":  struct{}{},
+				"inhale":  struct{}{},
+			},
+		},
+		false,
+		true,
+	},
+}
+
+func TestAreSentencesEquivalentTransitive(t *testing.T) {
+	t.Parallel()
+	for tcid, tc := range testcases {
+		if result := AreSentencesEquivalentTransitive(tc.sentence1,
+			tc.sentence2, tc.thesaurus); result != tc.expectedTransitive {
+			t.Errorf("TCID %d Expected %v, got %v", tcid,
+				tc.expectedTransitive, result)
+		}
+	}
+}
+
+func BenchmarkAreSentencesEquivalentTransitive(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			AreSentencesEquivalentTransitive(tc.sentence1, tc.sentence2, tc.thesaurus)
+		}
+	}
 }
 
 func TestAreSentencesEquivalent(t *testing.T) {
