@@ -1,5 +1,7 @@
 package day352
 
+import "reflect"
+
 // Square represents either a white or black square
 // on a crossword puzzle.
 type Square int
@@ -18,7 +20,66 @@ func IsValidCrossword(puzzle [][]Square) bool {
 	if isValid := checkVertical(puzzle); !isValid {
 		return false
 	}
+	if isValid := checkReachable(puzzle); !isValid {
+		return false
+	}
 	return true
+}
+
+func checkReachable(puzzle [][]Square) bool {
+	var startR, startC int
+	whiteSquares := make(map[int]map[int]struct{})
+	visited := make(map[int]map[int]struct{})
+	for r := range puzzle {
+		if whiteSquares[r] == nil {
+			whiteSquares[r] = make(map[int]struct{})
+			visited[r] = make(map[int]struct{})
+		}
+		for c := range puzzle[r] {
+			if puzzle[r][c] == W {
+				whiteSquares[r][c] = struct{}{}
+				startR, startC = r, c
+			}
+		}
+	}
+	dfs(whiteSquares, visited, startR, startC)
+	return reflect.DeepEqual(whiteSquares, visited)
+}
+
+func dfs(whiteSquares, visited map[int]map[int]struct{}, r, c int) {
+	visited[r][c] = struct{}{}
+	// up
+	if _, exists := whiteSquares[r-1]; exists {
+		if _, next := whiteSquares[r-1][c]; next {
+			if _, seen := visited[r-1][c]; !seen {
+				dfs(whiteSquares, visited, r-1, c)
+			}
+		}
+	}
+	// down
+	if _, exists := whiteSquares[r+1]; exists {
+		if _, next := whiteSquares[r+1][c]; next {
+			if _, seen := visited[r+1][c]; !seen {
+				dfs(whiteSquares, visited, r+1, c)
+			}
+		}
+	}
+	// left
+	if _, exists := whiteSquares[r]; exists {
+		if _, next := whiteSquares[r][c-1]; next {
+			if _, seen := visited[r][c-1]; !seen {
+				dfs(whiteSquares, visited, r, c-1)
+			}
+		}
+	}
+	// right
+	if _, exists := whiteSquares[r]; exists {
+		if _, next := whiteSquares[r][c+1]; next {
+			if _, seen := visited[r][c+1]; !seen {
+				dfs(whiteSquares, visited, r, c+1)
+			}
+		}
+	}
 }
 
 func checkHorizontal(puzzle [][]Square) bool {

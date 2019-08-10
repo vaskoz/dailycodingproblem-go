@@ -67,6 +67,26 @@ var testcases = []struct {
 		},
 		false,
 	},
+	{
+		[][]Square{
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{B, B, B, B, B, B, B, B, B, B, B, B, B, B, B},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+			{W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+		},
+		false,
+	},
 }
 
 func TestIsValidCrossword(t *testing.T) {
