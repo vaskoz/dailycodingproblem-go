@@ -23,6 +23,23 @@ func IsValidCrossword(puzzle [][]Square) bool {
 	if isValid := checkReachable(puzzle); !isValid {
 		return false
 	}
+	if isValid := checkRotationallySymmetric(puzzle); !isValid {
+		return false
+	}
+	return true
+}
+
+func checkRotationallySymmetric(puzzle [][]Square) bool {
+	for r := range puzzle {
+		rBottom := len(puzzle) - r - 1
+		cRight := len(puzzle[r]) - r - 1
+		cMost := len(puzzle[r]) - 1
+		for i := 0; i < cRight; i++ {
+			if puzzle[r][i] != puzzle[rBottom][cMost-i] {
+				return false
+			}
+		}
+	}
 	return true
 }
 
