@@ -19,14 +19,16 @@ func AreSentencesEquivalentTransitive(s1, s2 string, thes Thesaurus) bool {
 		words := make([]string, 0, len(thes[word]))
 		for next := range thes[word] {
 			words = append(words, next)
+			if _, exists := newThes[next]; !exists {
+				newThes[next] = make(map[string]struct{})
+			}
 			newThes[word][next] = struct{}{}
+			newThes[next][word] = struct{}{}
 		}
 		for i := range words {
 			for j := i + 1; j < len(words); j++ {
-				if _, exists := thes[words[i]]; !exists {
-					newThes[words[i]] = make(map[string]struct{})
-				}
 				newThes[words[i]][words[j]] = struct{}{}
+				newThes[words[j]][words[i]] = struct{}{}
 			}
 		}
 	}
@@ -64,8 +66,10 @@ func isConvertible(src, target string, thes Thesaurus,
 	}
 	visited[src] = struct{}{}
 	for next := range thes[src] {
-		if isConvertible(next, target, thes, visited) {
-			return true
+		if _, seen := visited[next]; !seen {
+			if isConvertible(next, target, thes, visited) {
+				return true
+			}
 		}
 	}
 	delete(visited, src)
