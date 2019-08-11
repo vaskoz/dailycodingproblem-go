@@ -13,6 +13,9 @@ const (
 	B
 )
 
+// IsValidCrossword returns true if the puzzle
+// meets all the requirements of a crossword puzzle.
+// This is a brute force approach.
 func IsValidCrossword(puzzle [][]Square) bool {
 	if isValid := checkHorizontal(puzzle); !isValid {
 		return false
