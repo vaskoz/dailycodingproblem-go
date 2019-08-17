@@ -43,8 +43,7 @@ func convertAnagramToInt(freq map[rune]int, nums []map[rune]int, result string) 
 	if baseCase {
 		return result, nil
 	}
-	var digit int
-	for digit < 10 {
+	for digit := 0; digit < 10; digit++ {
 		valid := true
 		for r, c := range nums[digit] {
 			if freq[r]-c < 0 {
@@ -64,7 +63,6 @@ func convertAnagramToInt(freq map[rune]int, nums []map[rune]int, result string) 
 				freq[r] += c
 			}
 		}
-		digit++
 	}
 	return "", errNotPossible
 }
