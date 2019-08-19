@@ -7,8 +7,9 @@ import (
 
 // nolint
 var testcases = []struct {
-	guesses  []Guess
-	expected []string
+	guesses     []Guess
+	expectedAll []string
+	expected    bool
 }{
 	{
 		[]Guess{
@@ -51,6 +52,7 @@ var testcases = []struct {
 			"895716", "897216", "903216", "903486", "905416", "913486", "923486", "925416", "935416", "943216",
 			"970416", "972416", "973016", "973406", "973456", "973516", "973816", "978416", "983216", "985416",
 		},
+		true,
 	},
 	{
 		[]Guess{
@@ -59,13 +61,14 @@ var testcases = []struct {
 			{"567890", 4},
 		},
 		nil,
+		false,
 	},
 }
 
 func TestValidMastermindGuesses(t *testing.T) {
 	t.Parallel()
 	for _, tc := range testcases {
-		if result := ValidMastermindGuesses(tc.guesses); !reflect.DeepEqual(result, tc.expected) {
+		if result := ValidMastermindGuesses(tc.guesses); result != tc.expected {
 			t.Errorf("Expected %v, got %v", tc.expected, result)
 		}
 	}
@@ -75,6 +78,23 @@ func BenchmarkValidMastermindGuesses(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
 			ValidMastermindGuesses(tc.guesses)
+		}
+	}
+}
+
+func TestValidMastermindGuessesAll(t *testing.T) {
+	t.Parallel()
+	for _, tc := range testcases {
+		if result := ValidMastermindGuessesAll(tc.guesses); !reflect.DeepEqual(result, tc.expectedAll) {
+			t.Errorf("Expected %v, got %v", tc.expectedAll, result)
+		}
+	}
+}
+
+func BenchmarkValidMastermindGuessesAll(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			ValidMastermindGuessesAll(tc.guesses)
 		}
 	}
 }
