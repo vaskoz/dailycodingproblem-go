@@ -25,6 +25,16 @@ func TestAddSubtract(t *testing.T) {
 	}
 }
 
+func TestAddSubtractChained(t *testing.T) {
+	t.Parallel()
+	result := AddSubtract(5).__(6).__(12).__(20).__(30)
+	result = result.__(10).__(-50)
+	expected := 49
+	if result.Execute() != expected {
+		t.Errorf("Expected %v, got %v", expected, result.Execute())
+	}
+}
+
 func BenchmarkAddSubtract(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
