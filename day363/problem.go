@@ -19,6 +19,9 @@ func (c *curry) Execute() int {
 	return c.total
 }
 
+// AddSubtract alternately adds and subtracts curried arguments.
+// It performs calculations as it curries.
+// Calling Execute() returns the last computed value.
 func AddSubtract(n int) *curry {
 	return &curry{n, true}
 }
