@@ -1,6 +1,11 @@
 package day271
 
-import "testing"
+import (
+	"math/rand"
+	"sort"
+	"testing"
+	"time"
+)
 
 // nolint
 var testcases = []struct {
@@ -43,5 +48,18 @@ func BenchmarkBinarySearchSortPkg(b *testing.B) {
 		for _, tc := range testcases {
 			BinarySearchSortPkg(tc.sorted, tc.x)
 		}
+	}
+}
+
+func BenchmarkBinarySearchLargeInput(b *testing.B) {
+	input := make([]int, 1000000)
+	rand.Seed(time.Now().UnixNano())
+	for i := range input {
+		input[i] = rand.Int()
+	}
+	sort.Ints(input)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		BinarySearch(input, 1000)
 	}
 }
