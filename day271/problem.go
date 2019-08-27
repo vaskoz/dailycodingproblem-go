@@ -6,7 +6,13 @@ import "sort"
 func BinarySearch(sorted []int, x int) int {
 	left, right := 0, len(sorted)-1
 	for left < right {
-		mid := (left + right) / 2
+		var mid int
+		dividend := left + right
+		divisor := 2
+		for dividend >= divisor {
+			dividend -= divisor
+			mid++
+		}
 		val := sorted[mid]
 		switch {
 		case x == val:
