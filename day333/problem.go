@@ -15,9 +15,9 @@ func (k *Knowing) Knows(a, b int) bool {
 
 // FindCelebrity returns the ID of the celebrity.
 // Runs in O(N) time and O(1) space.
-func FindCelebrity(knows *Knowing, people []interface{}) int {
+func FindCelebrity(knows *Knowing, numPeople int) int {
 	a := 0
-	b := len(people) - 1
+	b := numPeople - 1
 
 	for a < b {
 		if knows.Knows(a, b) {
@@ -27,9 +27,8 @@ func FindCelebrity(knows *Knowing, people []interface{}) int {
 		}
 	}
 
-	for i := 0; i < len(people); i++ {
-		if i != a && (knows.Knows(a, i) ||
-			!knows.Knows(i, a)) {
+	for i := 0; i < numPeople; i++ {
+		if i != a && (knows.Knows(a, i) || !knows.Knows(i, a)) {
 			return -1
 		}
 	}

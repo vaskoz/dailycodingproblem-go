@@ -4,9 +4,9 @@ import "testing"
 
 // nolint
 var testcases = []struct {
-	knows  *Knowing
-	people []interface{}
-	celeb  int
+	knows     *Knowing
+	numPeople int
+	celeb     int
 }{
 	{
 		&Knowing{
@@ -23,7 +23,7 @@ var testcases = []struct {
 				1: true,
 			},
 		},
-		[]interface{}{"a", "b", "c", "d", "e"},
+		5,
 		1,
 	},
 	{
@@ -41,7 +41,7 @@ var testcases = []struct {
 				4: true,
 			},
 		},
-		[]interface{}{"a", "b", "c", "d", "e"},
+		5,
 		-1,
 	},
 }
@@ -50,8 +50,16 @@ func TestFindCelebrity(t *testing.T) {
 	t.Parallel()
 
 	for _, tc := range testcases {
-		if celeb := FindCelebrity(tc.knows, tc.people); celeb != tc.celeb {
+		if celeb := FindCelebrity(tc.knows, tc.numPeople); celeb != tc.celeb {
 			t.Errorf("Expected %v, got %v", tc.celeb, celeb)
+		}
+	}
+}
+
+func BenchmarkFindCelebrity(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			FindCelebrity(tc.knows, tc.numPeople)
 		}
 	}
 }
