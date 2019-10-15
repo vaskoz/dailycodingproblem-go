@@ -52,7 +52,7 @@ func TestMemoryOptimizedShuffle(t *testing.T) {
 }
 
 func BenchmarkFastShuffle(b *testing.B) {
-	large := make([]interface{}, 10_000)
+	large := make([]interface{}, 10000)
 
 	for i := range large {
 		large[i] = i
@@ -68,7 +68,7 @@ func BenchmarkFastShuffle(b *testing.B) {
 }
 
 func BenchmarkMemoryOptimizedShuffle(b *testing.B) {
-	large := make([]interface{}, 10_000)
+	large := make([]interface{}, 10000)
 	for i := range large {
 		large[i] = i
 	}
