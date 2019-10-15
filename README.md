@@ -343,6 +343,7 @@ problems from
 * [Day 353](https://github.com/vaskoz/dailycodingproblem-go/issues/701)
 * [Day 355](https://github.com/vaskoz/dailycodingproblem-go/issues/704)
 * [Day 356](https://github.com/vaskoz/dailycodingproblem-go/issues/705)
+* [Day 357](https://github.com/vaskoz/dailycodingproblem-go/issues/706)
 * [Day 359](https://github.com/vaskoz/dailycodingproblem-go/issues/708)
 * [Day 360](https://github.com/vaskoz/dailycodingproblem-go/issues/709)
 * [Day 361](https://github.com/vaskoz/dailycodingproblem-go/issues/712)
