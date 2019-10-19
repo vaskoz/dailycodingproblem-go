@@ -5,6 +5,8 @@ package day333
 // NOTE: This is not bidirectional.
 type Knowing map[int]map[int]bool
 
+// Knows is a O(1) method that answers if 'a' "knows" 'b'.
+// This does not imply that 'b' "knows" 'a'.
 func (k *Knowing) Knows(a, b int) bool {
 	if known, exists := (*k)[a]; exists {
 		return known[b]
