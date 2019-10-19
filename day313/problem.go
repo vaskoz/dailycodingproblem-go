@@ -4,6 +4,7 @@ package day313
 // lock avoid all dead ends.
 // Returns -1 if it's not possible.
 // Panics if the input data is inconsistent.
+// Runs in O(N) or O(V+E) time since BFS is a linear algorithm.
 func MovesToUnlock(start, target [3]int, deadEnds [][3]int) int {
 	if start == target {
 		return 0
