@@ -1,7 +1,7 @@
 package day293
 
 // LowestCostPyramid returns the lowest cost option.
-// O(N) time and O(N) space.
+// O(N) time and O(2*N) space.
 func LowestCostPyramid(stones []int) ([]int, int) {
 	left := make([]int, len(stones))
 	right := make([]int, len(stones))
@@ -19,21 +19,19 @@ func LowestCostPyramid(stones []int) ([]int, int) {
 			min(right[i+1]+1, len(right)-i))
 	}
 
-	total := make([]int, len(stones))
-	for i := range total {
-		total[i] = min(left[i], right[i])
-	}
-
 	maxI := 0
+	totalMaxI := min(left[0], right[0])
 
-	for i := range total {
-		if total[i] > total[maxI] {
+	for i := range stones {
+		totalI := min(left[i], right[i])
+		if totalI > totalMaxI {
 			maxI = i
+			totalMaxI = totalI
 		}
 	}
 
 	cost := 0
-	height := total[maxI]
+	height := totalMaxI
 
 	pyramid := make([]int, len(stones))
 
@@ -46,7 +44,7 @@ func LowestCostPyramid(stones []int) ([]int, int) {
 		}
 	}
 
-	height = total[maxI] - 1
+	height = totalMaxI - 1
 
 	for x := maxI + 1; x < len(stones); x++ {
 		cost += stones[x] - height
