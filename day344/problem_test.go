@@ -10,17 +10,17 @@ var testcases = []struct {
 	{
 		Tree{
 			1: map[int]struct{}{
-				2: struct{}{},
-				3: struct{}{},
+				2: {},
+				3: {},
 			},
 			3: map[int]struct{}{
-				4: struct{}{},
-				5: struct{}{},
+				4: {},
+				5: {},
 			},
 			4: map[int]struct{}{
-				6: struct{}{},
-				7: struct{}{},
-				8: struct{}{},
+				6: {},
+				7: {},
+				8: {},
 			},
 		},
 		2,
@@ -28,19 +28,19 @@ var testcases = []struct {
 	{
 		Tree{
 			0: map[int]struct{}{
-				2: struct{}{},
-				4: struct{}{},
-				1: struct{}{},
+				2: {},
+				4: {},
+				1: {},
 			},
 			2: map[int]struct{}{
-				3: struct{}{},
+				3: {},
 			},
 			4: map[int]struct{}{
-				5: struct{}{},
+				5: {},
 			},
 			5: map[int]struct{}{
-				6: struct{}{},
-				7: struct{}{},
+				6: {},
+				7: {},
 			},
 		},
 		2,
