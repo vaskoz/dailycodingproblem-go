@@ -10,6 +10,13 @@ var testcases = []struct {
 	{"xyxxxyxyy", 2},
 	{"yxxyyyy", 1},
 	{"yyyxy", 1},
+	{"yxyxyx", 3},
+	{"yyyyxyyyxyyyyxx", 4},
+	{"xxxxxxx", 0},
+	{"yyyyyyyyyy", 0},
+	{"xyyyyyyyy", 0},
+	{"xxxxxxxxyyy", 0},
+	{"xxxyyxxyyxxyyyyyyyyy", 4},
 }
 
 func TestFlipsXsBeforeYs(t *testing.T) {
