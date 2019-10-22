@@ -14,6 +14,7 @@ var testcases = []struct {
 
 func TestFlipsXsBeforeYs(t *testing.T) {
 	t.Parallel()
+
 	for _, tc := range testcases {
 		if flips := FlipsXsBeforeYs(tc.input); flips != tc.flips {
 			t.Errorf("Expected %v, got %v", tc.flips, flips)
