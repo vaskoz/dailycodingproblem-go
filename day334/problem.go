@@ -2,9 +2,6 @@ package day334
 
 const goal = 24
 
-// nolint
-var operators = []rune{'+', '-', '*', '/'}
-
 // TwentyFourGame returns true if the game of 24
 // is possible given this input.
 // Operators used are: +, -, *, and /
@@ -14,7 +11,7 @@ func TwentyFourGame(digits []int) bool {
 	}
 
 	for i := 0; i < len(digits)-1; i++ {
-		for _, op := range operators {
+		for _, op := range []rune{'+', '-', '*', '/'} {
 			var next []int
 			next = append(next, digits[:i]...)
 
