@@ -8,6 +8,9 @@ var testcases = []struct {
 	expected bool
 }{
 	{[]int{5, 2, 7, 8}, true},
+	{[]int{100, 100, 100, 100, 100}, false},
+	{[]int{2, 2, 2, 2, 2, 2, 2, 2, 2}, true},
+	{[]int{5760000, 10, 30, 40, 20}, true},
 }
 
 func TestTwentyFourGame(t *testing.T) {
