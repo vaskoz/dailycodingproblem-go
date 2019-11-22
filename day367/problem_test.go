@@ -3,11 +3,18 @@ package day367
 import "testing"
 
 // nolint
-var intLessThanEqual LessThanEqual = func(a, b interface{}) bool {
-	aI := a.(int)
-	bI := b.(int)
-	return aI <= bI
-}
+var (
+	intLessThanEqual LessThanEqual = func(a, b interface{}) bool {
+		aI := a.(int)
+		bI := b.(int)
+		return aI <= bI
+	}
+	stringLessThanEqual LessThanEqual = func(a, b interface{}) bool {
+		aS := a.(string)
+		bS := b.(string)
+		return aS <= bS
+	}
+)
 
 // nolint
 var testcases = []struct {
@@ -42,6 +49,14 @@ var testcases = []struct {
 		intLessThanEqual,
 		intLessThanEqual,
 		[]interface{}{1, 2, 3, 8, 9, 9, 10, 15, 25, 100},
+	},
+	{
+		[]interface{}{"o", "a", "k", "s", "v"},
+		stringLessThanEqual,
+		[]interface{}{"w", "e", "l", "c", "o", "m", "e"},
+		stringLessThanEqual,
+		stringLessThanEqual,
+		[]interface{}{"a", "c", "e", "e", "k", "l", "m", "o", "o", "s", "v", "w"},
 	},
 }
 
