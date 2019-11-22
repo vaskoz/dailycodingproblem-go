@@ -58,6 +58,34 @@ var testcases = []struct {
 		stringLessThanEqual,
 		[]interface{}{"a", "c", "e", "e", "k", "l", "m", "o", "o", "s", "v", "w"},
 	},
+	{
+		[]interface{}{10, 8, 9, 7, 5, 6, 4, 2, 3, 1, 0},
+		intLessThanEqual,
+		[]interface{}{"a", "c", "k", "b", "d", "f", "e", "h", "g", "i", "j"},
+		stringLessThanEqual,
+		func(a, b interface{}) bool {
+			if av, ok := a.(string); ok {
+				if bv, ok := b.(string); ok {
+					return stringLessThanEqual(av, bv)
+				} else {
+					avr := int(av[0]) - 'a'
+					bv := b.(int)
+					return avr <= bv
+				}
+			} else {
+				av := a.(int)
+				if bv, ok := b.(string); ok {
+					bvr := int(bv[0]) - 'a'
+					return av <= bvr
+				} else {
+					bv := b.(int)
+					return intLessThanEqual(av, bv)
+				}
+			}
+		},
+		[]interface{}{0, "a", 1, "b", 2, "c", 3, "d", 4, "e", 5, "f", 6, "g", 7, "h",
+			8, "i", 9, "j", 10, "k"},
+	},
 }
 
 func TestMergeSortedIterators(t *testing.T) {
