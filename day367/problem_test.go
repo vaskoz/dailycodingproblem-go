@@ -71,15 +71,14 @@ var testcases = []struct {
 				avr := int(av[0]) - 'a'
 				bv := b.(int)
 				return avr <= bv
-			} else {
-				av := a.(int)
-				if bv, ok := b.(string); ok {
-					bvr := int(bv[0]) - 'a'
-					return av <= bvr
-				}
-				bv := b.(int)
-				return intLessThanEqual(av, bv)
 			}
+			av := a.(int)
+			if bv, ok := b.(string); ok {
+				bvr := int(bv[0]) - 'a'
+				return av <= bvr
+			}
+			bv := b.(int)
+			return intLessThanEqual(av, bv)
 		},
 		[]interface{}{0, "a", 1, "b", 2, "c", 3, "d", 4, "e", 5, "f", 6, "g", 7, "h",
 			8, "i", 9, "j", 10, "k"},
