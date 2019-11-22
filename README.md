@@ -361,4 +361,6 @@ problems from
 * [Day 363](https://github.com/vaskoz/dailycodingproblem-go/issues/716)
 * [Day 364](https://github.com/vaskoz/dailycodingproblem-go/issues/718)
 * [Day 365](https://github.com/vaskoz/dailycodingproblem-go/issues/720)
+* I thought it was done at day 365. Apparently not.
+* [Day 367](https://github.com/vaskoz/dailycodingproblem-go/issues/740)
 
