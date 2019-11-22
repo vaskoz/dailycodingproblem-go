@@ -61,6 +61,7 @@ func (kvs *keyValueStore) MaxKey(v int) (int, error) {
 	return maxKey, nil
 }
 
+// NewKeyValueStore returns a new instance of a KeyValueStore.
 func NewKeyValueStore() KeyValueStore {
 	return &keyValueStore{
 		keyToVals: make(map[int]int),
