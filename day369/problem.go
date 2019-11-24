@@ -38,21 +38,7 @@ func (ss *stockService) AddOrUpdate(d Datapoint) {
 		ss.avg = (total + d.Price - prev.Price) / Price(ss.n)
 
 		if d.Price < ss.min || d.Price > ss.max {
-			max := Price(0)
-			min := Price(math.MaxFloat64)
-
-			for _, dp := range ss.data {
-				if dp.Price < min {
-					min = dp.Price
-				}
-
-				if dp.Price > max {
-					max = dp.Price
-				}
-			}
-
-			ss.max = max
-			ss.min = min
+			ss.min, ss.max = ss.recalculateMinMax()
 		}
 	} else {
 		if d.Price > ss.max {
@@ -84,23 +70,26 @@ func (ss *stockService) Remove(t Timestamp) {
 		ss.avg = (total - prev.Price) / Price(ss.n)
 
 		if prev.Price == ss.min || prev.Price == ss.max {
-			max := Price(0)
-			min := Price(math.MaxFloat64)
-
-			for _, dp := range ss.data {
-				if dp.Price < min {
-					min = dp.Price
-				}
-
-				if dp.Price > max {
-					max = dp.Price
-				}
-			}
-
-			ss.max = max
-			ss.min = min
+			ss.min, ss.max = ss.recalculateMinMax()
 		}
 	}
+}
+
+func (ss *stockService) recalculateMinMax() (Price, Price) {
+	max := Price(0)
+	min := Price(math.MaxFloat64)
+
+	for _, dp := range ss.data {
+		if dp.Price < min {
+			min = dp.Price
+		}
+
+		if dp.Price > max {
+			max = dp.Price
+		}
+	}
+
+	return min, max
 }
 
 func (ss *stockService) Max() Price {
