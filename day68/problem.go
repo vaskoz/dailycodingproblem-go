@@ -10,17 +10,11 @@ type BoardPosition struct {
 // M is the dimension of the chessboard. M x M
 // Runtime is O(N^2) where N is the number of bishops.
 func CountAttackingBishopPairs(bishops []BoardPosition) int {
-	count := 0
+	var count int
 
-	for i := 0; i < len(bishops)-1; i++ {
-		first := bishops[i]
-
-		for j := i + 1; j < len(bishops); j++ {
-			second := bishops[j]
-			rowDiff := second.Row - first.Row
-			colDiff := second.Col - first.Col
-
-			if rowDiff == colDiff || rowDiff == -colDiff {
+	for i, b1 := range bishops {
+		for _, b2 := range bishops[i+1:] {
+			if r, c := b2.Row-b1.Row, b2.Col-b1.Col; r == c || r == -c {
 				count++
 			}
 		}
