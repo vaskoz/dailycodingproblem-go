@@ -46,3 +46,22 @@ func TestStockService(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkStockService(b *testing.B) {
+	ss := NewStockService()
+
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			switch tc.action {
+			case "addOrUpdate":
+				ss.AddOrUpdate(tc.data)
+			case "remove":
+				ss.Remove(tc.data.Timestamp)
+			}
+
+			ss.Min()
+			ss.Max()
+			ss.Avg()
+		}
+	}
+}
