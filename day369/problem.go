@@ -104,6 +104,8 @@ func (ss *stockService) Avg() Price {
 	return ss.avg
 }
 
+// NewStockService returns a new StockService for a single
+// stock.
 func NewStockService() StockService {
 	return &stockService{
 		min:  math.MaxFloat64,
