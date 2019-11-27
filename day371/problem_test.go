@@ -13,8 +13,8 @@ var testcases = []struct {
 }{
 	{
 		`y = x + 1
-	     5 = x + 3
-		 10 = z + y + 2`,
+	5 = x + 3
+	10 = z + y + 2`,
 		map[string]int{
 			"x": 2,
 			"y": 3,
@@ -24,9 +24,19 @@ var testcases = []struct {
 	},
 	{
 		`y = x + 1
-		 10 = z + y + 2`,
+	10 = z + y + 2`,
 		nil,
 		errNoAnswerPossible,
+	},
+	{
+		`
+		foo+1+foo+1+foo = foo + 12
+		 1 = bar+foo+2`,
+		map[string]int{
+			"foo": 5,
+			"bar": -6,
+		},
+		nil,
 	},
 }
 
