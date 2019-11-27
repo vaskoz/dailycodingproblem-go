@@ -45,6 +45,7 @@ func TestSolveArithmeticEquationsBadInput(t *testing.T) {
 			t.Errorf("Expected a panic when bad input")
 		}
 	}()
+	// nolint
 	SolveArithmeticEquations(`a+y=1 x+z=2
 x=5`)
 }
