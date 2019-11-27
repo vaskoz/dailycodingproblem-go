@@ -16,11 +16,9 @@ func TestLongestConsecutiveSequenceBrute(t *testing.T) {
 	t.Parallel()
 
 	for _, tc := range testcases {
-		var copied []int
+		copied := append([]int{}, tc.input...)
 
-		copy(copied, tc.input)
-
-		if result := LongestConsecutiveSequenceBrute(tc.input); result != tc.lcs {
+		if result := LongestConsecutiveSequenceBrute(copied); result != tc.lcs {
 			t.Errorf("Expected %v, got %v", tc.lcs, result)
 		}
 	}
@@ -29,11 +27,31 @@ func TestLongestConsecutiveSequenceBrute(t *testing.T) {
 func BenchmarkLongestConsecutiveSequenceBrute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
-			var copied []int
+			copied := append([]int{}, tc.input...)
 
-			copy(copied, tc.input)
+			LongestConsecutiveSequenceBrute(copied)
+		}
+	}
+}
 
-			LongestConsecutiveSequenceBrute(tc.input)
+func TestLongestConsecutiveSequenceLinear(t *testing.T) {
+	t.Parallel()
+
+	for _, tc := range testcases {
+		copied := append([]int{}, tc.input...)
+
+		if result := LongestConsecutiveSequenceLinear(copied); result != tc.lcs {
+			t.Errorf("Expected %v, got %v", tc.lcs, result)
+		}
+	}
+}
+
+func BenchmarkLongestConsecutiveSequenceLinear(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			copied := append([]int{}, tc.input...)
+
+			LongestConsecutiveSequenceLinear(copied)
 		}
 	}
 }

@@ -27,3 +27,31 @@ func LongestConsecutiveSequenceBrute(nums []int) int {
 
 	return longest
 }
+
+// LongestConsecutiveSequenceLinear runs in O(N).
+func LongestConsecutiveSequenceLinear(nums []int) int {
+	set := make(map[int]struct{}, len(nums))
+
+	for _, num := range nums {
+		set[num] = struct{}{}
+	}
+
+	longest := 0
+
+	for _, num := range nums {
+		if _, found := set[num-1]; !found {
+			found = true
+			count := 0
+
+			for ; found; count++ {
+				_, found = set[num+count+1]
+			}
+
+			if count > longest {
+				longest = count
+			}
+		}
+	}
+
+	return longest
+}
