@@ -368,4 +368,5 @@ problems from
 * Day 370 - Never received an e-mail for this day.
 * [Day 371](https://github.com/vaskoz/dailycodingproblem-go/issues/750)
 * [Day 372](https://github.com/vaskoz/dailycodingproblem-go/issues/748)
+* [Day 373](https://github.com/vaskoz/dailycodingproblem-go/issues/752)
 
