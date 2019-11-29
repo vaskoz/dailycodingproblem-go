@@ -13,26 +13,24 @@ var (
 // LowestFixedPoint returns the lowest fixed point index.
 // If no such index exists, it returns an error.
 // Also returns an error if input is not sorted.
-// Runs in O(log N) time thanks to binary search.
-// Worse case is O(N/2) because I iterate down from a match
-// to find the lowest fixed point.
+// Runs in O(log N) worst case time thanks to binary search.
 func LowestFixedPoint(sorted []int) (int, error) {
 	if !sort.IntsAreSorted(sorted) {
 		return 0, errInputNotSorted
 	}
 
-	for lo, hi := 0, len(sorted)-1; lo < hi; {
+	for lo, hi := 0, len(sorted); lo <= hi; {
 		switch mid := (lo + hi) / 2; {
 		case sorted[mid] == mid:
-			for sorted[mid] == mid {
-				mid--
+			if hi-lo == 0 {
+				return mid, nil
 			}
 
-			return mid + 1, nil
-		case sorted[mid] > mid:
-			hi = mid - 1
-		default:
+			hi = mid
+		case sorted[mid] < mid:
 			lo = mid + 1
+		default:
+			hi = mid - 1
 		}
 	}
 
