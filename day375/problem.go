@@ -4,7 +4,8 @@ import "sort"
 
 // HIndex returns the h-index for this author.
 func HIndex(citations []int) int {
-	copied := append([]int{}, citations...)
+	copied := make([]int, len(citations))
+	copy(copied, citations)
 
 	sort.Sort(sort.Reverse(sort.IntSlice(copied)))
 
