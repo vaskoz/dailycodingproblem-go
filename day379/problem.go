@@ -10,7 +10,7 @@ func AllPossibleSubsequences(str string) map[string]struct{} {
 }
 
 func allPossibleSubsequences(str string, ansSet map[string]struct{}) {
-	if len(str) == 0 {
+	if _, alreadyExists := ansSet[str]; len(str) == 0 || alreadyExists {
 		return
 	}
 
