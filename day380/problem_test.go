@@ -21,6 +21,17 @@ func TestDivisionBrute(t *testing.T) {
 	}
 }
 
+func TestDivisionBruteDivideByZero(t *testing.T) {
+	t.Parallel()
+
+	defer func() {
+		if err := recover(); err == nil {
+			t.Errorf("expected a panic when divisor is zero")
+		}
+	}()
+	DivisionBrute(1, 0)
+}
+
 func BenchmarkDivisionBrute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testcases {
