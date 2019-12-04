@@ -9,6 +9,9 @@ var testcases = []struct {
 }{
 	{10, 3, 3, 1},
 	{9, 3, 3, 0},
+	{-9, 3, -3, 0},
+	{9, -3, -3, 0},
+	{-9, -3, 3, 0},
 }
 
 func TestDivisionBrute(t *testing.T) {
