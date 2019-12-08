@@ -12,6 +12,7 @@ var testcases = []struct {
 	{"abcdefg", []string{"bcd", "def"}, "a<b>bcdef</b>g"},
 	{"abcdefg", []string{"def", "bcd"}, "a<b>bcdef</b>g"},
 	{"abcdefg", []string{"def", "bcd", "defg"}, "a<b>bcdefg</b>"},
+	{"abcdefg", []string{"abcd", "bc"}, "<b>abcd</b>efg"},
 }
 
 func TestEmbolden(t *testing.T) {
