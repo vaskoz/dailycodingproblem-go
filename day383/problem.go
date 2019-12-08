@@ -59,7 +59,7 @@ func mergeIntervals(ints []interval) []interval {
 
 	for i := 1; i < len(ints); i++ {
 		if ints[i].start > merged[last].start && ints[i].start < merged[last].end {
-			merged[last] = interval{min(merged[last].start, ints[i].start),
+			merged[last] = interval{merged[last].start,
 				max(merged[last].end, ints[i].end)}
 		} else {
 			merged = append(merged, ints[i])
@@ -72,14 +72,6 @@ func mergeIntervals(ints []interval) []interval {
 
 func max(a, b int) int {
 	if a > b {
-		return a
-	}
-
-	return b
-}
-
-func min(a, b int) int {
-	if a < b {
 		return a
 	}
 
