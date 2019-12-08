@@ -378,4 +378,5 @@ problems from
 * [Day 380](https://github.com/vaskoz/dailycodingproblem-go/issues/766)
 * [Day 381](https://github.com/vaskoz/dailycodingproblem-go/issues/768)
 * [Day 382](https://github.com/vaskoz/dailycodingproblem-go/issues/770)
+* [Day 383](https://github.com/vaskoz/dailycodingproblem-go/issues/772)
 
