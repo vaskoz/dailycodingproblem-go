@@ -8,6 +8,7 @@ import (
 // nolint
 var errImpossibleTarget = errors.New("impossible to make target change with denominations")
 
+// MaxInt is the largest possible int.
 const MaxInt = int(^uint(0) >> 1)
 
 // FewestCoinsBrute returns the fewest required coins to make target
