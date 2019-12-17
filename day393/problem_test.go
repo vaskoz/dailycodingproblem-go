@@ -31,3 +31,21 @@ func BenchmarkLargestRangeBrute(b *testing.B) {
 		}
 	}
 }
+
+func TestLargestRangeSort(t *testing.T) {
+	t.Parallel()
+
+	for _, tc := range testcases {
+		if s, e := LargestRangeSort(tc.nums); s != tc.start || e != tc.end {
+			t.Errorf("Expected (%v,%v), got (%v,%v)", tc.start, tc.end, s, e)
+		}
+	}
+}
+
+func BenchmarkLargestRangeSort(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			LargestRangeSort(tc.nums)
+		}
+	}
+}
