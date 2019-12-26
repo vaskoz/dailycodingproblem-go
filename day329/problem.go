@@ -56,10 +56,6 @@ func StableMarriage(males, females map[string][]string) Matches {
 			}
 		}
 		proposals[m]++
-
-		if proposals[m] == len(males[m]) {
-			delete(proposals, m)
-		}
 	}
 
 	for female := range females {

@@ -47,6 +47,20 @@ var testcases = []struct {
 			"0": "7",
 		},
 	},
+	{
+		map[string][]string{
+			"0": {"2", "3"},
+			"1": {"3", "2"},
+		},
+		map[string][]string{
+			"2": {"1", "0"},
+			"3": {"1", "0"},
+		},
+		Matches{
+			"0": "2",
+			"1": "3",
+		},
+	},
 }
 
 func TestStableMarriage(t *testing.T) {
