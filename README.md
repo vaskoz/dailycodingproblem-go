@@ -403,4 +403,5 @@ problems from
 * [Day 403](https://github.com/vaskoz/dailycodingproblem-go/issues/815)
 * [Day 404](https://github.com/vaskoz/dailycodingproblem-go/issues/817)
 * [Day 405](https://github.com/vaskoz/dailycodingproblem-go/issues/819)
+* [Day 406](https://github.com/vaskoz/dailycodingproblem-go/issues/821)
 

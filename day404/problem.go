@@ -1,4 +1,4 @@
-package day21
+package day404
 
 import "sort"
 
