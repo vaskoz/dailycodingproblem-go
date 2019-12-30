@@ -1,4 +1,4 @@
-package day362
+package day402
 
 import (
 	"reflect"
