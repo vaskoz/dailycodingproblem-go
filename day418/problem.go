@@ -28,8 +28,8 @@ func Bonuses(loc []int) []int {
 		bonuses = append(bonuses, segBonuses...)
 	}
 
-	for i, x := range bonuses {
-		bonuses[i] = x + 1
+	for i := range bonuses {
+		bonuses[i]++
 	}
 
 	return bonuses
