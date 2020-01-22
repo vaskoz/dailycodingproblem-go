@@ -425,4 +425,5 @@ problems from
 * [Day 426](https://github.com/vaskoz/dailycodingproblem-go/issues/860)
 * [Day 427](https://github.com/vaskoz/dailycodingproblem-go/issues/861)
 * [Day 428](https://github.com/vaskoz/dailycodingproblem-go/issues/864)
+* [Day 429](https://github.com/vaskoz/dailycodingproblem-go/issues/866)
 
