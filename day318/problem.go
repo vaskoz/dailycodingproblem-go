@@ -1,6 +1,7 @@
 package day318
 
 // NumberOfValidPlayListsRec is a recursive solution.
+// Runs in O(N) worst case time.
 func NumberOfValidPlayListsRec(n, m, b int) int {
 	if b >= m {
 		return 0
@@ -28,6 +29,7 @@ func max(a, b int) int {
 }
 
 // NumberOfValidPlayListsIterative is an iterative solution.
+// Runs in O(N) worst case time.
 func NumberOfValidPlayListsIterative(n, m, b int) int {
 	if b >= m {
 		return 0
