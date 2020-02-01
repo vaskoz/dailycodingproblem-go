@@ -1,22 +1,22 @@
 package day318
 
 // NumberOfValidPlayListsRec is a recursive solution.
-func NumberOfValidPlayListsRec(required, downloaded, buffer int) int {
-	if buffer >= downloaded {
+func NumberOfValidPlayListsRec(n, m, b int) int {
+	if b >= m {
 		return 0
 	}
 
-	if required == 0 {
+	if n == 0 {
 		return 1
 	}
 
-	downloadParam := downloaded
+	mp := m
 
-	if buffer != 0 {
-		downloadParam--
+	if b != 0 {
+		mp--
 	}
 
-	return downloaded * NumberOfValidPlayListsRec(required-1, downloadParam, max(0, buffer-1))
+	return m * NumberOfValidPlayListsRec(n-1, mp, max(0, b-1))
 }
 
 func max(a, b int) int {
@@ -28,24 +28,24 @@ func max(a, b int) int {
 }
 
 // NumberOfValidPlayListsIterative is an iterative solution.
-func NumberOfValidPlayListsIterative(required, downloaded, buffer int) int {
-	if buffer >= downloaded {
+func NumberOfValidPlayListsIterative(n, m, b int) int {
+	if b >= m {
 		return 0
 	}
 
 	total := 1
-	available := downloaded
+	available := m
 
-	for i := 0; i <= buffer; i++ {
+	for i := 0; i <= b; i++ {
 		total *= available
 		available--
 	}
 
-	if available < downloaded {
+	if available < m {
 		available++
 	}
 
-	for i := buffer + 1; i < required; i++ {
+	for i := b + 1; i < n; i++ {
 		total *= available
 	}
 
