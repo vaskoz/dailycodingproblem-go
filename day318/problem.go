@@ -53,3 +53,30 @@ func NumberOfValidPlayListsIterative(n, m, b int) int {
 
 	return total
 }
+
+// NumberOfValidPlayListsFormula is a mathematical formula.
+// Technically, runs in O(1) if factorial and exponential functions are constant.
+// Formula: M!/(M-B!) * (M-B)^(N-B)
+func NumberOfValidPlayListsFormula(n, m, b int) int {
+	return binomial(m, m-b) * pow(m-b, n-b)
+}
+
+func binomial(a, b int) int {
+	result := 1
+
+	for ; a > b; a-- {
+		result *= a
+	}
+
+	return result
+}
+
+func pow(n, exp int) int {
+	result := 1
+
+	for i := 0; i < exp; i++ {
+		result *= n
+	}
+
+	return result
+}

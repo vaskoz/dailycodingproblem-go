@@ -52,3 +52,21 @@ func BenchmarkNumberOfValidPlayListsIterative(b *testing.B) {
 		}
 	}
 }
+
+func TestNumberOfValidPlayListsFormula(t *testing.T) {
+	t.Parallel()
+
+	for _, tc := range testcases {
+		if result := NumberOfValidPlayListsFormula(tc.N, tc.M, tc.B); result != tc.expected {
+			t.Errorf("Expected %v, got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkNumberOfValidPlayListsFormula(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			NumberOfValidPlayListsFormula(tc.N, tc.M, tc.B)
+		}
+	}
+}
