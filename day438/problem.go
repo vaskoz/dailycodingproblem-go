@@ -4,7 +4,6 @@ import "container/heap"
 
 // StackHeap is a stack implemented using only a heap.
 // Runs in O(N log N) time.
-// Also contains a flaw with the counter due to overflow.
 type StackHeap struct {
 	heap    maxHeap
 	counter uint64
@@ -42,5 +41,6 @@ func (sh *StackHeap) Push(v interface{}) {
 
 // Pop removes an element from the stack.
 func (sh *StackHeap) Pop() interface{} {
+	sh.counter--
 	return heap.Pop(&sh.heap)
 }
