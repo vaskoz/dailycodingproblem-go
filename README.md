@@ -443,4 +443,5 @@ problems from
 * [Day 444](https://github.com/vaskoz/dailycodingproblem-go/issues/890)
 * [Day 445](https://github.com/vaskoz/dailycodingproblem-go/issues/888)
 * [Day 446](https://github.com/vaskoz/dailycodingproblem-go/issues/900)
+* [Day 447](https://github.com/vaskoz/dailycodingproblem-go/issues/902)
 
