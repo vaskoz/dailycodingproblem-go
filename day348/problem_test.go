@@ -1,7 +1,6 @@
 package day348
 
 import (
-	"log"
 	"testing"
 )
 
@@ -78,8 +77,6 @@ func TestTernarySearchTree(t *testing.T) {
 			tree.Insert(word)
 		}
 
-		logTernaryTree(tree)
-
 		if !equalTernaryTree(tree, tc.tree) {
 			t.Errorf("Expected trees to be equal but they aren't")
 		}
@@ -114,27 +111,7 @@ func BenchmarkTernarySearchTree(b *testing.B) {
 	}
 }
 
-func logTernaryTree(a *TernarySearchTree) {
-	if a == nil {
-		log.Println("nil")
-		return
-	}
-
-	log.Println(string(a.letter))
-
-	log.Println("going left")
-	logTernaryTree(a.left)
-
-	log.Println("going middle")
-	logTernaryTree(a.middle)
-
-	log.Println("going right")
-	logTernaryTree(a.right)
-}
-
 func equalTernaryTree(a, b *TernarySearchTree) bool {
-	log.Println(a, b)
-
 	if a == nil && b == nil {
 		return true
 	} else if a != nil && b != nil {
