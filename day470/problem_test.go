@@ -41,3 +41,22 @@ func BenchmarkClosestLargerNumberIndexBrute(b *testing.B) {
 		}
 	}
 }
+
+func TestPreprocessClosestLargerNumberIndex(t *testing.T) {
+	t.Parallel()
+
+	for _, tc := range testcases {
+		pre := PreprocessClosestLargerNumberIndex(tc.nums)
+		if result := pre[tc.targetIndex]; result != tc.expected {
+			t.Errorf("Expected %v got %v", tc.expected, result)
+		}
+	}
+}
+
+func BenchmarkPreprocessClosestLargerNumberIndex(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testcases {
+			PreprocessClosestLargerNumberIndex(tc.nums)
+		}
+	}
+}

@@ -24,3 +24,16 @@ func ClosestLargerNumberIndexBrute(nums []int, targetIndex int) int {
 
 	return -1
 }
+
+// PreprocessClosestLargerNumberIndex pre-processes the input and returns a new
+// slice that can answer the question for any index in O(1).
+// This pre-processing takes O(N^2) time.
+func PreprocessClosestLargerNumberIndex(nums []int) []int {
+	res := make([]int, len(nums))
+
+	for i := range nums {
+		res[i] = ClosestLargerNumberIndexBrute(nums, i)
+	}
+
+	return res
+}
