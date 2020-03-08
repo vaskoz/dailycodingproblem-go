@@ -19,3 +19,18 @@ func RotateMatrixRightClockwise90(m Matrix) Matrix {
 
 	return result
 }
+
+// RotateMatrixRightClockwise90InPlace does what it says.
+func RotateMatrixRightClockwise90InPlace(m Matrix) {
+	n := len(m)
+
+	for i := 0; i < n/2; i++ {
+		for j := i; j < n-i-1; j++ {
+			var next int
+			next, m[j][n-i-1] = m[j][n-i-1], m[i][j]      // right-side
+			next, m[n-i-1][n-j-1] = m[n-i-1][n-j-1], next // bottom-side
+			next, m[n-j-1][i] = m[n-j-1][i], next         // left-side
+			m[i][j] = next                                // top-side
+		}
+	}
+}
