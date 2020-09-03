@@ -38,35 +38,36 @@ func CourierActiveTime(data []DeliveryAction) uint {
 
 	outForDelivery := make(map[uint]DeliveryAction)
 
-	for i, d := range data {
-		if i == 0 {
-			if d.Type != Pickup {
-				log.Panicf("mismatched. can't have Dropoff without preceding Pickup. %v", d)
+	d := data[0]
+
+	if d.Type != Pickup {
+		log.Panicf("mismatched. can't have first chronological item as Dropoff. %v", d)
+	}
+
+	startActiveTime = d.Timestamp
+	outForDelivery[d.DeliveryID] = d
+
+	for _, d := range data[1:] {
+		switch d.Type {
+		case Pickup:
+			if len(outForDelivery) == 0 {
+				startActiveTime = d.Timestamp
+			} else if _, found := outForDelivery[d.DeliveryID]; found {
+				log.Panicf("duplicate pickup exists. %v", d)
 			}
 
-			startActiveTime = d.Timestamp
 			outForDelivery[d.DeliveryID] = d
-		} else {
-			switch d.Type {
-			case Pickup:
+		case Dropoff:
+			if _, found := outForDelivery[d.DeliveryID]; !found {
+				log.Panicf("mismatched. can't have Dropoff without preceding Pickup. %v", d)
+			} else {
+				delete(outForDelivery, d.DeliveryID)
 				if len(outForDelivery) == 0 {
-					startActiveTime = d.Timestamp
-				} else if _, found := outForDelivery[d.DeliveryID]; found {
-					log.Panicf("duplicate pickup exists. %v", d)
+					answer += (d.Timestamp - startActiveTime)
 				}
-				outForDelivery[d.DeliveryID] = d
-			case Dropoff:
-				if _, found := outForDelivery[d.DeliveryID]; !found {
-					log.Panicf("mismatched. can't have Dropoff without preceding Pickup. %v", d)
-				} else {
-					delete(outForDelivery, d.DeliveryID)
-					if len(outForDelivery) == 0 {
-						answer += (d.Timestamp - startActiveTime)
-					}
-				}
-			default:
-				log.Panicf("invalid DeliveryType. %v", d)
 			}
+		default:
+			log.Panicf("invalid DeliveryType. %v", d)
 		}
 	}
 
