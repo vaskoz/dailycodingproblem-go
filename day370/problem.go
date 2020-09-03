@@ -37,7 +37,6 @@ func CourierActiveTime(data []DeliveryAction) uint {
 	var answer, startActiveTime uint
 
 	outForDelivery := make(map[uint]DeliveryAction)
-
 	d := data[0]
 
 	if d.Type != Pickup {
