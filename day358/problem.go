@@ -153,6 +153,7 @@ func (bo *bigOhOne) Min() (interface{}, int) {
 	return val, front.count
 }
 
+// New returns a new instance of a BigOhOne data structure.
 func New() BigOhOne {
 	return &bigOhOne{
 		entryList:         list.New(),

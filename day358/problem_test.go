@@ -60,9 +60,9 @@ func TestStringTreeDepth(t *testing.T) {
 }
 
 func BenchmarkStringTreeDepth(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		bo := New()
+	bo := New()
 
+	for i := 0; i < b.N; i++ {
 		for _, a := range actions {
 			switch a.action {
 			case "plus":
