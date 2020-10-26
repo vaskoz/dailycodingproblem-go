@@ -32,7 +32,7 @@ var actions = []struct {
 	{"bar", "min", 4},
 }
 
-func TestStringTreeDepth(t *testing.T) {
+func TestBigOhOne(t *testing.T) {
 	t.Parallel()
 
 	bo := New()
@@ -59,7 +59,7 @@ func TestStringTreeDepth(t *testing.T) {
 	}
 }
 
-func BenchmarkStringTreeDepth(b *testing.B) {
+func BenchmarkBigOhOne(b *testing.B) {
 	bo := New()
 
 	for i := 0; i < b.N; i++ {

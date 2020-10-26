@@ -34,100 +34,89 @@ type entry struct {
 }
 
 func (bo *bigOhOne) Plus(key interface{}) {
-	if e1 := bo.lookupEntryByKey[key]; e1 == nil { // entry doesn't exist
-		if e2 := bo.lookupListByCount[1]; e2 == nil { // count of 1 doesn't exist either.
-			newE := &entry{
-				count:       1,
-				values:      list.New(),
-				lookupByKey: make(map[interface{}]*list.Element),
-			}
-			newElem := bo.entryList.PushFront(newE)
-			bo.lookupEntryByKey[key] = newElem
-			bo.lookupListByCount[newE.count] = newElem
-			newE.lookupByKey[key] = newE.values.PushFront(key)
-		} else { // count 1 does exist for new key
-			e2s := e2.Value.(*entry)
-			e2s.lookupByKey[key] = e2s.values.PushFront(key)
-			bo.lookupEntryByKey[key] = e2
-		}
-	} else { // entry exists.
-		e1s := e1.Value.(*entry)
-		if e2 := bo.lookupListByCount[e1s.count+1]; e2 == nil { // count+1 doesn't exist.
-			newE := &entry{
-				count:       e1s.count + 1,
-				values:      list.New(),
-				lookupByKey: make(map[interface{}]*list.Element),
-			}
-			e1key := e1s.lookupByKey[key]
-			e1s.values.Remove(e1key)
-			newElem := bo.entryList.InsertAfter(newE, e1)
-			bo.lookupEntryByKey[key] = newElem
-			bo.lookupListByCount[newE.count] = newElem
-			newE.lookupByKey[key] = newE.values.PushFront(key)
-			if e1s.values.Len() == 0 {
-				delete(bo.lookupListByCount, e1s.count)
-				bo.entryList.Remove(e1)
-			}
-		} else { // next count exists just move
-			oldE := e1.Value.(*entry)
-			oldE1 := oldE.lookupByKey[key]
-			oldE.values.Remove(oldE1)
-			delete(oldE.lookupByKey, key)
-			if oldE.values.Len() == 0 {
-				delete(bo.lookupListByCount, oldE.count)
-				bo.entryList.Remove(e1)
-			}
+	eSource := bo.lookupEntryByKey[key]
 
-			newE := e2.Value.(*entry)
-			bo.lookupEntryByKey[key] = e2
-			newE.lookupByKey[key] = newE.values.PushFront(key)
+	if eSource == nil {
+		vals := list.New()
+		lookup := make(map[interface{}]*list.Element)
+		lookup[key] = vals.PushFront(key)
+
+		newEntry := &entry{
+			count:       0,
+			values:      vals,
+			lookupByKey: lookup,
 		}
+		eSource = bo.entryList.PushFront(newEntry)
+	}
+
+	sourceEntry := eSource.Value.(*entry)
+
+	eTarget := bo.lookupListByCount[sourceEntry.count+1]
+
+	if eTarget == nil {
+		newEntry := &entry{
+			count:       sourceEntry.count + 1,
+			values:      list.New(),
+			lookupByKey: make(map[interface{}]*list.Element),
+		}
+		eTarget = bo.entryList.InsertAfter(newEntry, eSource)
+	}
+
+	targetEntry := eTarget.Value.(*entry)
+
+	bo.lookupEntryByKey[key] = eTarget
+	bo.lookupListByCount[targetEntry.count] = eTarget
+	targetEntry.lookupByKey[key] = targetEntry.values.PushFront(key)
+
+	sourceEntryKey := sourceEntry.lookupByKey[key]
+	sourceEntry.values.Remove(sourceEntryKey)
+	delete(sourceEntry.lookupByKey, key)
+
+	if len(sourceEntry.lookupByKey) == 0 {
+		delete(bo.lookupListByCount, sourceEntry.count)
+		bo.entryList.Remove(eSource)
 	}
 }
 
 func (bo *bigOhOne) Minus(key interface{}) {
-	if e1 := bo.lookupEntryByKey[key]; e1 != nil {
-		e1s := e1.Value.(*entry)
-		if e1s.count == 1 {
-			delete(bo.lookupEntryByKey, key)
-			e1skey := e1s.lookupByKey[key]
-			e1s.values.Remove(e1skey)
+	eSource := bo.lookupEntryByKey[key]
 
-			if e1s.values.Len() == 0 {
-				bo.entryList.Remove(e1)
-				delete(bo.lookupListByCount, e1s.count)
-			}
-		} else {
-			if e2 := bo.lookupListByCount[e1s.count-1]; e2 == nil { // target doesn't exist
-				newE := &entry{
-					count:       e1s.count - 1,
-					values:      list.New(),
-					lookupByKey: make(map[interface{}]*list.Element),
-				}
-				newE.lookupByKey[key] = newE.values.PushFront(key)
-				newElem := bo.entryList.InsertBefore(newE, e1)
-				bo.lookupEntryByKey[key] = newElem
-				bo.lookupListByCount[newE.count] = newElem
-				e1skey := e1s.lookupByKey[key]
-				e1s.values.Remove(e1skey)
-				delete(e1s.lookupByKey, key)
-				if e1s.values.Len() == 0 {
-					bo.entryList.Remove(e1)
-					delete(bo.lookupListByCount, e1s.count)
-				}
-			} else { // target does exist.
-				e2s := e2.Value.(*entry)
-				e2s.lookupByKey[key] = e2s.values.PushFront(key)
-				bo.lookupEntryByKey[key] = e2
-				e1skey := e1s.lookupByKey[key]
-				e1s.values.Remove(e1skey)
-				delete(e1s.lookupByKey, key)
-				if e1s.values.Len() == 0 {
-					bo.entryList.Remove(e1)
-					delete(bo.lookupListByCount, e1s.count)
-				}
-			}
+	if eSource == nil {
+		return
+	}
+
+	sourceEntry := eSource.Value.(*entry)
+
+	eTarget := bo.lookupListByCount[sourceEntry.count-1]
+
+	if eTarget == nil {
+		newEntry := &entry{
+			count:       sourceEntry.count - 1,
+			values:      list.New(),
+			lookupByKey: make(map[interface{}]*list.Element),
 		}
+		eTarget = bo.entryList.InsertBefore(newEntry, eSource)
+	}
+
+	targetEntry := eTarget.Value.(*entry)
+
+	bo.lookupEntryByKey[key] = eTarget
+	bo.lookupListByCount[targetEntry.count] = eTarget
+	targetEntry.lookupByKey[key] = targetEntry.values.PushFront(key)
+
+	sourceEntryKey := sourceEntry.lookupByKey[key]
+	sourceEntry.values.Remove(sourceEntryKey)
+	delete(sourceEntry.lookupByKey, key)
+
+	if len(sourceEntry.lookupByKey) == 0 {
+		delete(bo.lookupListByCount, sourceEntry.count)
+		bo.entryList.Remove(eSource)
+	}
+
+	if targetEntry.count == 0 {
+		delete(bo.lookupEntryByKey, key)
+		delete(bo.lookupListByCount, targetEntry.count)
+		bo.entryList.Remove(eTarget)
 	}
 }
 
