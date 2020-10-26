@@ -30,6 +30,7 @@ var actions = []struct {
 	{"foo", "minus", 1},
 	{"bar", "max", 4},
 	{"bar", "min", 4},
+	{"doesntexist", "minus", 4},
 }
 
 func TestBigOhOne(t *testing.T) {
