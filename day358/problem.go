@@ -2,6 +2,7 @@ package day358
 
 import "github.com/algds/minmaxcnt"
 
+// Wrapper delegates to a library.
 type Wrapper struct {
 	delegate minmaxcnt.Interface
 }
