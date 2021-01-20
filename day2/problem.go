@@ -16,6 +16,25 @@ func ProductsExceptI(arr []int) []int {
 	return result
 }
 
+// ProductsExceptINoDivisionLinear returns an array with the products of all numbers
+// except the value at the i-th position. Without using division.
+// O(N) time complexity.
+// O(1) space complexity.
+func ProductsExceptINoDivisionLinear(arr []int) []int {
+	result := make([]int, len(arr))
+	total := 1
+	for i := 0; i < len(arr); i++ {
+		result[i] = total
+		total *= arr[i]
+	}
+	total = 1
+	for i := len(arr) - 1; i >= 0; i-- {
+		result[i] *= total
+		total *= arr[i]
+	}
+	return result
+}
+
 // ProductsExceptINoDivision returns an array with the products of all numbers
 // except the value at the i-th position. Without using division.
 // O(N^2) time complexity.
