@@ -30,22 +30,24 @@ func Serialize(root *Node) string {
 	return strings.Join(serialized, " ")
 }
 
-func preorderDeserialize(serialized []string) *Node {
+func preorderDeserialize(serialized []string) (*Node, int) {
 	if len(serialized) == 0 || serialized[0] == "-1" {
-		return nil
+		return nil, 1
 	}
 	v, err := strconv.Atoi(serialized[0])
 	if err != nil {
 		panic("bad serialized data cannot be deserialized")
 	}
 	node := &Node{val: v}
-	node.left = preorderDeserialize(serialized[1:])
-	node.right = preorderDeserialize(serialized[2:])
-	return node
+	advanceLeft, advanceRight := 0, 0
+	node.left, advanceLeft = preorderDeserialize(serialized[1:])
+	node.right, advanceRight = preorderDeserialize(serialized[1+advanceLeft:])
+	return node, 1 + advanceLeft + advanceRight
 }
 
 // Deserialize converts a string into a general binary tree.
 func Deserialize(data string) *Node {
 	serialized := strings.Split(data, " ")
-	return preorderDeserialize(serialized)
+	result, _ := preorderDeserialize(serialized)
+	return result
 }

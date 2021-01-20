@@ -21,6 +21,14 @@ func TestProductsExceptI(t *testing.T) {
 			}
 		}
 	})
+	t.Run("ProductsExceptINoDivisionLinear", func(t *testing.T) {
+		t.Parallel()
+		for _, tc := range testcases {
+			if result := ProductsExceptINoDivisionLinear(tc.input); !reflect.DeepEqual(result, tc.expected) {
+				t.Error("didn't get what I expected")
+			}
+		}
+	})
 	t.Run("ProductsExceptINoDivision", func(t *testing.T) {
 		t.Parallel()
 		for _, tc := range testcases {
@@ -36,6 +44,13 @@ func BenchmarkProductsExceptI(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			for _, tc := range testcases {
 				ProductsExceptI(tc.input)
+			}
+		}
+	})
+	b.Run("ProductsExceptINoDivisionLinear", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			for _, tc := range testcases {
+				ProductsExceptINoDivisionLinear(tc.input)
 			}
 		}
 	})
